@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="BoardApplicationTests.testBySqlSessionFactory" project="Board" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.board.BoardApplicationTests" time="0.646" displayname="BoardApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.board.BoardApplicationTests]">
+    <testcase name="testBySqlSessionFactory" classname="com.board.BoardApplicationTests" time="0.646" displayname="testBySqlSessionFactory()" uniqueid="[engine:junit-jupiter]/[class:com.board.BoardApplicationTests]/[method:testBySqlSessionFactory()]"/>
+  </testsuite>
+</testrun>
