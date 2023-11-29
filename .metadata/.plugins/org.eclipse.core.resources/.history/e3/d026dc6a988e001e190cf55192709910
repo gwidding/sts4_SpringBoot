@@ -24,7 +24,7 @@
 		 	, #{title}
 		 	, #{content}
 		 	, #{writer}
-		 	, 1
+		 	, #{viewCnt}
 		 	, IFNULL(#{noticeYn}, 'N')
 		 	, IFNULL(#{secretYn}, 'N')
 		 	, 'N'

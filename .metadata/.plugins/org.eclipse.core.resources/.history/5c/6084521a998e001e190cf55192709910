@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="board/layout/basic">
+<html lang="ko" xmlns:th:"http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="board/layout/basic">
 	<th:block layout:fragment="title">
 		<title>This is view page</title>
 	</th:block>
@@ -67,7 +67,7 @@
 					<ul class="notice-list">
 						<li>
 							<span class="name">Korea POLYTECHNICS</span>
-							<span class="desc">There are new settings available</span>
+							<span class="desc">There are new settings avilable</span>
 							<span class="time">2023.11.29</span>
 							<button type="button" class="btn btn-xs btn-circle"><i class="fa fa-close" aria-hidden="true"></i></button>
 						</li>

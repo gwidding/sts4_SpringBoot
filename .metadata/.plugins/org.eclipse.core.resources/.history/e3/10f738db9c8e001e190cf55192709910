@@ -33,9 +33,9 @@
 		<script th:src="@{/plugin/bootstrap/js/bootstrap.min.js}"></script>
 		<script th:src="@{/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
 		
-		<script th:src="@{/scripts/main.js}"></script>
-		<script th:src="@{/scripts/common.js}"></script>
+		<script th:src="@{/script/main.js}"></script>
+		<script th:src="@{/script/common.js}"></script>
 		
-		<th:block layout:fragment="script"></th:block>
+		<th:block layout:fragment="script"></script>
 	</body>
 </html>
