@@ -20,17 +20,17 @@
 		INSERT INTO board (
 			<include refid="boardColumns" />
 		 ) VALUES (
-		 	 #{idx}
-		 	,#{title}
-		 	,#{content}
-		 	,#{writer}
-		 	,0
-		 	,IFNULL(#{noticeYn}, 'N')
-		 	,IFNULL(#{secretYn}, 'N')
-		 	,'N'
-		 	,NOW()
-		 	,NULL
-		 	,NULL
+		 	  #{idx}
+		 	, #{title}
+		 	, #{content}
+		 	, #{writer}
+		 	, 0
+		 	, IFNULL(#{noticeYn}, 'N')
+		 	, IFNULL(#{secretYn}, 'N')
+		 	, 'N'
+		 	, NOW()
+		 	, NULL
+		 	, NULL
 		 )
 	</insert>
 	
