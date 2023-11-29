@@ -26,7 +26,7 @@ public class BoardController {
 		} else {
 			BoardDTO board = boardService.getBoardDetail(idx);
 			if (board == null) {
-				return "redirect:/board/list/do";
+				return "redirect:/board/list.do";
 			}
 			model.addAttribute("board", board);
 		}
@@ -73,11 +73,32 @@ public class BoardController {
 		
 		BoardDTO board = boardService.getBoardDetail(idx);
 		if (board == null || "Y".equals(board.getDeleteYn())) {
-			// TODO => 없는 게시글이거나, 이미 삭제된 게시글이라는 메시지 정달, 게시글 리스트로 리다이렉트
+			// TODO => 없는 게시글이거나, 이미 삭제된 게시글이라는 메시지 전달, 게시글 리스트로 리다이렉트
 			return "redirect:/board/list.do";
 		}
 		model.addAttribute("board", board);
 		
 		return "board/view";
+	}
+	
+	@PostMapping(value = "/board/delete.do")
+	public String deleteBoard(@RequestParam(value = "idx", required = false) Long idx) {
+		if (idx == null) {
+			// TODO => 올바르지 않은 접근 메시지 전달, 게시글 리스트로 리다이렉트
+			return "redirect:/board/list.do";
+		}
+		
+		try {
+			boolean isDeleted = boardService.deleteBoard(idx);
+			if (isDeleted == false) {
+				// TODO => 게시글 삭제 실패 메시지 전달
+			}
+		} catch (DataAccessException e) {
+			// TODO => 데베 처리 과정 문제 발생 메시지 전달
+		} catch (Exception e) {
+			// TODO => 시스템 문제 발생 메시지 전달
+		}
+		
+		return "redirect:/board/list.do";
 	}
 }

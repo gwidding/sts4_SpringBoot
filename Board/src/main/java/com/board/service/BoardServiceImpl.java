@@ -17,7 +17,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public boolean registerBoard(BoardDTO params) {
-		int queryResult = 0; 
+		int queryResult = 0;
 		
 		if (params.getIdx() == null) {
 			queryResult = boardMapper.insertBoard(params);
@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public boolean deleteBoard(Long idx) {
-		int queryResult = 0; 
+		int queryResult = 0;
 		
 		BoardDTO board = boardMapper.selectBoardDetail(idx);
 		
