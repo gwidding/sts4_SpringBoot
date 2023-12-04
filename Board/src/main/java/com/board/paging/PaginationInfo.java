@@ -26,7 +26,7 @@ public class PaginationInfo {
 	}
 	
 	public void setTotalRecordCount(int totalRecordCount) {
-		this.totalPageCount = totalRecordCount;
+		this.totalRecordCount = totalRecordCount;
 		
 		if (totalRecordCount > 0) {
 			calculation();
@@ -49,7 +49,7 @@ public class PaginationInfo {
 		}
 		
 		//SQL의 조건절에 사용되는 첫 RNUM
-		firstRecordIndex = (criteria.getCurrentPageNo() - 1) * criteria.getCurrentPageNo();
+		firstRecordIndex = (criteria.getCurrentPageNo() - 1) * criteria.getRecordsPerPage();
 		// 마지막 RNUM
 		lastRecordIndex = criteria.getCurrentPageNo() * criteria.getRecordsPerPage();
 		// 이전 페이지 존재 여부

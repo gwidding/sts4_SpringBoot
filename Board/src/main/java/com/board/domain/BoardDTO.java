@@ -3,7 +3,8 @@ package com.board.domain;
 import java.time.LocalDateTime;
 
 //DTO(데이터를 넣고,쓰고,수정할 때) 나 DO(데이터 쓰진 않을 때)
-public class BoardDTO {
+public class BoardDTO extends CommonDTO {
+	
 	private Long idx;
 	private String title;
 	private String content;
@@ -11,10 +12,10 @@ public class BoardDTO {
 	private int viewCnt;
 	private String noticeYn;
 	private String secretYn;
-	private String deleteYn;
-	private LocalDateTime insertTime;
-	private LocalDateTime updateTime;
-	private LocalDateTime deleteTime;
+//	private String deleteYn;
+//	private LocalDateTime insertTime;
+//	private LocalDateTime updateTime;
+//	private LocalDateTime deleteTime;
 	
 	
 	// @Getter, @Setter 써도 되지만 문제가 생겨서 일단 기본적인 방법으로
@@ -60,38 +61,38 @@ public class BoardDTO {
 	public void setSecretYn(String secretYn) {
 		this.secretYn = secretYn;
 	}
-	public String getDeleteYn() {
-		return deleteYn;
-	}
-	public void setDeleteYn(String deleteYn) {
-		this.deleteYn = deleteYn;
-	}
-	public LocalDateTime getInsertTime() {
-		return insertTime;
-	}
-	public void setInsertTime(LocalDateTime insertTime) {
-		this.insertTime = insertTime;
-	}
-	public LocalDateTime getUpdateTime() {
-		return updateTime;
-	}
-	public void setUpdateTime(LocalDateTime updateTime) {
-		this.updateTime = updateTime;
-	}
-	public LocalDateTime getDeleteTime() {
-		return deleteTime;
-	}
-	public void setDeleteTime(LocalDateTime deleteTime) {
-		this.deleteTime = deleteTime;
-	}
+//	public String getDeleteYn() {
+//		return deleteYn;
+//	}
+//	public void setDeleteYn(String deleteYn) {
+//		this.deleteYn = deleteYn;
+//	}
+//	public LocalDateTime getInsertTime() {
+//		return insertTime;
+//	}
+//	public void setInsertTime(LocalDateTime insertTime) {
+//		this.insertTime = insertTime;
+//	}
+//	public LocalDateTime getUpdateTime() {
+//		return updateTime;
+//	}
+//	public void setUpdateTime(LocalDateTime updateTime) {
+//		this.updateTime = updateTime;
+//	}
+//	public LocalDateTime getDeleteTime() {
+//		return deleteTime;
+//	}
+//	public void setDeleteTime(LocalDateTime deleteTime) {
+//		this.deleteTime = deleteTime;
+//	}
 	
 	// (생성자 대신) 데이터가 잘 안 움직여질 때 도와줌
 	@Override
 	public String toString() {
 		return "BoardDTO [idx=" + idx + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", viewCnt=" + viewCnt + ", noticeYn=" + noticeYn + ", secretYn=" + secretYn + ", deleteYn="
-				+ deleteYn + ", insertTime=" + insertTime + ", updateTime=" + updateTime + ", deleteTime=" + deleteTime
-				+ "]";
+				+ ", viewCnt=" + viewCnt + ", noticeYn=" + noticeYn + ", secretYn=" + secretYn + "]";
 	}
+	
+
 		
 }
