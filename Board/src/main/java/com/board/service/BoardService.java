@@ -6,6 +6,7 @@ import com.board.domain.BoardDTO;
 
 public interface BoardService {
 	public boolean registerBoard(BoardDTO params);
+	public void increaseBoardViewCnt(Long idx);
 	public BoardDTO getBoardDetail(Long idx);
 	public boolean deleteBoard(Long idx);
 	public List<BoardDTO> getBoardList(BoardDTO params);

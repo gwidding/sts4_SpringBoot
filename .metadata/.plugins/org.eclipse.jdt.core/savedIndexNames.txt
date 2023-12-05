@@ -4,7 +4,6 @@ INDEX VERSION 1.134+C:\Users\okeunji\Documents\stsSpring\.metadata\.plugins\org.
 1252923277.index
 1521879511.index
 1840350120.index
-2503711345.index
 1955937848.index
 2222496643.index
 4004360048.index

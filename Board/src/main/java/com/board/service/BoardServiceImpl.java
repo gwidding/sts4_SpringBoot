@@ -65,4 +65,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardList;
 	}
 
+	@Override
+	public void increaseBoardViewCnt(Long idx) {
+		boardMapper.increaseBoardViewCnt(idx);
+	}
+
 }

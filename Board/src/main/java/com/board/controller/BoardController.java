@@ -35,8 +35,6 @@ public class BoardController extends UiUtils {
 			}
 			model.addAttribute("board", board);
 		}
-//		String title = "제목";
-//		model.addAttribute("t", title);
 		return "board/write";
 	}
 	
@@ -71,6 +69,9 @@ public class BoardController extends UiUtils {
 			// TODO => 올바르지 않은 접근, 게시글 리스트로 리다이렉트
 			return "redirect:/board/list.do";
 		}
+		
+		boardService.increaseBoardViewCnt(idx);
+		
 		
 		BoardDTO board = boardService.getBoardDetail(idx);
 		if (board == null || "Y".equals(board.getDeleteYn())) {

@@ -24,7 +24,7 @@
 		 	, #{title}
 		 	, #{content}
 		 	, #{writer}
-		 	, 1
+		 	, 0
 		 	, IFNULL(#{noticeYn}, 'N')
 		 	, IFNULL(#{secretYn}, 'N')
 		 	, 'N'
@@ -33,6 +33,14 @@
 		 	, NULL
 		 )
 	</insert>
+	
+	<update id="increaseBoardViewCnt" parameterType="Long">
+		UPDATE board
+		SET
+			view_cnt = view_cnt + 1
+		WHERE
+			idx = #{idx}
+	</update>
 	
 	<select id="selectBoardDetail" parameterType="long" resultType="BoardDTO">
 		SELECT
