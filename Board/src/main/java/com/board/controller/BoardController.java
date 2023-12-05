@@ -72,7 +72,6 @@ public class BoardController extends UiUtils {
 		
 		boardService.increaseBoardViewCnt(idx);
 		
-		
 		BoardDTO board = boardService.getBoardDetail(idx);
 		if (board == null || "Y".equals(board.getDeleteYn())) {
 			// TODO => 없는 게시글이거나, 이미 삭제된 게시글이라는 메시지 전달, 게시글 리스트로 리다이렉트

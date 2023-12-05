@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="unless"/>
+		<item key="selection" value="Criteria"/>
 		<item key="wrap" value="true"/>
-		<item key="casesensitive" value="false"/>
+		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="searchKeyWord"/>
+			<item value="searchKeyword"/>
+			<item value="record"/>
+			<item value="searchForm"/>
+			<item value="search"/>
+			<item value="searchKey"/>
+			<item value="mainSearchKeyword"/>
+			<item value="input type=&quot;text&quot;"/>
+			<item value="&lt;input type=&quot;text&quot; id=&quot;mainSearchKeyword&quot;"/>
+			<item value="delete"/>
+			<item value="object"/>
+			<item value="list"/>
 			<item value="unless"/>
 			<item value="boardService"/>
 			<item value="#request."/>
-			<item value="totalRecordCount"/>
-			<item value="params"/>
-			<item value="request.requestURI"/>
-			<item value="pagination"/>
-			<item value="fist"/>
-			<item value="request"/>
-			<item value="Wrong user name or password"/>
-			<item value="null"/>
-			<item value="/board/list.do&quot;"/>
-			<item value="block"/>
-			<item value="json"/>
-			<item value="order"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1072"/>
-		<item key="DIALOG_Y_ORIGIN" value="386"/>
+		<item key="DIALOG_X_ORIGIN" value="1263"/>
+		<item key="DIALOG_Y_ORIGIN" value="181"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
