@@ -1,6 +1,5 @@
 package com.board.domain;
 
-import java.time.LocalDateTime;
 
 //DTO(데이터를 넣고,쓰고,수정할 때) 나 DO(데이터 쓰진 않을 때)
 public class BoardDTO extends CommonDTO {

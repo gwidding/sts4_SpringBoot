@@ -59,9 +59,8 @@ public class BoardController extends UiUtils {
 	@GetMapping(value = "/board/list.do")
 	public String openBoardList(@ModelAttribute("params") BoardDTO params, HttpServletRequest request, Model model) {
 		List<BoardDTO> boardList = boardService.getBoardList(params);
-		model.addAttribute("boardList", boardList);
-//		model.addAttribute("requestURI", "/board/list.do");
 		model.addAttribute("requestURI", request.getRequestURI());
+		model.addAttribute("boardList", boardList);
 		
 		return "board/list";
 	}

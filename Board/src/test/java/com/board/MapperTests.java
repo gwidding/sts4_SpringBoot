@@ -95,23 +95,23 @@ public class MapperTests {
 		}	
 	}
 	
-	@Test
-	public void testSelectedList() {
-		int boardTotalCount = boardMapper.selectBoardTotalCount();
-		if (boardTotalCount > 0) {
-			List<BoardDTO> boardList = boardMapper.selectBoardList();
-			if(CollectionUtils.isEmpty(boardList) == false) {
-				for (BoardDTO board : boardList) {
-					System.out.println("==========================");
-					System.out.println(board.getTitle());
-					System.out.println(board.getContent());
-					System.out.println(board.getWriter());
-					System.out.println("==========================");
-					
-				}
-			}
-		}
-	}
+//	@Test
+//	public void testSelectedList() {
+//		int boardTotalCount = boardMapper.selectBoardTotalCount();
+//		if (boardTotalCount > 0) {
+//			List<BoardDTO> boardList = boardMapper.selectBoardList();
+//			if(CollectionUtils.isEmpty(boardList) == false) {
+//				for (BoardDTO board : boardList) {
+//					System.out.println("==========================");
+//					System.out.println(board.getTitle());
+//					System.out.println(board.getContent());
+//					System.out.println(board.getWriter());
+//					System.out.println("==========================");
+//					
+//				}
+//			}
+//		}
+//	}
 	
 	
 
