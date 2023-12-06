@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Criteria"/>
+		<item key="selection" value="comment"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="comment"/>
+			<item value="Comment"/>
+			<item value="CommentDTO"/>
 			<item value="searchKeyWord"/>
 			<item value="searchKeyword"/>
 			<item value="record"/>
@@ -20,9 +23,6 @@
 			<item value="delete"/>
 			<item value="object"/>
 			<item value="list"/>
-			<item value="unless"/>
-			<item value="boardService"/>
-			<item value="#request."/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

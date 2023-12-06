@@ -6,6 +6,7 @@ public class CommentDTO {
 	private String content;
 	private String writer;
 	private String deleteYn;
+	
 	public Long getIdx() {
 		return idx;
 	}
