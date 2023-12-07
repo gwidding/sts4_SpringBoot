@@ -71,9 +71,32 @@
 			</div>
 		</div>
 	</th:block>
+	
+	
 	<th:block layout:fragment="script">
 		<script th:inline="javascript">
 			/*<![CDATA[*/
+			function printCommentList() {
+				var uri = /*[[ @{/comments/} + ${board.idx} ]]*/ null;
+				
+				$.get(uri, function(response) {
+					if (isEmpty(response) == false) {
+						var commentsHtml = "";
+						$(response).each(function(idx, comment) {
+							commentsHtml += `
+								<li>
+									<span class="name">${comment.writer}</span>
+									<span class="desc">${comment.content}</span>
+									<button type="button" onclick="deleteComment(${comment.idx})" class="btn btn-xs btn-circle"><i class="fa fa-close" aria-hidden="true"></i></button>
+								</li>
+							`;
+						});
+
+						$(".notice-list").html(commentsHtml);
+					}
+				}, "json");
+			}
+			
 			function deleteBoard(idx, queryString) {
 				if (confirm(idx + "번 게시글을 삭제할까요?")) {
 					var uri = /*[[ @{/board/delete.do} ]]*/ null;
@@ -101,9 +124,7 @@
 			});
 
 			function insertComment(boardIdx) {
-
 				var content = document.getElementById("content");
-				
 				
 				if (isEmpty(content.value) == true) {
 					content.setAttribute("placeholder", "댓글을 입력해 주세요.");
@@ -152,7 +173,6 @@
 					headers: headers,
 					dataType: "json",
 					success: function(response) {
-						alert(response);
 						if (response.result == false) {
 							alert("댓글 삭제에 실패하였습니다.");
 							return false;
@@ -166,29 +186,6 @@
 					}
 				});
 			}
-
-			function printCommentList() {
-		
-				var uri = /*[[ @{/comments/} + ${board.idx} ]]*/ null;
-				
-				$.get(uri, function(response) {
-					if (isEmpty(response) == false) {
-						var commentsHtml = "";
-						$(response).each(function(idx, comment) {
-							commentsHtml += `
-								<li>
-									<span class="name">${comment.writer}</span>
-									<span class="desc">${comment.content}</span>
-									<button type="button" onclick="deleteComment(${comment.idx})" class="btn btn-xs btn-circle"><i class="fa fa-close" aria-hidden="true"></i></button>
-								</li>
-							`;
-						});
-
-						$(".notice-list").html(commentsHtml);
-					}
-				}, "json");
-			}
-
 			/*]]>*/
 		</script>
 	</th:block>

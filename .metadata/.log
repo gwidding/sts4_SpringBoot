@@ -4307,3 +4307,15 @@ Caused by: org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request textDocumen
 
 !ENTRY org.eclipse.lsp4e 4 0 2023-12-07 14:04:31.792
 !MESSAGE [Error]	Notification handler 'textDocument/didClose' failed with message: [UriError]: If a URI does not contain an authority component, then the path cannot begin with two slash characters ("//")
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-12-07 17:52:39.044
+!MESSAGE [Info]	ESLint server running in node v18.17.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-12-07 17:52:39.164
+!MESSAGE [Info]	Using Typescript version (user-setting) 5.1.6 from path "C:\sts-4.20.1.RELEASE\plugins\org.eclipse.wildwebdeveloper_1.1.1.202308101949\node_modules\typescript\lib\tsserver.js"
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-12-07 17:52:39.168
+!MESSAGE [Info]	Typescript Server version info: {version=5.1.6, source=user-setting}
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-12-07 17:52:39.968
+!MESSAGE [Info]	No ES Library found for file: file:///C:/Users/okeunji/Documents/stsSpring/Board/src/main/resources/static/plugin/common/moment.js

@@ -41,7 +41,6 @@ public class CommentController {
 	
 	// idx 값을 주소로 가지고 들어감
 	@GetMapping(value = "/comments/{boardIdx}")
-	// PathVariable : 값을 가져갈 수 있음
 	public List<CommentDTO> getCommentList(@PathVariable("boardIdx") Long boardIdx, @ModelAttribute("params") CommentDTO params) {
 		List<CommentDTO> commentList = commentService.getCommentList(params);
 		return commentList;
