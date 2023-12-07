@@ -3,7 +3,6 @@
 	<th:block layout:fragment="title">
 		<title>This is view page</title>
 	</th:block>
-	
 	<th:block layout:fragment="content">
 		<div class="card-content">
 			<form class="form-horizontal form-view" th:object="${board}">
@@ -13,28 +12,28 @@
 						<p class="form-control" th:text="*{title}"></p>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="inp-type-2" class="col-sm-2 control-label">이름</label>
 					<div class="col-sm-10">
 						<p class="form-control" th:text="*{writer}"></p>
-					</div> 
+					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="inp-type-5" class="col-sm-2 control-label">내용</label>
 					<div class="col-sm-10">
 						<p class="form-control" th:text="*{content}"></p>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="inp-type-5" class="col-sm-2 control-label">등록일</label>
 					<div class="col-sm-10">
 						<p class="form-control" th:text="*{#temporals.format( insertTime, 'yyyy-MM-dd' )}"></p>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="inp-type-5" class="col-sm-2 control-label">조회 수</label>
 					<div class="col-sm-10">
@@ -42,7 +41,7 @@
 					</div>
 				</div>
 			</form>
-			
+
 			<div class="btn_wrap text-center" th:object="${params}">
 				<a th:href="|@{/board/list.do}*{makeQueryString(currentPageNo)}|" class="btn btn-default waves-effect waves-light">뒤로가기</a>
 				<a th:href="|@{/board/write.do}*{makeQueryString(currentPageNo)}&idx=${board.idx}|" class="btn btn-primary waves-effect waves-light">수정하기</a>
@@ -50,8 +49,7 @@
 			</div>
 		</div>
 	</th:block>
-	
-	
+
 	<th:block layout:fragment="add-content">
 		<div class="box-content">
 			<div class="card-content">
@@ -64,7 +62,7 @@
 						<input type="text" id="content" class="form-control" />
 						<div class="input-group-btn">
 							<button type="button" class="btn waves-effect waves-light" th:onclick="insertComment([[ ${board.idx} ]])">
-								<i class="fa fa-commenting" aria-hidden="true"></i>
+							<i class="fa fa-commenting" aria-hidden="true"></i>
 							</button>
 						</div>
 					</div>
@@ -73,7 +71,6 @@
 			</div>
 		</div>
 	</th:block>
-	
 	<th:block layout:fragment="script">
 		<script th:inline="javascript">
 			/*<![CDATA[*/
@@ -81,19 +78,19 @@
 				if (confirm(idx + "번 게시글을 삭제할까요?")) {
 					var uri = /*[[ @{/board/delete.do} ]]*/ null;
 					var html = "";
+			
 					html += '<form name="dataForm" action="'+uri+'" method="post">';
-					html += '<input type="hidden" name="idx" value="'+ idx +'"/>';
-					
-					/*[- 쿼리 스트링을 오브젝트 형태로 변환 -]*/
+					html += '<input type="hidden" name="idx" value="'+idx+'" />';
+			
 					queryString = new URLSearchParams(queryString);
 					queryString.forEach(function(value, key) {
 						if (isEmpty(value) == false) {
-							html += '<input type="hidden" name="' + key + '" value="'+ value +'" />';
-							}
-						});
-						
+							html += '<input type="hidden" name="' + key + '" value="' + value + '" />';
+						}
+					});
+			
 					html += '</form>';
-					
+			
 					$("body").append(html);
 					document.dataForm.submit();
 				}
@@ -102,37 +99,18 @@
 			$(function() {
 				printCommentList();
 			});
-			
-			function printCommentList() {
-				var uri = /*[[ @{/comments/} + ${board.idx} ]]*/ null;
-				
-				$.get(uri, function(response) {
-					if (isEmpty(response) == false) {
-						var commentsHtml = "";
-						$(response).each(function(idx, comment) {
-							commentsHtml += `
-								<li>
-									<span class="name">${comment.writer}</span>
-									<span class="desc">${comment.content}</span>
-									<button type="button" onclick="openModal(${comment.idx}, '${comment.writer}, ${comment.content}' )" 
-									class="btn btn-xsbtn-circle"><i class="glyphicon glyphicon-pencil" aria=hidden="true"></i></button>
-								</li>
-							`;
-						});
-						$(".notice-list").html(commentsHtml);
-					}
-				}, "json");
-			}
-			
+
 			function insertComment(boardIdx) {
+
 				var content = document.getElementById("content");
 				
-				if (isEmpty(content.value) == true ) {
+				
+				if (isEmpty(content.value) == true) {
 					content.setAttribute("placeholder", "댓글을 입력해 주세요.");
 					content.focus();
 					return false;
 				}
-				
+			
 				var uri = /*[[ @{/comments} ]]*/ null;
 				var headers = {"Content-Type": "application/json", "X-HTTP-Method-Override": "POST"};
 				var params = {"boardIdx": boardIdx, "content": content.value, "writer": "관리자"};
@@ -144,21 +122,74 @@
 					data: JSON.stringify(params),
 					success: function(response) {
 						if (response.result == false) {
-							alert("댓글 등록에 실패했습니다.");
+							alert("댓글 등록에 실패하였습니다.");
 							return false;
 						}
-						
+			
 						printCommentList();
-						content.value="";
+						content.value = "";
 					},
 					error: function(xhr, status, error) {
-						alert("에러가 발생했습니다.");
+						alert("에러가 발생하였습니다.");
 						return false;
 					}
 				});
 			}
+
+			function deleteComment(idx) {
+
+				if (!confirm('댓글을 삭제하시겠어요?')) {
+					return false;
+				}
+			
+				var uri = /*[[ @{/comments/} ]]*/null;
+					uri += idx;
+				var headers = {"Content-Type": "application/json", "X-HTTP-Method-Override": "DELETE"};
+			
+				$.ajax({
+					url: uri,
+					type: "DELETE",
+					headers: headers,
+					dataType: "json",
+					success: function(response) {
+						alert(response);
+						if (response.result == false) {
+							alert("댓글 삭제에 실패하였습니다.");
+							return false;
+						}
+			
+						printCommentList();
+					},
+					error: function(xhr, status, error) {
+						alert("에러가 발생하였습니다.");
+						return false;
+					}
+				});
+			}
+
+			function printCommentList() {
+		
+				var uri = /*[[ @{/comments/} + ${board.idx} ]]*/ null;
+				
+				$.get(uri, function(response) {
+					if (isEmpty(response) == false) {
+						var commentsHtml = "";
+						$(response).each(function(idx, comment) {
+							commentsHtml += `
+								<li>
+									<span class="name">${comment.writer}</span>
+									<span class="desc">${comment.content}</span>
+									<button type="button" onclick="deleteComment(${comment.idx})" class="btn btn-xs btn-circle"><i class="fa fa-close" aria-hidden="true"></i></button>
+								</li>
+							`;
+						});
+
+						$(".notice-list").html(commentsHtml);
+					}
+				}, "json");
+			}
+
 			/*]]>*/
 		</script>
 	</th:block>
-	
 </html>
