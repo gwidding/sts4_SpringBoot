@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.audio_mart.mapper.MemberMapper">
+
+	<sql id="memberColumns">
+		  custid
+		, pwd
+		, custname
+		, phone
+		, addr
+		, join_date
+		, signout
+		, out_date
+	</sql>
+	
+	<insert id="insertMember" parameterType="MemberDTO">
+		INSERT INTO member (
+			<include refid="memberColumns" />
+		) VALUES (
+			#{custid}
+			,#{pwd}
+			,#{custname}
+			,#{phone}
+			,#{addr}
+			,NOW()
+			,'N'
+			,null
+		)
+	</insert>
+</mapper>

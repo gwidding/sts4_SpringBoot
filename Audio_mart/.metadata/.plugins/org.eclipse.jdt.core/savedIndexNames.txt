@@ -1,0 +1,1 @@
+INDEX VERSION 1.134+C:\Users\ok88e\git\sts4_SpringBoot\Audio_mart\.metadata\.plugins\org.eclipse.jdt.core
