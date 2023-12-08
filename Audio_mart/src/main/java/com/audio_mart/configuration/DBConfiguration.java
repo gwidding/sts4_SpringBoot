@@ -37,10 +37,9 @@ public class DBConfiguration {
 	public SqlSessionFactory sqlSessionFactory() throws Exception{
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(dataSource());
-		factoryBean.getObject();
-//		factoryBean.setMapperLocations(applicationContext.getResources("classpath:/mappers/**/*Mapper.xml"));
-//		factoryBean.setTypeAliasesPackage("com.board.*");
-//		factoryBean.setConfiguration(mybatisConfg());
+		factoryBean.setMapperLocations(applicationContext.getResources("classpath:/mappers/**/*Mapper.xml"));
+		factoryBean.setTypeAliasesPackage("com.audio_mart.domain");
+		factoryBean.setConfiguration(mybatisConfg());
 		return factoryBean.getObject();
 	}
 	
@@ -49,11 +48,11 @@ public class DBConfiguration {
 		return new SqlSessionTemplate(sqlSessionFactory());
 	}
 	
-//	@Bean
-//	@ConfigurationProperties(prefix = "mybatis.configuration")
-//	public org.apache.ibatis.session.Configuration mybatisConfg() {
-//		return new org.apache.ibatis.session.Configuration();
-//	}
+	@Bean
+	@ConfigurationProperties(prefix = "mybatis.configuration")
+	public org.apache.ibatis.session.Configuration mybatisConfg() {
+		return new org.apache.ibatis.session.Configuration();
+	}
 	
 	
 
