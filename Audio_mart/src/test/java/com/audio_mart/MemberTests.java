@@ -16,11 +16,11 @@ public class MemberTests {
 	@Test
 	public void testOfInsert() {
 		MemberDTO params = new MemberDTO();
-		params.setCustid("id3");
-		params.setPwd("3333");
-		params.setCustname("3번 고객");
-		params.setPhone("010-3333-3333");
-		params.setAddr("경기도 일산동구 뽀로로 3길 3");
+		params.setCustid("id4");
+		params.setPwd("4444");
+		params.setCustname("4번 고객");
+		params.setPhone("010-4444-4444");
+		params.setAddr("인천ㅇㅎㅇㅎㄴㅁㅇ 3길 3");
 		
 		boolean result = memberMapper.insertMember(params);
 		System.out.println("결과는 " + result + "입니다.");

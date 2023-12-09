@@ -3,32 +3,32 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Login / Join</title>
+	<title>로그인</title>
 	<link rel="stylesheet" href="/css/login-page.css">
 </head>
 
 <body>
 
 	<div class="container right-panel-active">
-		<!-- Sign Up -->
+		<!-- 회원 가입 -->
 		<div class="container__form container--signup">
-			<form action="#" class="form" id="form1">
+			<form class="form" id="join" th:action="@{/member/register.do}" th:object="${newMember}" method="post" onsubmit="return registerMember(this)">
 				<h2 class="form__title">Sign Up</h2>
-				<input type="text" placeholder="아이디" class="input" />
-				<input type="password" placeholder="비밀번호" class="input" />
-				<input type="text" placeholder="이름" class="input" />
-				<input type="text" placeholder="휴대전화번호" class="input" />
-				<input type="text" placeholder="주소" class="input" />
-				<button class="btn">Sign Up</button>
+				<input type="text" th:field="*{custid}" autocomplete="email" name="custid" id="custid" placeholder="아이디" class="input" />
+				<input type="password" th:field="*{pwd}" name="pwd" id="pwd" placeholder="비밀번호" class="input" />
+				<input type="text" th:field="*{custname}" autocomplete="name" name="name" id="name" placeholder="이름" class="input" />
+				<input type="text" th:field="*{phone}" autocomplete="tel" name="phone" id="phone" placeholder="휴대전화번호" class="input" />
+				<input type="text" th:field="*{addr}" autocomplete="address-line1" name="addr" id="addr" placeholder="주소" class="input" />
+				<button type="submit" class="btn">Sign Up</button>
 			</form>
 		</div>
 
-		<!-- Sign In -->
+		<!-- 로그인  -->
 		<div class="container__form container--signin">
 			<form action="#" class="form" id="form2">
 				<h2 class="form__title">Sign In</h2>
-				<input type="text" placeholder="아이디" class="input" />
-				<input type="password" placeholder="비밀번호" class="input" />
+				<input type="text" name="id" placeholder="아이디" class="input" />
+				<input type="password" name="password"placeholder="비밀번호" class="input" />
 				<a href="#" class="link">Forgot your password?</a>
 				<button class="btn">Sign In</button>
 			</form>
