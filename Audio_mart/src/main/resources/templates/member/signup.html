@@ -14,11 +14,11 @@
 		<div class="container__form container--signup">
 			<form class="form" id="join" th:action="@{/member/register.do}" th:object="${newMember}" method="post" onsubmit="return registerMember(this)">
 				<h2 class="form__title">Sign Up</h2>
-				<input type="text" th:field="*{custid}" autocomplete="email" name="custid" id="custid" placeholder="아이디" class="input" />
-				<input type="password" th:field="*{pwd}" name="pwd" id="pwd" placeholder="비밀번호" class="input" />
-				<input type="text" th:field="*{custname}" autocomplete="name" name="name" id="name" placeholder="이름" class="input" />
-				<input type="text" th:field="*{phone}" autocomplete="tel" name="phone" id="phone" placeholder="휴대전화번호" class="input" />
-				<input type="text" th:field="*{addr}" autocomplete="address-line1" name="addr" id="addr" placeholder="주소" class="input" />
+				<input type="text" th:field="*{custid}" placeholder="아이디" class="input" />
+				<input type="password" th:field="*{pwd}" placeholder="비밀번호" class="input" />
+				<input type="text" th:field="*{custname}" placeholder="이름" class="input" />
+				<input type="text" th:field="*{phone}" placeholder="휴대전화번호" class="input" />
+				<input type="text" th:field="*{addr}" placeholder="주소" class="input" />
 				<button type="submit" class="btn">Sign Up</button>
 			</form>
 		</div>
