@@ -3,7 +3,6 @@ package com.audio_mart.domain;
 import java.time.LocalDateTime;
 
 public class MemberDTO {
-	
 	private String custid;
 	private String pwd;
 	private String custname;
@@ -63,7 +62,8 @@ public class MemberDTO {
 	}
 	@Override
 	public String toString() {
-		return "AudioDTO [custid=" + custid + ", pwd=" + pwd + ", custname=" + custname + ", phone=" + phone + ", addr="
-				+ addr + ", joinDate=" + joinDate + ", signout=" + signout + ", outDate=" + outDate + "]";
+		return "MemberDTO [custid=" + custid + ", pwd=" + pwd + ", custname=" + custname + ", phone=" + phone
+				+ ", addr=" + addr + ", joinDate=" + joinDate + ", signout=" + signout + ", outDate=" + outDate + "]";
 	}
+
 }

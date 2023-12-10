@@ -16,13 +16,18 @@ public class MemberTests {
 	@Test
 	public void testOfInsert() {
 		MemberDTO params = new MemberDTO();
-		params.setCustid("id4");
-		params.setPwd("4444");
-		params.setCustname("4번 고객");
-		params.setPhone("010-4444-4444");
-		params.setAddr("인천ㅇㅎㅇㅎㄴㅁㅇ 3길 3");
+		params.setCustid("id1");
+		params.setPwd("1111");
+		params.setCustname("1번 고객");
+		params.setPhone("010-1111-1111");
+		params.setAddr("경기도 성남시 분당구 정자일로 95");
 		
 		boolean result = memberMapper.insertMember(params);
 		System.out.println("결과는 " + result + "입니다.");
+	}
+	
+	@Test
+	public void testOfSelect() {
+		
 	}
 }

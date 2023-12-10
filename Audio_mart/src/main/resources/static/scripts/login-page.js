@@ -1,7 +1,7 @@
 const signInBtn = document.getElementById("signIn");
 const signUpBtn = document.getElementById("signUp");
 // const joinForm = document.getElementById("join");
-const secondForm = document.getElementById("form2");
+// const loginForm = document.getElementById("login");
 const container = document.querySelector(".container");
 
 signInBtn.addEventListener("click", () => {
@@ -13,7 +13,7 @@ signUpBtn.addEventListener("click", () => {
 });
 
 // joinForm.addEventListener("submit", (e) => e.preventDefault());
-secondForm.addEventListener("submit", (e) => e.preventDefault());
+// loginForm.addEventListener("submit", (e) => e.preventDefault());
 
 function registerMember(form) {
 	
@@ -28,6 +28,7 @@ function registerMember(form) {
 	if (result == false) {
 		return false;
 	}
+	container.classList.remove("right-panel-active");
 }
 
 function isValid(field, fieldName, focusField) {

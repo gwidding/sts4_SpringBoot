@@ -27,4 +27,14 @@
 			,null
 		)
 	</insert>
+	
+	<select id="findByCustid" parameterType="String" resultType="MemberDTO">
+		SELECT
+			<include refid="memberColumns" />
+		FROM
+			member
+		WHERE
+			custid=#{custid}
+	</select>
+	
 </mapper>

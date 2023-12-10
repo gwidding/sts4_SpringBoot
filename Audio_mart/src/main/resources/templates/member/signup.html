@@ -9,7 +9,7 @@
 
 <body>
 
-	<div class="container right-panel-active">
+	<div class="container">
 		<!-- 회원 가입 -->
 		<div class="container__form container--signup">
 			<form class="form" id="join" th:action="@{/member/register.do}" th:object="${newMember}" method="post" onsubmit="return registerMember(this)">
@@ -17,7 +17,7 @@
 				<input type="text" th:field="*{custid}" placeholder="아이디" class="input" />
 				<input type="password" th:field="*{pwd}" placeholder="비밀번호" class="input" />
 				<input type="text" th:field="*{custname}" placeholder="이름" class="input" />
-				<input type="text" th:field="*{phone}" placeholder="휴대전화번호" class="input" />
+				<input type="text" th:field="*{phone}" placeholder="010-0000-0000" class="input" />
 				<input type="text" th:field="*{addr}" placeholder="주소" class="input" />
 				<button type="submit" class="btn">Sign Up</button>
 			</form>
@@ -25,7 +25,7 @@
 
 		<!-- 로그인  -->
 		<div class="container__form container--signin">
-			<form action="#" class="form" id="form2">
+			<form class="form" id="login" action="#">
 				<h2 class="form__title">Sign In</h2>
 				<input type="text" name="id" placeholder="아이디" class="input" />
 				<input type="password" name="password"placeholder="비밀번호" class="input" />
