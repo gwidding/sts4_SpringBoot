@@ -54,16 +54,19 @@ public class MemberController extends UiUtils{
 	
 	// 로그인 post
 	@PostMapping(value = "/member/signin.do")
-	public String signin(@RequestParam String custid, @RequestParam String password, HttpSession session) {
+	public String signin(@RequestParam("custid") String custid, @RequestParam("pwd") String pwd, HttpSession session, Model model) {
 		if (custid == null) {
-			return showMessageWithRedirect("올바르지 않은 접근입니다.", "/member/login.do", Method.GET, null, null);
+			System.out.println("올바르지 않은 접근");
+			return showMessageWithRedirect("올바르지 않은 접근입니다.", "/member/login.do", Method.GET, null, model);
 		}
 		
-		if (memberService.login(custid, password)) {
+		if (memberService.login(custid, pwd)) {
 			session.setAttribute("custid", custid);
-			return showMessageWithRedirect("로그인 성공", "/shop", Method.GET, null, null);
+			System.out.println("로그인 성공");
+			return showMessageWithRedirect("로그인 성공", "/member/login.do", Method.GET, null, model);
 		} else {
-			return showMessageWithRedirect("로그인 실패", "/member/login.do", Method.GET, null, null);
+			System.out.println("로그인 실패!");
+			return showMessageWithRedirect("로그인 실패", "/member/login.do", Method.GET, null, model);
 		}
 	}
 	

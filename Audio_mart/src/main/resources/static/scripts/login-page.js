@@ -16,6 +16,7 @@ signUpBtn.addEventListener("click", () => {
 // loginForm.addEventListener("submit", (e) => e.preventDefault());
 
 function registerMember(form) {
+	alert("들어옴");
 	
 	var result = (
 		isValid(form.custid, "아이디" , null, null)
@@ -28,7 +29,18 @@ function registerMember(form) {
 	if (result == false) {
 		return false;
 	}
-	container.classList.remove("right-panel-active");
+}
+
+function loginMember(form) {
+	alert("엚ㄴ에ㅏㄹㅇㄴㅁㄹ");
+	var result = (
+		isValid(form.custid, "아이디", null, null)
+		&& isValid(form.pwd, "비밀번호", null, null) 
+	);
+	
+	if (result == false) {
+		return false;
+	}
 }
 
 function isValid(field, fieldName, focusField) {

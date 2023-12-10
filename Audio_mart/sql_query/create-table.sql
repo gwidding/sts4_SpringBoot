@@ -1,4 +1,4 @@
-wuse audio_mart;
+use audio_mart;
 
 create table member (
 	  custid varchar(50) not null primary key
@@ -13,3 +13,4 @@ create table member (
 
 desc member;
 
+select * from member order by join_date desc;

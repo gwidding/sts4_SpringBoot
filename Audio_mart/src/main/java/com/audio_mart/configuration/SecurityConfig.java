@@ -18,6 +18,7 @@ public class SecurityConfig {
         	.authorizeHttpRequests((authorizeRequests) ->
         		authorizeRequests
 				.requestMatchers("/member/register.do").permitAll() // 특정 URL 허용 설정
+				.requestMatchers("member/signin.do").permitAll()
 				.requestMatchers("/css/**", "/scripts/**", "/images/**", "/fonts/**").permitAll()
 	            .anyRequest().authenticated()
             )
