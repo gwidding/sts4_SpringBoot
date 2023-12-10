@@ -32,7 +32,6 @@ function registerMember(form) {
 }
 
 function loginMember(form) {
-	alert("엚ㄴ에ㅏㄹㅇㄴㅁㄹ");
 	var result = (
 		isValid(form.custid, "아이디", null, null)
 		&& isValid(form.pwd, "비밀번호", null, null) 

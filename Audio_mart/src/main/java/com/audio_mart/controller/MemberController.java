@@ -63,10 +63,10 @@ public class MemberController extends UiUtils{
 		if (memberService.login(custid, pwd)) {
 			session.setAttribute("custid", custid);
 			System.out.println("로그인 성공");
-			return showMessageWithRedirect("로그인 성공", "/member/login.do", Method.GET, null, model);
+			return showMessageWithRedirect("환영합니다! " + custid +"님", "/member/login.do", Method.GET, null, model);
 		} else {
 			System.out.println("로그인 실패!");
-			return showMessageWithRedirect("로그인 실패", "/member/login.do", Method.GET, null, model);
+			return showMessageWithRedirect("아이디와 비밀번호가 일치하지 않습니다.", "/member/login.do", Method.GET, null, model);
 		}
 	}
 	
