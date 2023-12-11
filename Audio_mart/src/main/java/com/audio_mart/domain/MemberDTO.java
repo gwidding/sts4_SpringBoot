@@ -8,8 +8,9 @@ public class MemberDTO {
 	private String custname;
 	private String phone;
 	private String addr;
-	private LocalDateTime joinDate;
 	private String signout;
+	private LocalDateTime joinDate;
+	private LocalDateTime updateDate;
 	private LocalDateTime outDate;
 	
 	public String getCustid() {
@@ -60,10 +61,17 @@ public class MemberDTO {
 	public void setOutDate(LocalDateTime outDate) {
 		this.outDate = outDate;
 	}
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "MemberDTO [custid=" + custid + ", pwd=" + pwd + ", custname=" + custname + ", phone=" + phone
-				+ ", addr=" + addr + ", joinDate=" + joinDate + ", signout=" + signout + ", outDate=" + outDate + "]";
+				+ ", addr=" + addr + ", signout=" + signout + ", joinDate=" + joinDate + ", updateDate=" + updateDate
+				+ ", outDate=" + outDate + "]";
 	}
-
 }

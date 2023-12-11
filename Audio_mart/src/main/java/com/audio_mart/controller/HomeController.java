@@ -1,22 +1,39 @@
 package com.audio_mart.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.audio_mart.domain.MemberDTO;
+import com.audio_mart.service.MemberService;
+
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
 public class HomeController {
 	
+	@Autowired
+	private MemberService memberService;
+	
 	@GetMapping("/home")
-	public String openHome() {
-		System.out.println("home 페이지 열림");
-//		model.addAttribute("newMember", new MemberDTO());
+	public String openHome(Model model, HttpSession session) {
+		String custid = (String) session.getAttribute("custid");
+		
+		System.out.println("home 페이지 열림" + custid);
+		
+		if (custid != null) {
+			MemberDTO memberInfo = memberService.findByCustid(custid);
+			model.addAttribute("memberInfo", memberInfo);
+		}
+		
 		return "home/index";
 	}
 	
 	@GetMapping("/member/myaccount")
-	public String openMyAccount() {
-		System.out.println("마이페이지 열림");
+	public String openMyAccount(Model model) {
+		System.out.println(model + "마이 페이지 객체");
 		return "member/myaccount";
 	}
 }

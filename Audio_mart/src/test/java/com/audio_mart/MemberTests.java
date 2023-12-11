@@ -30,4 +30,17 @@ public class MemberTests {
 	public void testOfSelect() {
 		
 	}
+	
+	@Test
+	public void testOfUpdate() {
+		MemberDTO params = new MemberDTO();
+		params.setCustname("수정");
+		params.setPwd("tnwjd");
+		params.setAddr("수정한 주소");
+		params.setPhone("010-7777-5454");
+		params.setCustid("test");
+		
+		boolean result = memberMapper.updateMember(params);
+		System.out.println("결과는 " + result + "입니다.");
+	}
 }

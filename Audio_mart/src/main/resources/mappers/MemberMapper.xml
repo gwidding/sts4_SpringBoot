@@ -8,8 +8,9 @@
 		, custname
 		, phone
 		, addr
-		, join_date
 		, signout
+		, join_date
+		, update_date
 		, out_date
 	</sql>
 	
@@ -22,8 +23,9 @@
 			,#{custname}
 			,#{phone}
 			,#{addr}
-			,NOW()
 			,'N'
+			,NOW()
+			,null
 			,null
 		)
 	</insert>
@@ -36,5 +38,17 @@
 		WHERE
 			custid=#{custid}
 	</select>
+	
+	<update id="updateMember" parameterType="MemberDTO">
+		UPDATE member
+		SET 
+			update_date = NOW()
+			, custname = #{custname}
+			, pwd = #{pwd}
+			, phone = #{phone}
+			, addr = #{addr}
+		WHERE
+			custid = #{custid}
+	</update>
 	
 </mapper>

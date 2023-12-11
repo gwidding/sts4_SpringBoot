@@ -36,6 +36,12 @@ public class MemberServiceImpl implements MemberService{
 		return false;
 	}
 
+	@Override
+	public MemberDTO findByCustid(String custid) {
+		MemberDTO member = memberMapper.findByCustid(custid);
+		return member;
+	}
+
 
 
 	

@@ -48,10 +48,12 @@
 						Free shipping for standard order over $100
 					</div>
 
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
-						</a>
+					<div class="right-top-bar flex-w h-full" th:object="${memberInfo}">
+					    <input type="hidden" th:if="${memberInfo.custid != null}" th:field="*{custid}" />
+					    <a href="#" class="flex-c-m trans-04 p-lr-25">
+					        <p th:if="${memberInfo.custid != null}" th:text="'환영합니다 ' + ${memberInfo.custname} + '님'" ></p>
+					        <p th:unless="${memberInfo.custid != null}">로그인 필요</p>
+					    </a>
 
 						<a href="/member/checkLoginStatus" class="flex-c-m trans-04 p-lr-25">
 							My Account
