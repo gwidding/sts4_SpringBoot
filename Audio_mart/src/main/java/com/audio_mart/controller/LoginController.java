@@ -16,7 +16,7 @@ import com.audio_mart.util.UiUtils;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class MemberController extends UiUtils{
+public class LoginController extends UiUtils{
 	
 	@Autowired
 	private MemberService memberService;
@@ -34,7 +34,6 @@ public class MemberController extends UiUtils{
 	@PostMapping(value = "/member/register")
 	public String registerMember(final MemberDTO params, Model model) {
 		try {
-			// 나중에 시큐리티 추가
 //			String encryptedPassword = passwordEncoder.encode(params.getPwd());
 //	        params.setPwd(encryptedPassword);
 	        
@@ -62,22 +61,25 @@ public class MemberController extends UiUtils{
 		if (memberService.login(custid, pwd)) {
 			session.setAttribute("custid", custid);
 			System.out.println("로그인 성공");
-			return showMessageWithRedirect("환영합니다! " + custid +"님", "/member/login", Method.GET, null, model);
+			return showMessageWithRedirect("환영합니다! " + custid +"님", "/home", Method.GET, null, model);
 		} else {
 			System.out.println("로그인 실패!");
 			return showMessageWithRedirect("아이디와 비밀번호가 일치하지 않습니다.", "/member/login", Method.GET, null, model);
 		}
 	}
 	
-//	@GetMapping("/checkLoginStatus")
-//	public String checkLoginStatus(HttpSession session) {
-//		String custid = (String) session.getAttribute("custid");
-//		if (custid != null) {
-//			return showMessageWithRedirect("환영합니다" + custid, "/shop", Method.GET, null, null);
-//		} else {
-//			return showMessageWithRedirect("not logged in", "/member/login", Method.GET, null, null);
-//		}
-//	}
+	// 로그인 상태 확인
+	@GetMapping("/member/checkLoginStatus")
+	public String checkLoginStatus(HttpSession session, Model model) {
+		String custid = (String) session.getAttribute("custid");
+		if (custid != null) {
+			System.out.println("로그인 된 상태로 들어옴");
+			return showMessageWithRedirect("회원 : " + custid, "/member/myaccount", Method.GET, null, model);
+		} else {
+			System.out.println("로그아웃 된 상태로 들어옴");
+			return showMessageWithRedirect("로그인 후 사용해 주세요 :)", "/member/login", Method.GET, null, model);
+		}
+	}
 
 //	@PostMapping("/member/logout")
 //	public String logout(HttpSession session) {
