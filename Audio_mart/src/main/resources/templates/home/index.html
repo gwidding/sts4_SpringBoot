@@ -6,31 +6,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">	
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">	
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
@@ -49,22 +36,14 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full" th:object="${memberInfo}">
-					    <input type="hidden" th:if="${memberInfo.custid != null}" th:field="*{custid}" />
+					    <input type="hidden" th:if="${memberInfo != null && memberInfo.custid != null}" th:field="*{custid}" />
 					    <a href="#" class="flex-c-m trans-04 p-lr-25">
-					        <p th:if="${memberInfo.custid != null}" th:text="'환영합니다 ' + ${memberInfo.custname} + '님'" ></p>
-					        <p th:unless="${memberInfo.custid != null}">로그인 필요</p>
+					        <p th:if="${memberInfo.custid != null}" th:text="'환영합니다  ' + ${memberInfo.custname} + '님'" ></p>
+					        <p th:unless="${memberInfo.custid != null}">로그인</p>
 					    </a>
 
 						<a href="/member/checkLoginStatus" class="flex-c-m trans-04 p-lr-25">
 							My Account
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
 						</a>
 					</div>
 				</div>
@@ -176,13 +155,6 @@
 							My Account
 						</a>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
-						</a>
 					</div>
 				</li>
 			</ul>

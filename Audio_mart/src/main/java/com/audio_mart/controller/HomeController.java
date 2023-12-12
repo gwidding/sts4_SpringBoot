@@ -32,8 +32,11 @@ public class HomeController {
 	}
 	
 	@GetMapping("/member/myaccount")
-	public String openMyAccount(Model model) {
-		System.out.println(model + "마이 페이지 객체");
+	public String openMyAccount(Model model, HttpSession session) {
+		String custid = (String) session.getAttribute("custid");
+		MemberDTO memberInfo = memberService.findByCustid(custid);
+		model.addAttribute("memberInfo", memberInfo);
+		
 		return "member/myaccount";
 	}
 }

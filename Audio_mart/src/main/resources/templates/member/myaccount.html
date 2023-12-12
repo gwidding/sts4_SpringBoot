@@ -91,7 +91,7 @@
 	               
 	                <div class="col-md-6">
 	                    <label class="form-label" for="joinDate">가입일자</label>
-	                    <p class="form-control" th:field="*{#temporals.format( joinDate, 'yyyy-MM-dd' )}"></p>
+	                    <p class="form-control" th:text="*{#temporals.format( joinDate, 'yyyy-MM-dd' )}"></p>
 	                </div>
 	                
 	                 <div class="col-12">  
