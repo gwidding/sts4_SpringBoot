@@ -30,16 +30,18 @@ public class MemberServiceImpl implements MemberService{
 		return queryResult;
 	}
 
-	@Override
-	public boolean logout(String custid) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public MemberDTO findByCustid(String custid) {
 		MemberDTO member = memberMapper.findByCustid(custid);
 		return member;
+	}
+
+	@Override
+	public boolean updateMember(MemberDTO params) {
+		boolean queryResult = memberMapper.updateMember(params);
+		System.out.println(params.getCustname() + " 회원 수정 결과 : " + queryResult);
+		return queryResult;
 	}
 
 

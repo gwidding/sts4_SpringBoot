@@ -36,8 +36,8 @@ public class MemberTests {
 		MemberDTO params = new MemberDTO();
 		params.setCustname("수정");
 		params.setPwd("tnwjd");
-		params.setAddr("수정한 주소");
-		params.setPhone("010-7777-5454");
+		params.setAddr("수정한 주소1");
+		params.setPhone("010-5454-5454");
 		params.setCustid("test");
 		
 		boolean result = memberMapper.updateMember(params);

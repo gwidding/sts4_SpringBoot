@@ -21,8 +21,6 @@ public class HomeController {
 	public String openHome(Model model, HttpSession session) {
 		String custid = (String) session.getAttribute("custid");
 		
-		System.out.println("home 페이지 열림" + custid);
-		
 		if (custid != null) {
 			MemberDTO memberInfo = memberService.findByCustid(custid);
 			model.addAttribute("memberInfo", memberInfo);

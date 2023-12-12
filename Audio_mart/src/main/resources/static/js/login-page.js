@@ -61,3 +61,7 @@ function isEmpty(value) {
 
 	return false;
 }
+
+function reloadPage() {
+    location.reload();
+}

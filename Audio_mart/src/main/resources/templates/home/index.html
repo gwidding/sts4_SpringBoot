@@ -37,14 +37,17 @@
 
 					<div class="right-top-bar flex-w h-full" th:object="${memberInfo}">
 					    <input type="hidden" th:if="${memberInfo != null && memberInfo.custid != null}" th:field="*{custid}" />
-					    <a href="#" class="flex-c-m trans-04 p-lr-25">
-					        <p th:if="${memberInfo.custid != null}" th:text="'환영합니다  ' + ${memberInfo.custname} + '님'" ></p>
-					        <p th:unless="${memberInfo.custid != null}">로그인</p>
-					    </a>
 
-						<a href="/member/checkLoginStatus" class="flex-c-m trans-04 p-lr-25">
-							My Account
-						</a>
+						<a th:if="${memberInfo == null}" href="/member/login" class="flex-c-m trans-04 p-lr-25">
+			                <p>로그인</p>
+			            </a>
+			            <a th:if="${memberInfo != null}" href="/member/checkLoginStatus" class="flex-c-m trans-04 p-lr-25">
+			                <p th:text="'환영합니다 ' + ${memberInfo.custname} + '님 :D  마이 페이지'" ></p>
+			            </a>
+			            <a th:if="${memberInfo != null}" href="/member/logout" class="flex-c-m trans-04 p-lr-25">
+			                <p>로그아웃</p>
+			            </a>
+			            
 					</div>
 				</div>
 			</div>
@@ -146,15 +149,19 @@
 				</li>
 
 				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
+					<div class="right-top-bar flex-w h-full" th:object="${memberInfo}">
+						<input type="hidden" th:if="${memberInfo != null && memberInfo.custid != null}" th:field="*{custid}" />
+						<a th:if="${memberInfo == null}" href="/member/login" class="flex-c-m p-lr-10 trans-04">
+							<p>로그인</p>
 						</a>
 
-						<a href="/member/login" class="flex-c-m p-lr-10 trans-04">
-							My Account
+						<a th:if="${memberInfo != null}" href="/member/checkLoginStatus" class="flex-c-m p-lr-10 trans-04">
+							<p th:text="'환영합니다 ' + ${memberInfo.custname} + '님 :D  마이 페이지'" ></p>
 						</a>
-
+						
+						<a th:if="${memberInfo != null}" href="/member/logout" class="flex-c-m p-lr-10 trans-04">
+							<p>로그아웃</p>
+						</a>  
 					</div>
 				</li>
 			</ul>

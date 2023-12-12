@@ -73,6 +73,7 @@ public class BoardController extends UiUtils {
 		
 		boardService.increaseBoardViewCnt(idx);
 		BoardDTO board = boardService.getBoardDetail(idx);
+		
 		if (board == null || "Y".equals(board.getDeleteYn())) {
 			return showMessageWithRedirect("없는 게시글이거나 이미 삭제된 게시글입니다.", "/board/list.do", Method.GET, null, model);
 		}

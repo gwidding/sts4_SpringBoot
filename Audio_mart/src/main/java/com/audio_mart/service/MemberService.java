@@ -8,10 +8,11 @@ public interface MemberService {
 	public boolean signup(MemberDTO params);
 	// 로그인
 	public boolean login(String custid, String password);
-	// 로그아웃
-	public boolean logout(String custid);
 	
 	// 회원정보
 	public MemberDTO findByCustid(String custid);
+	
+	// 회원정보 수정
+	public boolean updateMember(MemberDTO parmas);
 
 }
