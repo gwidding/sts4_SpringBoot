@@ -31,7 +31,13 @@ public class HomeController {
 	
 	@GetMapping("/member/myaccount")
 	public String openMyAccount(Model model, HttpSession session) {
+		
 		String custid = (String) session.getAttribute("custid");
+		
+		if (custid == null) {
+			System.out.println("로그인 해야 마이페이지 들어가짐");
+			return "redirect:/home";
+		}
 		MemberDTO memberInfo = memberService.findByCustid(custid);
 		model.addAttribute("memberInfo", memberInfo);
 		

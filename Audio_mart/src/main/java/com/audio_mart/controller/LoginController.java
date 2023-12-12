@@ -27,11 +27,11 @@ public class LoginController extends UiUtils{
 	// 로그인,가입 폼
 	@GetMapping("/member/login")
 	public String showLoginPage(Model model, HttpSession session) {
-		
+
 		if (session.getAttribute("custid") != null) {
 			return "redirect:/home";
 		}
-		
+
 		model.addAttribute("newMember", new MemberDTO());
 		return "member/signup";
 	}
@@ -55,15 +55,12 @@ public class LoginController extends UiUtils{
 	@GetMapping("/member/checkLoginStatus")
 	public String checkLoginStatus(HttpSession session, RedirectAttributes redirectAttributes) {
 		String custid = (String) session.getAttribute("custid");
-		if (custid != null) {			
+		if (custid != null) {
 			MemberDTO memberInfo = memberService.findByCustid(custid);
 			redirectAttributes.addFlashAttribute("memberInfo", memberInfo);
-			
 			return "redirect:/member/myaccount";
-//			return showMessageWithRedirect("회원 : " + memberInfo.getCustname(), "/member/myaccount", Method.GET, null, model);
 		} else {
 			return "redirect:/member/login";
-//			return showMessageWithRedirect("로그인 후 사용해 주세요 :)", "/member/login", Method.GET, null, model);
 		}
 	}
 
@@ -72,7 +69,6 @@ public class LoginController extends UiUtils{
 	public String logout(HttpSession session) {
 		session.removeAttribute("custid");
 		return "redirect:/home";
-//		return showMessageWithRedirect("로그아웃 완료", "/home", Method.GET, null, null);
 	}
 
 }

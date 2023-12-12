@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.audio_mart.constant.Method;
 import com.audio_mart.domain.MemberDTO;
@@ -30,7 +31,7 @@ public class MemberController extends UiUtils{
 				return showMessageWithRedirect("회원가입에 실패하였습니다.", "/member/login", Method.GET, null, model);
 			}
 		} catch (DataAccessException e) {
-			return showMessageWithRedirect("데이터베이스 문제 발생", "/member/login", Method.GET, null, model);
+			return showMessageWithRedirect("데이터베이스 문제 발생 - 중복된 아이디 가능성", "/member/login", Method.GET, null, model);
 		} catch (Exception e) {
 			return showMessageWithRedirect("시스템 문제 발생", "/member/login", Method.GET, null, model);
 		}
@@ -39,11 +40,34 @@ public class MemberController extends UiUtils{
 		return showMessageWithRedirect( params.getCustname() + "님의 회원가입이 완료되었습니다. 로그인 후 다양한 서비스를 이용해 주세요.", "/member/login", Method.GET, null, model);
 	}
 	
+	
+	// 회원 정보 수정
 	@PostMapping("/member/update")
 	public String updateMember(@ModelAttribute("params")final MemberDTO params, Model model) {
 		memberService.updateMember(params);
+		System.out.println(memberService.updateMember(params));
 		System.out.println("회원정보 수정 완료");
 		return "redirect:/member/myaccount";
+	}
+	
+	@PostMapping("/member/delete")
+	public String deleteMember(@RequestParam(value ="idx", required = false) int idx) {
+		if (idx < 1) {
+			System.out.println("아이디 전달 안 됨");
+			return "";
+		}
+		try {
+			boolean isDeleted = memberService.deleteMember(idx);
+			if (isDeleted == false) {
+				System.out.println("회원 탈퇴 실패");
+			}
+		} catch(DataAccessException e) {
+			System.out.println("데베 문제");
+		} catch(Exception e) {
+			System.out.println("시스템 문제");
+		}
+		
+		return "redirect:/home";
 	}
 
 }

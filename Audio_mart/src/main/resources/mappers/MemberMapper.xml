@@ -3,22 +3,24 @@
 <mapper namespace="com.audio_mart.mapper.MemberMapper">
 
 	<sql id="memberColumns">
-		  custid
+		idx
+		, custid
 		, pwd
 		, custname
 		, phone
 		, addr
-		, signout
-		, join_date
-		, update_date
-		, out_date
+		, deletion_yn
+		, join_time
+		, update_time
+		, deletion_time
 	</sql>
 	
 	<insert id="insertMember" parameterType="MemberDTO">
 		INSERT INTO member (
 			<include refid="memberColumns" />
 		) VALUES (
-			#{custid}
+			#{idx}
+			,#{custid}
 			,#{pwd}
 			,#{custname}
 			,#{phone}
@@ -30,6 +32,16 @@
 		)
 	</insert>
 	
+	<select id="findByIdx" parameterType="int" resultType="MemberDTO">
+		SELECT
+			<include refid="memberColumns" />
+		FROM
+			member
+		WHERE
+			idx=#{idx}
+		AND deletion_yn='N'
+	</select>
+	
 	<select id="findByCustid" parameterType="String" resultType="MemberDTO">
 		SELECT
 			<include refid="memberColumns" />
@@ -37,18 +49,29 @@
 			member
 		WHERE
 			custid=#{custid}
+		AND deletion_yn='N'
 	</select>
 	
 	<update id="updateMember" parameterType="MemberDTO">
 		UPDATE member
 		SET 
-			update_date = NOW()
+			update_time = NOW()
 			, custname = #{custname}
 			, pwd = #{pwd}
 			, phone = #{phone}
 			, addr = #{addr}
 		WHERE
-			custid = #{custid}
+			idx = #{idx}
+		AND deletion_yn ='N'
+	</update>
+	
+	<update id="deleteMember" parameterType="int">
+		UPDATE member
+		SET
+			deletion_yn='Y'
+			,deletion_time = NOW()
+		WHERE
+			idx = #{idx}
 	</update>
 	
 </mapper>

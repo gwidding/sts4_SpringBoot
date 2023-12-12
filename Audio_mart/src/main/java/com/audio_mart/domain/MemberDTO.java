@@ -3,16 +3,23 @@ package com.audio_mart.domain;
 import java.time.LocalDateTime;
 
 public class MemberDTO {
+	private int idx;
 	private String custid;
 	private String pwd;
 	private String custname;
 	private String phone;
 	private String addr;
-	private String signout;
-	private LocalDateTime joinDate;
-	private LocalDateTime updateDate;
-	private LocalDateTime outDate;
+	private String deletionYn;
+	private LocalDateTime joinTime;
+	private LocalDateTime updateTime;
+	private LocalDateTime deletionTime;
 	
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
 	public String getCustid() {
 		return custid;
 	}
@@ -43,35 +50,36 @@ public class MemberDTO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public LocalDateTime getJoinDate() {
-		return joinDate;
+	public String getDeletionYn() {
+		return deletionYn;
 	}
-	public void setJoinDate(LocalDateTime joinDate) {
-		this.joinDate = joinDate;
+	public void setDeletionYn(String deletionYn) {
+		this.deletionYn = deletionYn;
 	}
-	public String getSignout() {
-		return signout;
+	public LocalDateTime getJoinTime() {
+		return joinTime;
 	}
-	public void setSignout(String signout) {
-		this.signout = signout;
+	public void setJoinTime(LocalDateTime joinTime) {
+		this.joinTime = joinTime;
 	}
-	public LocalDateTime getOutDate() {
-		return outDate;
+	public LocalDateTime getUpdateTime() {
+		return updateTime;
 	}
-	public void setOutDate(LocalDateTime outDate) {
-		this.outDate = outDate;
+	public void setUpdateTime(LocalDateTime updateTime) {
+		this.updateTime = updateTime;
 	}
-	public LocalDateTime getUpdateDate() {
-		return updateDate;
+	public LocalDateTime getDeletionTime() {
+		return deletionTime;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
-		this.updateDate = updateDate;
+	public void setDeletionTime(LocalDateTime deletionTime) {
+		this.deletionTime = deletionTime;
 	}
-	
 	@Override
 	public String toString() {
-		return "MemberDTO [custid=" + custid + ", pwd=" + pwd + ", custname=" + custname + ", phone=" + phone
-				+ ", addr=" + addr + ", signout=" + signout + ", joinDate=" + joinDate + ", updateDate=" + updateDate
-				+ ", outDate=" + outDate + "]";
+		return "MemberDTO [idx=" + idx + ", custid=" + custid + ", pwd=" + pwd + ", custname=" + custname + ", phone="
+				+ phone + ", addr=" + addr + ", deletionYn=" + deletionYn + ", joinTime=" + joinTime + ", updateTime="
+				+ updateTime + ", deletionTime=" + deletionTime + "]";
 	}
+	
+	
 }

@@ -2,8 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<meta charset="UTF-8">
-	<title>계정관리</title>
-	
+	<title>계정관리</title>	
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -30,7 +29,7 @@
 	                  <span class=" pe-2">
 	                    <i class="bi bi-pencil"></i>
 	                  </span>
-	                  <span>뒤로가기</span>
+	                  <span> < Home 돌아가기</span>
 	                </a>
 	              </div>
 	            </div>
@@ -64,6 +63,7 @@
 	            </div>
 	            
 	            <form class="mb-6" th:action="@{/member/update}" method="post" th:object="${memberInfo}" onsubmit="return updateMember(this)">
+					<input type="hidden" th:if="${memberInfo != null}" th:field="*{idx}" />
 					<input type="hidden" th:if="${memberInfo != null}" th:field="*{custid}" />
 	              <div class="row mb-5">
 					  
@@ -82,8 +82,8 @@
 	                </div>
 	               
 	                <div class="col-md-6">
-	                    <label class="form-label" for="joinDate">가입일자</label>
-	                    <p class="form-control" th:text="*{#temporals.format( joinDate, 'yyyy-MM-dd' )}"></p>
+	                    <label class="form-label" for="joinTime">가입일자</label>
+	                    <p class="form-control" th:text="*{#temporals.format( joinTime, 'yyyy-MM-dd' )}"></p>
 	                </div>
 	                
 	                 <div class="col-12">  
@@ -94,12 +94,16 @@
 	              </div>
 	              
 	              <div class="text-end" th:object="${params}">
-	                <button type="button" onclick="reloadPage()" class="btn btn-sm btn-neutral me-2">취소하기</button>
+	                <button type="button" onclick="reloadPage()" class="btn btn-sm btn-neutral me-2">복구하기</button>
 	                <button type="submit" class="btn btn-sm btn-primary">저장하기</button>
+	                <button type="button" th:onclick="deleteMember([[ ${memberInfo.idx} ]])">탈퇴하기</button>
 	              </div>
 	              
 	            </form>
 	            <hr class="my-10" />
+	            
+	            
+	            
 	          </div>
 	        </div>
 	      </div>
@@ -110,6 +114,7 @@
 </body>
 
 <script src="/js/login-page.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script th:inline="javascript">
 	/* <![CDATA[ */
 	function updateMember(form) {
@@ -123,7 +128,37 @@
 		if (result == false) {
 			return false;
 		}
-	}	
+	}
+	
+	function deleteMember(idx, queryString) {
+		if (confirm(idx + "번 회원님  탈퇴를 진행하겠습니까?")) {
+			var uri = /*[[ @{/member/delete} ]]*/ null;
+			var html = "";
+	
+			html += '<form name="dataForm" action="'+uri+'" method="post">';
+			html += '<input type="hidden" name="idx" value="' +idx+'" />';
+			
+			queryString = new URLSearchParams(queryString);
+			queryString.forEach(function(value, key) {
+				if (isEmpty(value) == false) {
+					html += '<input type="hidden" name="' + key + '" value="' + value + '" />';
+				}
+			});
+	
+			html += '</form>';
+	
+			$("body").append(html);
+			document.dataForm.submit();
+			
+			logoutUser();
+		}
+	}
+	
+	function logoutUser() {
+		$.get("/member/logout", function(resposne) {
+			alert("로그아웃 되었습니다. 다시 로그인해 주세요");
+		})
+	}
 	/* ]]> */
 </script>
 

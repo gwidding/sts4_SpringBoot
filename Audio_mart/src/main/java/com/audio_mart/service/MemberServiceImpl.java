@@ -32,10 +32,17 @@ public class MemberServiceImpl implements MemberService{
 
 
 	@Override
+	public MemberDTO findByIdx(int idx) {
+		MemberDTO member = memberMapper.findByIdx(idx);
+		return member;
+	}
+	
+	@Override
 	public MemberDTO findByCustid(String custid) {
 		MemberDTO member = memberMapper.findByCustid(custid);
 		return member;
 	}
+	
 
 	@Override
 	public boolean updateMember(MemberDTO params) {
@@ -43,6 +50,15 @@ public class MemberServiceImpl implements MemberService{
 		System.out.println(params.getCustname() + " 회원 수정 결과 : " + queryResult);
 		return queryResult;
 	}
+
+	@Override
+	public boolean deleteMember(int idx) {
+		boolean queryResult = memberMapper.deleteMember(idx);
+		System.out.println(idx + " 회원 삭제 결과 : " + queryResult);
+		return queryResult;
+	}
+
+	
 
 
 
