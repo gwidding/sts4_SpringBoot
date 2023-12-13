@@ -54,7 +54,7 @@ public class MemberController extends UiUtils{
 	public String deleteMember(@RequestParam(value ="idx", required = false) int idx) {
 		if (idx < 1) {
 			System.out.println("아이디 전달 안 됨");
-			return "";
+			return "redirect:/member/myaccount";
 		}
 		try {
 			boolean isDeleted = memberService.deleteMember(idx);

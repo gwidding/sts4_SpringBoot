@@ -1,16 +1,19 @@
 use audio_mart;
 
 create table member (
-	  custid varchar(50) not null primary key
+	idx integer not null auto_increment primary key
+	, custid varchar(50) not null unique
     , pwd varchar(100) not null
     , custname varchar(30) not null
     , phone varchar(20) not null
     , addr varchar(60) not null
-    , join_date datetime not null default now()
-    , signout enum('Y', 'N') not null default 'N'
-    , out_date datetime null
+    , deletion_yn enum('Y', 'N') not null default 'N'
+    , join_time datetime not null default now()
+    , update_time datetime null
+    , deletion_time datetime null
 );
 
 desc member;
+drop table member;
 
-select * from member order by join_date desc;
+select * from member order by join_time desc;

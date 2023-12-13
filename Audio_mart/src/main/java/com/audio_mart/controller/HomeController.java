@@ -43,4 +43,15 @@ public class HomeController {
 		
 		return "member/myaccount";
 	}
+	
+	@GetMapping("/store/product")
+	public String showItem(Model model, HttpSession session) {
+		String custid = (String) session.getAttribute("custid");
+
+		if (custid != null) {
+			MemberDTO memberInfo = memberService.findByCustid(custid);
+			model.addAttribute("memberInfo", memberInfo);
+		}
+		return "item/product";
+	}
 }
