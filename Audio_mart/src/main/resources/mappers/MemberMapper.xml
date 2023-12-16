@@ -13,6 +13,7 @@
 		, join_time
 		, update_time
 		, deletion_time
+		, admin
 	</sql>
 	
 	<insert id="insertMember" parameterType="MemberDTO">
@@ -29,6 +30,7 @@
 			,NOW()
 			,null
 			,null
+			,false
 		)
 	</insert>
 	

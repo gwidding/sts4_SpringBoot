@@ -45,7 +45,7 @@ public class MemberController extends UiUtils{
 	@PostMapping("/member/update")
 	public String updateMember(@ModelAttribute("params")final MemberDTO params, Model model) {
 		memberService.updateMember(params);
-		System.out.println("회원정보 수정 완료");
+
 		return "redirect:/member/myaccount";
 	}
 	

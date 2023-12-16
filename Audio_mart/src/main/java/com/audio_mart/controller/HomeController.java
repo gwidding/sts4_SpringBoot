@@ -34,6 +34,15 @@ public class HomeController {
         return "home/index";
     }
     
+    @GetMapping("/member/admin")
+    public String openAdminPage(HttpSession session) {
+        MemberDTO memberInfo = getMemberInfo(session);
+        if (memberInfo != null && memberInfo.isAdmin() == false) {
+        	System.out.println("관리자 외에 허용되지 않은 접근입니다.");
+        }
+        return "manage/admin";
+    }
+    
     @GetMapping("/member/myaccount")
     public String openMyAccount(Model model, HttpSession session) {
         MemberDTO memberInfo = getMemberInfo(session);
@@ -52,7 +61,6 @@ public class HomeController {
         
         if (memberInfo != null) {
             model.addAttribute("memberInfo", memberInfo);
-            System.out.println(memberInfo);
         }
         return "item/product";
     }

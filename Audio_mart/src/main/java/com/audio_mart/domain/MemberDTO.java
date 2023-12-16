@@ -13,6 +13,7 @@ public class MemberDTO {
 	private LocalDateTime joinTime;
 	private LocalDateTime updateTime;
 	private LocalDateTime deletionTime;
+	private boolean admin;
 	
 	public int getIdx() {
 		return idx;
@@ -74,12 +75,18 @@ public class MemberDTO {
 	public void setDeletionTime(LocalDateTime deletionTime) {
 		this.deletionTime = deletionTime;
 	}
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+	
 	@Override
 	public String toString() {
 		return "MemberDTO [idx=" + idx + ", custid=" + custid + ", pwd=" + pwd + ", custname=" + custname + ", phone="
 				+ phone + ", addr=" + addr + ", deletionYn=" + deletionYn + ", joinTime=" + joinTime + ", updateTime="
-				+ updateTime + ", deletionTime=" + deletionTime + "]";
-	}
-	
+				+ updateTime + ", deletionTime=" + deletionTime + ", admin=" + admin + "]";
+	}	
 	
 }

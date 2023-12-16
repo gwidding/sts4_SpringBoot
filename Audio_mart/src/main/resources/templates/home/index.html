@@ -37,12 +37,15 @@
 
 					<div class="right-top-bar flex-w h-full" th:object="${memberInfo}">
 					    <input type="hidden" th:if="${memberInfo != null}" th:field="*{idx}" />
-
+					    
 						<a th:if="${memberInfo == null}" href="/member/login" class="flex-c-m trans-04 p-lr-25">
 			                <p>로그인</p>
 			            </a>
 			            <a th:if="${memberInfo != null}" href="/member/checkLoginStatus" class="flex-c-m trans-04 p-lr-25">
 			                <p th:text="'환영합니다 ' + ${memberInfo.custname} + '님 :D  마이 페이지'" ></p>
+			            </a>
+			            <a th:if="${memberInfo != null && memberInfo.admin==true}" href="/member/admin" class="flex-c-m trans-04 p-lr-25">
+			                <p>관리자 페이지</p>
 			            </a>
 			            <a th:if="${memberInfo != null}" href="/member/logout" class="flex-c-m trans-04 p-lr-25">
 			                <p>로그아웃</p>

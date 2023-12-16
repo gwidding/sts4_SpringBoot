@@ -11,9 +11,10 @@ create table member (
     , join_time datetime not null default now()
     , update_time datetime null
     , deletion_time datetime null
+    , admin boolean not null default false
 );
 
+alter table member modify column admin boolean not null default false;
 desc member;
-drop table member;
-
 select * from member order by join_time desc;
+update member set admin=true where custid='test';
