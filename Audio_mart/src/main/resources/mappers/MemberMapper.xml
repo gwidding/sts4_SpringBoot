@@ -32,7 +32,7 @@
 		)
 	</insert>
 	
-	<select id="findByIdx" parameterType="int" resultType="MemberDTO">
+	<select id="findByIdx" parameterType="Integer" resultType="MemberDTO">
 		SELECT
 			<include refid="memberColumns" />
 		FROM

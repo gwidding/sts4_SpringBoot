@@ -36,7 +36,7 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full" th:object="${memberInfo}">
-					    <input type="hidden" th:if="${memberInfo != null && memberInfo.custid != null}" th:field="*{custid}" />
+					    <input type="hidden" th:if="${memberInfo != null}" th:field="*{idx}" />
 
 						<a th:if="${memberInfo == null}" href="/member/login" class="flex-c-m trans-04 p-lr-25">
 			                <p>로그인</p>
@@ -69,7 +69,7 @@
 							</li>
 
 							<li>
-								<a href="/store/product">Shop</a>
+								<a href="/product">Shop</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
@@ -150,7 +150,7 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full" th:object="${memberInfo}">
-						<input type="hidden" th:if="${memberInfo != null && memberInfo.custid != null}" th:field="*{custid}" />
+						<input type="hidden" th:if="${memberInfo != null && memberInfo.idx != null}" th:field="*{idx}" />
 						<a th:if="${memberInfo == null}" href="/member/login" class="flex-c-m p-lr-10 trans-04">
 							<p>로그인</p>
 						</a>
@@ -176,7 +176,7 @@
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
+					<a href="store/product">Shop</a>
 				</li>
 
 				<li>
@@ -1548,13 +1548,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
+	
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -1566,15 +1564,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/daterangepicker/moment.min.js"></script>
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
 	<script src="vendor/slick/slick.min.js"></script>
 	<script src="js/slick-custom.js"></script>
-<!--===============================================================================================-->
 	<script src="vendor/parallax100/parallax100.js"></script>
 	<script>
         $('.parallax100').parallax100();
 	</script>
-<!--===============================================================================================-->
+	
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 	<script>
 		$('.gallery-lb').each(function() { // the containers for all your galleries
@@ -1590,7 +1586,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
-<!--===============================================================================================-->
 	<script src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
 		$('.js-addwish-b2').on('click', function(e){

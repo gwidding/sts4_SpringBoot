@@ -41,10 +41,10 @@ public class LoginController extends UiUtils{
 	public String signin(@RequestParam("custid") String custid, @RequestParam("pwd") String pwd, HttpSession session, Model model) {
 		
 		if (memberService.login(custid, pwd)) {
-			session.setAttribute("custid", custid);
 			MemberDTO memberInfo = memberService.findByCustid(custid);
+			session.setAttribute("idx", memberInfo.getIdx());
 			model.addAttribute(memberInfo);
-			return showMessageWithRedirect("환영합니다! " + custid +"님", "/home", Method.GET, null, model);
+			return showMessageWithRedirect("환영합니다! " + memberInfo.getCustname() +"님", "/home", Method.GET, null, model);
 		} else {
 			return showMessageWithRedirect("아이디와 비밀번호가 일치하지 않습니다.", "/member/login", Method.GET, null, model);
 		}
@@ -54,9 +54,9 @@ public class LoginController extends UiUtils{
 	// 추후 변경 필요 : 로그인 확인 시 다른 페이지로 이동
 	@GetMapping("/member/checkLoginStatus")
 	public String checkLoginStatus(HttpSession session, RedirectAttributes redirectAttributes) {
-		String custid = (String) session.getAttribute("custid");
-		if (custid != null) {
-			MemberDTO memberInfo = memberService.findByCustid(custid);
+		Integer idx = (Integer) session.getAttribute("idx");
+		if (idx != null) {
+			MemberDTO memberInfo = memberService.findByIdx(idx);
 			redirectAttributes.addFlashAttribute("memberInfo", memberInfo);
 			return "redirect:/member/myaccount";
 		} else {
@@ -67,7 +67,7 @@ public class LoginController extends UiUtils{
 	// 로그아웃
 	@GetMapping("/member/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("custid");
+		session.removeAttribute("idx");
 		return "redirect:/home";
 	}
 

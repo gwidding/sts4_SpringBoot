@@ -17,41 +17,43 @@ public class HomeController {
 	@Autowired
 	private MemberService memberService;
 	
-	@GetMapping("/home")
-	public String openHome(Model model, HttpSession session) {
-		String custid = (String) session.getAttribute("custid");
-		
-		if (custid != null) {
-			MemberDTO memberInfo = memberService.findByCustid(custid);
-			model.addAttribute("memberInfo", memberInfo);
-		}
-		
-		return "home/index";
-	}
-	
-	@GetMapping("/member/myaccount")
-	public String openMyAccount(Model model, HttpSession session) {
-		
-		String custid = (String) session.getAttribute("custid");
-		
-		if (custid == null) {
-			System.out.println("로그인 해야 마이페이지 들어가짐");
-			return "redirect:/home";
-		}
-		MemberDTO memberInfo = memberService.findByCustid(custid);
-		model.addAttribute("memberInfo", memberInfo);
-		
-		return "member/myaccount";
-	}
-	
-	@GetMapping("/store/product")
-	public String showItem(Model model, HttpSession session) {
-		String custid = (String) session.getAttribute("custid");
-
-		if (custid != null) {
-			MemberDTO memberInfo = memberService.findByCustid(custid);
-			model.addAttribute("memberInfo", memberInfo);
-		}
-		return "item/product";
-	}
+	private MemberDTO getMemberInfo(HttpSession session) {
+        Integer idx = (Integer) session.getAttribute("idx");
+        if (idx != null) {
+            return memberService.findByIdx(idx);
+        }
+        return null;
+    }
+    
+    @GetMapping("/home")
+    public String openHome(Model model, HttpSession session) {
+        MemberDTO memberInfo = getMemberInfo(session);
+        if (memberInfo != null) {
+            model.addAttribute("memberInfo", memberInfo);
+        }
+        return "home/index";
+    }
+    
+    @GetMapping("/member/myaccount")
+    public String openMyAccount(Model model, HttpSession session) {
+        MemberDTO memberInfo = getMemberInfo(session);
+        if (memberInfo == null) {
+            System.out.println("로그인 해야 마이페이지 들어가짐");
+            return "redirect:/home";
+        }
+        model.addAttribute("memberInfo", memberInfo);
+        return "member/myaccount";
+    }
+    
+    @GetMapping("/product")
+    public String showItem(Model model, HttpSession session) {
+        MemberDTO memberInfo = getMemberInfo(session);
+        System.out.println("로그인 되어 있는 회원 번호 : " + (memberInfo != null ? memberInfo.getIdx() : "로그인 안됨"));
+        
+        if (memberInfo != null) {
+            model.addAttribute("memberInfo", memberInfo);
+            System.out.println(memberInfo);
+        }
+        return "item/product";
+    }
 }
