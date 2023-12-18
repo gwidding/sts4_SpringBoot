@@ -15,6 +15,7 @@ create table member (
 );
 
 alter table member modify column admin boolean not null default false;
+
 desc member;
 select * from member order by join_time desc;
-update member set admin=true where custid='test';
+update member set admin=true where custid='admin';
