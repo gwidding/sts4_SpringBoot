@@ -1,5 +1,7 @@
 package com.audio_mart.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.audio_mart.domain.MemberDTO;
@@ -11,8 +13,7 @@ public interface MemberMapper {
 	public MemberDTO findByCustid(String custid);
 	public boolean updateMember(MemberDTO params);
 	public boolean deleteMember(int idx);
-//	public List<MemberDTO> selectMemberList();
-//	public boolean signoutMember(String custid);
+	public List<MemberDTO> memberList();
 //	public int selectMemberTotalCount();
 }
 

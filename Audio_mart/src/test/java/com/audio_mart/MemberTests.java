@@ -48,7 +48,7 @@ public class MemberTests {
 	}
 	
 	@Test
-	public void testOfDelte() {
+	public void testOfDelete() {
 		boolean result = memberMapper.deleteMember(1);
 		if (result) {
 			MemberDTO member = memberMapper.findByIdx(1);

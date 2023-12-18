@@ -1,5 +1,10 @@
 use audio_mart;
 
+create table category (
+	cate_id integer not null auto_increment primary key
+    , catename varchar(50) not null
+);
+
 create table product (
 	product_id integer not null auto_increment primary key
     , cate_id integer not null
@@ -17,12 +22,7 @@ create table product (
     ,FOREIGN KEY (cate_id) REFERENCES category(cate_id)
 );
 
-create table category (
-	cate_id integer not null auto_increment primary key
-    , catename varchar(50) not null
-);
-
--- alter table category rename column cateid to cate_id; 
+-- alter table category rename column catename to cateName; 
 
 create table orders (
 	order_id integer not null auto_increment primary key
@@ -45,9 +45,4 @@ create table orderDetail (
     ,FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
 
-
-
-
-
-
-
+select * from member order by join_time;

@@ -34,11 +34,12 @@ public class HomeController {
         return "home/index";
     }
     
-    @GetMapping("/member/admin")
+    @GetMapping("/admin")
     public String openAdminPage(HttpSession session) {
         MemberDTO memberInfo = getMemberInfo(session);
-        if (memberInfo != null && memberInfo.isAdmin() == false) {
+        if (memberInfo == null || memberInfo.isAdmin() == false) {
         	System.out.println("관리자 외에 허용되지 않은 접근입니다.");
+        	return "redirect:/home";
         }
         return "manage/admin";
     }

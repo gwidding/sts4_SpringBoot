@@ -1,5 +1,8 @@
 package com.audio_mart.service;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.audio_mart.domain.MemberDTO;
@@ -56,6 +59,14 @@ public class MemberServiceImpl implements MemberService{
 		boolean queryResult = memberMapper.deleteMember(idx);
 		System.out.println(idx + " 회원 삭제 결과 : " + queryResult);
 		return queryResult;
+	}
+
+	@Override
+	public List<MemberDTO> getMemberList() {
+		List<MemberDTO> memberList = Collections.emptyList();
+		
+		memberList = memberMapper.memberList();
+		return memberList;
 	}
 
 	

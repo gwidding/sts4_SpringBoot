@@ -76,4 +76,10 @@
 			idx = #{idx}
 	</update>
 	
+	<select id="memberList">
+		SELECT *
+		FROM member
+		ORDER BY idx desc
+	</select>
+	
 </mapper>

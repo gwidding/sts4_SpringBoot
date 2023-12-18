@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8">
+	<title>회원 목록</title>
+	<link rel="stylesheet" href="/css/admin-page.css">
+</head>
+<body>
+	<!-- Navigation -->
+	<nav id="slide-menu">
+		<ul>
+			<li class="timeline"><a href="/admin/list">회원 목록</a></li>
+			<li class="events"><a href="/admin/registerItem">상품 등록</a></li>
+			<li class="calendar">Calendar</li>
+			<li class="sep settings">Settings</li>
+			<li class="logout">Logout</li>
+		</ul>
+	</nav>
+	
+	<!-- Content panel -->
+	<div id="content">
+		<div class="menu-trigger"></div>
+		<h1>회원 목록</h1>
+
+		
+		<table>
+			<thead>
+				<tr>
+					<th>고객번호</th>
+					<th>아이디</th>
+					<th>비밀번호</th>
+					<th>이름</th>
+					<th>휴대 전화번호</th>
+					<th>주소</th>
+					<th>탈퇴 여부</th>
+					<th>수정 일자</th>
+					<th>탈퇴 일자</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:if="${not #lists.isEmpty(memberList)}" th:each="row : ${memberList}">
+					<td scope="row" th:text="${row.idx}"></td>
+					<td><a href="#" th:text="${row.custid}"></a></td>
+					<td th:text="${row.pwd}"></td>
+					<td th:text="${row.custname}"></td>
+					<td th:text="${row.phone}"></td>
+					<td th:text="${row.addr}"></td>
+					<td th:text="${#strings.equals(row.deletionYn, 'Y') ? '탈퇴' : '활동 중'}"></td>
+					<td th:text="${#temporals.format(row.updateTime, 'yyyy-MM-dd HH:mm')}"></td>
+					<td th:text="${#temporals.format(row.deletionTime, 'yyyy-MM-dd')}"></td>
+				</tr>
+				<tr th:unless="${not #lists.isEmpty(memberList)}">
+					<td colspan="5">조회된 회원이 없습니다.</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+	
+	
+
+</body>
+
+<script src="/js/admin-page.js"></script>
+
+</html>

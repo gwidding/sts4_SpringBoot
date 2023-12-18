@@ -1,5 +1,6 @@
 package com.audio_mart.service;
 
+import java.util.List;
 import com.audio_mart.domain.MemberDTO;
 
 public interface MemberService {
@@ -18,5 +19,7 @@ public interface MemberService {
 	
 	// 회원 탈퇴
 	public boolean deleteMember(int idx);
+	
+	public List<MemberDTO> getMemberList();
 
 }
