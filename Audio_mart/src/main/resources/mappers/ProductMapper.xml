@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.audio_mart.mapper.ProductMapper">
+
+	<sql id="productColumns">
+		product_id
+		, cate_id
+		, pname
+		, pprice
+		, stock
+		, description
+		, img1
+		, img2
+		, img3
+		, order_cnt
+		, view_cnt
+		, register_date
+		, delete_yn
+		, delete_date	
+	</sql>
+	
+	<insert id="insertProduct"  parameterType="ProductDTO">
+		INSERT INTO product (
+			<include refid="productColumns" />
+		) VALUES (
+			#{productId}
+			,#{cateId}
+			,#{pname}
+			,#{pprice}
+			,#{stock}
+			,#{description}
+			,#{img1}
+			,#{img2}
+			,#{img3}
+			,0
+			,0
+			,now()
+			,'N'
+			,null		
+		)
+	</insert>
+	
+	<select id="findByProductId" parameterType="integer" resultType="ProductDTO">
+		SELECT
+			<include refid="productColumns" />
+		FROM
+			product
+		WHERE
+			delete_yn = 'N'
+		ORDER BY
+			product_id DESC,
+			register_date DESC
+	
+	</select>
+</mapper>

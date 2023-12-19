@@ -2,7 +2,7 @@ use audio_mart;
 
 create table category (
 	cate_id integer not null auto_increment primary key
-    , catename varchar(50) not null
+    , cate_name varchar(50) not null
 );
 
 create table product (
@@ -18,11 +18,15 @@ create table product (
     , order_cnt integer not null default 0
     , view_cnt integer not null default 0
     , register_date datetime not null default NOW()
+    , delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL
+    , delete_date datetime null
     
     ,FOREIGN KEY (cate_id) REFERENCES category(cate_id)
 );
 
--- alter table category rename column catename to cateName; 
+ALTER TABLE product MODIFY COLUMN delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL;
+alter table product Add column delete_date datetime null;
+-- alter table category rename column cateName to cate_name;
 
 create table orders (
 	order_id integer not null auto_increment primary key
@@ -45,4 +49,11 @@ create table orderDetail (
     ,FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
 
-select * from member order by join_time;
+insert into category (cate_name) values ('이어폰');
+insert into category (cate_name) values ('헤드셋');
+insert into category (cate_name) values ('스피커');
+insert into category (cate_name) values ('마이크');
+insert into category (cate_name) values ('액세서리');
+
+select * from category;
+
