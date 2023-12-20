@@ -18,6 +18,7 @@ public class ProductDTO {
 	private LocalDateTime registerDate;
 	private String deleteYn;
 	private LocalDateTime deleteDate;
+	private LocalDateTime updateDate;
 	
 	
 	public int getProductId() {
@@ -104,12 +105,19 @@ public class ProductDTO {
 	public void setDeleteDate(LocalDateTime deleteDate) {
 		this.deleteDate = deleteDate;
 	}
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
 	@Override
 	public String toString() {
 		return "ProductDTO [productId=" + productId + ", cateId=" + cateId + ", pname=" + pname + ", pprice=" + pprice
 				+ ", stock=" + stock + ", description=" + description + ", img1=" + img1 + ", img2=" + img2 + ", img3="
 				+ img3 + ", orderCnt=" + orderCnt + ", viewCnt=" + viewCnt + ", registerDate=" + registerDate
-				+ ", deleteYn=" + deleteYn + ", deleteDate=" + deleteDate + "]";
+				+ ", deleteYn=" + deleteYn + ", deleteDate=" + deleteDate + ", updateDate=" + updateDate + "]";
 	}
+	
 
 }

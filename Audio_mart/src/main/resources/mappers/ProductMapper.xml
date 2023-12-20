@@ -17,6 +17,7 @@
 		, register_date
 		, delete_yn
 		, delete_date	
+		, update_date
 	</sql>
 	
 	<insert id="insertProduct"  parameterType="ProductDTO">
@@ -36,7 +37,8 @@
 			,0
 			,now()
 			,'N'
-			,null		
+			,null
+			,null	
 		)
 	</insert>
 	
@@ -47,9 +49,43 @@
 			product
 		WHERE
 			delete_yn = 'N'
+		AND product_id = #{productId}
 		ORDER BY
 			product_id DESC,
 			register_date DESC
-	
 	</select>
+	
+	<update id="updateProduct" parameterType="ProductDTO">
+		UPDATE product
+		SET
+			update_date = now()
+			, pname = #{pname}
+			, pprice = #{pprice}
+			, stock = #{stock}
+			, description =#{description}
+			, img1 = #{img1}
+			, img2 = #{img2}
+			, img3 = #{img3}
+		WHERE 
+			product_id = #{productId}
+		AND	delete_yn = 'N'
+	</update>
+	
+	<update id="deleteProduct" parameterType="integer">
+		UPDATE product
+		SET
+			delete_date = now()
+			, delete_yn = 'Y'
+		WHERE
+			delete_yn = 'N'
+		AND	product_id = #{productId}
+	</update>
+	
+	<select id="productList">
+		SELECT *
+		FROM product
+		WHERE delete_yn = 'N'
+		ORDER BY product_id DESC
+	</select>
+	
 </mapper>

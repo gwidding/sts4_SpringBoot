@@ -20,12 +20,13 @@ create table product (
     , register_date datetime not null default NOW()
     , delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL
     , delete_date datetime null
+    , update_date datetime null
     
     ,FOREIGN KEY (cate_id) REFERENCES category(cate_id)
 );
 
 ALTER TABLE product MODIFY COLUMN delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL;
-alter table product Add column delete_date datetime null;
+alter table product Add column update_date datetime null;
 -- alter table category rename column cateName to cate_name;
 
 create table orders (
@@ -56,4 +57,6 @@ insert into category (cate_name) values ('마이크');
 insert into category (cate_name) values ('액세서리');
 
 select * from category;
+select * from product;
+
 
