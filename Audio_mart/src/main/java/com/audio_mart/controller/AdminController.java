@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpSession;
 public class AdminController {
 	
 	@Autowired
-	private MemberService memberService;
+	private MemberService memberService;	
 	
 	private MemberDTO getMemberInfo(HttpSession session) {
         Integer idx = (Integer) session.getAttribute("idx");
