@@ -16,7 +16,7 @@
 		, view_cnt
 		, register_date
 		, delete_yn
-		, delete_date	
+		, delete_date
 		, update_date
 	</sql>
 	

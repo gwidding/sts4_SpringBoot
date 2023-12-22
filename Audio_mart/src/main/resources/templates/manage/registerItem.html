@@ -5,6 +5,7 @@
 	<title>상품 등록하기</title>
 	<link rel="stylesheet" href="/css/admin-page.css">
 </head>
+
 <body>
 	<!-- Navigation -->
 	<nav id="slide-menu">
@@ -22,20 +23,23 @@
 		<div class="menu-trigger"></div>
 		<h1>상품 등록하기</h1>
 		
-<!--		<div>
-			<form id="register" th:action="@{/admin/registerItem}" th:object="${newProduct}" 
-					method="post" onsubmit="return registerMember(this)">
+		<div>
+			<form id="productForm" th:action="@{/products/upload}" th:object="${product}" 
+					method="post" onsubmit="return registerMember(this)" enctype="multipart/form-data">
 				<h2>등록할 상품 양식</h2>
 				<select th:field="*{cate}">
 					<option th:each="cate : ${category}" th:value="${category.cateId}" th:text="${category.cateName}">카테고리</option>
 				</select>
-				<input type="password" th:field="*{pwd}" placeholder="비밀번호" class="input" />
-				<input type="text" th:field="*{custname}" placeholder="이름" class="input" />
-				<input type="text" th:field="*{phone}" placeholder="010-0000-0000" class="input" />
-				<input type="text" th:field="*{addr}" placeholder="주소" class="input" />
+				<input type="text" th:field="*{pname}" placeholder="상품 이름" class="input" />
+				<input type="number" th:field="*{pprice}" placeholder="이름" class="input" />
+				<input type="number" th:field="*{stock}" placeholder="0" class="input" />
+				<textarea  th:field="*{description}" placeholder="상품 소개 " />
+				<input type="file" name="img1" accept="image/*" />
+				<input type="text" name="img2" accept="image/*"/>
+				<input type="text" name="img3" accept="image/*" />
 				<button type="submit" class="btn">Sign Up</button>
 			</form>
-		</div>-->
+		</div>
 
 		
 	</div>
@@ -61,5 +65,16 @@
 			return false;
 		}
 	}
+	
+	function setImg(event) {
+		var reader = new FileReader();
+		reader.inload = function(event) {
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img);
+		};
+		reader.readAsDataURL(event.target.files[0]);
+	}
+</script>
 
 </html>
