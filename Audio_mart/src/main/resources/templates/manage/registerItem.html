@@ -34,10 +34,10 @@
 				<input type="number" th:field="*{pprice}" placeholder="이름" class="input" />
 				<input type="number" th:field="*{stock}" placeholder="0" class="input" />
 				<textarea  th:field="*{description}" placeholder="상품 소개 " />
-				<input type="file" name="img1" accept="image/*" />
-				<input type="text" name="img2" accept="image/*"/>
-				<input type="text" name="img3" accept="image/*" />
-				<button type="submit" class="btn">Sign Up</button>
+				<input type="file" name="images" accept="image/*" multiple/>
+<!--				<input type="file" name="img2" accept="image/*"/>
+				<input type="file" name="img3" accept="image/*" />-->
+				<button type="submit" class="btn">상품 업로드</button>
 			</form>
 		</div>
 
