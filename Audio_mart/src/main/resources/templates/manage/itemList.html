@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8">
+	<title>상품 목록</title>
+	<link rel="stylesheet" href="/css/admin-page.css">
+</head>
+<body>
+	<!-- Navigation -->
+	<nav id="slide-menu">
+		<ul>
+			<li class="timeline"><a href="/admin/list">회원 목록</a></li>
+			<li class="events"><a href="/admin/registerItem">상품 등록</a></li>
+			<li class="calendar"><a href="/admin/itemList">상품 목록</a></li>
+			<li class="sep settings">Settings</li>
+			<li class="logout"><a href="/home">홈으로 돌아가기</a> </li>
+		</ul>
+	</nav>
+	
+	<!-- Content panel -->
+	<div id="content">
+		<div class="menu-trigger"></div>
+		<h1>상품 목록</h1>
+
+		<table>
+			<thead>
+				<tr>
+					<th>상품번호</th>
+					<th>카테고리</th>
+					<th>상품 이름</th>
+					<th>가격</th>
+					<th>재고 현황</th>
+					<th>상품 설명</th>
+					<th>주문 수</th>
+					<th>조회 수</th>
+					<th>등록 일자</th>
+					<th>판매 여부</th>
+					<th>상품 내린 일자</th>
+					<th>수정 일자</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:if="${not #lists.isEmpty(itemList)}" th:each="item : ${itemList}">
+					<td scope="item" th:text="${item.productId}"></td>
+					<td th:text="${item.cateId}"></td>
+					<td><a href="#" th:text="${item.pname}"></a></td>
+					<td th:text="${#numbers.formatInteger(item.pprice,3,'COMMA') + '원'}"></td>
+					<td th:text="${item.stock}"></td>
+					<td th:text="${item.description}"></td>
+					<td th:text="${item.orderCnt}"></td>
+					<td th:text="${item.viewCnt}"></td>
+					<td th:text="${#strings.equals(item.deleteYn, 'Y') ? '내림' : '판매 중'}"></td>
+					<td th:text="${#temporals.format(item.registerDate, 'yyyy-MM-dd HH:mm')}"></td>
+					<td th:text="${#temporals.format(item.deleteDate, 'yyyy-MM-dd')}"></td>
+					<td th:text="${#temporals.format(item.updateDate, 'yyyy-MM-dd')}"></td>
+				</tr>
+				<tr th:unless="${not #lists.isEmpty(itemList)}">
+					<td colspan="5">조회되는 상품이 없습니다.</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+	
+	
+
+</body>
+
+<script src="/js/admin-page.js"></script>
+
+</html>

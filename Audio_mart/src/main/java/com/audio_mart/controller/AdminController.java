@@ -34,6 +34,7 @@ public class AdminController extends UiUtils{
         return null;
     }
 
+	// 회원 목록
 	@GetMapping("/admin/list")
 	public String openMemberList(HttpSession session, Model model) {
 		 MemberDTO memberInfo = getMemberInfo(session);
@@ -58,10 +59,15 @@ public class AdminController extends UiUtils{
         
         return "manage/registerItem";
 	}
-	
+
 	@PostMapping("/admin/registerItem")
-	public String registerProduct(final ProductDTO params, Model model) {
-		
+	public String registerProduct(final ProductDTO params, HttpSession session, Model model) {
+		MemberDTO memberInfo = getMemberInfo(session);
+        if (memberInfo == null || memberInfo.isAdmin() == false) {
+        	System.out.println("관리자 외에 허용되지 않은 접근입니다.");
+        	return "redirect:/home";
+        }
+        
 		try {
 			boolean isRegistered = productService.uploadProduct(params);
 			if (isRegistered == false) {
@@ -75,6 +81,22 @@ public class AdminController extends UiUtils{
 		}
 		
 		model.addAttribute("product", new ProductDTO());
-		return "manage/registerItem";
+		return "redirect:/admin/registerItem";
+	}
+	
+	@GetMapping("/admin/itemList")
+	public String showItemList(HttpSession session, Model model) {
+		MemberDTO memberInfo = getMemberInfo(session);
+        if (memberInfo == null || memberInfo.isAdmin() == false) {
+        	System.out.println("관리자 외에 허용되지 않은 접근입니다.");
+        	return "redirect:/home";
+        }
+        
+        List<ProductDTO> itemList = productService.getProductList();
+        model.addAttribute("itemList", itemList);
+        List<CategoryDTO> categoryList = productService.getCategoryList();
+        model.addAttribute("categories", categoryList);
+        return "manage/itemList";       
+		
 	}
 }

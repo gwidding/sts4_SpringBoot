@@ -52,8 +52,8 @@ insert into category (cate_name) values ('액세서리');
 select * from category;
 select * from product;
 
-
 alter table product drop column img3;
 ALTER TABLE product MODIFY COLUMN delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL;
 alter table product Add column update_date datetime null;
 -- alter table category rename column cateName to cate_name;
+
