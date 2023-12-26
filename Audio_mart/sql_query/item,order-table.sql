@@ -12,9 +12,6 @@ create table product (
     , pprice integer not null
     , stock integer not null default 0
     , description varchar(500) null
-    , img1 varchar(200) null
-    , img2 varchar(200) null
-    , img3 varchar(200) null
     , order_cnt integer not null default 0
     , view_cnt integer not null default 0
     , register_date datetime not null default NOW()
@@ -24,10 +21,6 @@ create table product (
     
     ,FOREIGN KEY (cate_id) REFERENCES category(cate_id)
 );
-
-ALTER TABLE product MODIFY COLUMN delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL;
-alter table product Add column update_date datetime null;
--- alter table category rename column cateName to cate_name;
 
 create table orders (
 	order_id integer not null auto_increment primary key
@@ -60,3 +53,7 @@ select * from category;
 select * from product;
 
 
+alter table product drop column img3;
+ALTER TABLE product MODIFY COLUMN delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL;
+alter table product Add column update_date datetime null;
+-- alter table category rename column cateName to cate_name;

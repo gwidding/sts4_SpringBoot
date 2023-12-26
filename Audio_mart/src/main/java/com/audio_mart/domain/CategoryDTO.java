@@ -1,6 +1,7 @@
 package com.audio_mart.domain;
 
 public class CategoryDTO {
+	
 	private int cateId;
 	private String cateName;
 	

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.ProductDTO;
 import com.audio_mart.mapper.ProductMapper;
 
@@ -17,6 +19,11 @@ public class ProductServiceImpl implements ProductService{
 	public boolean uploadProduct(ProductDTO params) {
 		boolean queryResult = productMapper.insertProduct(params);
 		return queryResult;
+	}
+	
+	@Override
+	public List<CategoryDTO> getCategoryList() {
+		return productMapper.cateList();
 	}
 
 	@Override
@@ -42,7 +49,6 @@ public class ProductServiceImpl implements ProductService{
 		List<ProductDTO> productList = productMapper.productList();
 		return productList;
 	}
-	
 	
 
 }

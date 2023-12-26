@@ -10,9 +10,6 @@ public class ProductDTO {
 	private int pprice;
 	private int stock;
 	private String description;
-	private String img1;
-	private String img2;
-	private String img3;
 	private int orderCnt;
 	private int viewCnt;
 	private LocalDateTime registerDate;
@@ -57,24 +54,7 @@ public class ProductDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImg1() {
-		return img1;
-	}
-	public void setImg1(String img1) {
-		this.img1 = img1;
-	}
-	public String getImg2() {
-		return img2;
-	}
-	public void setImg2(String img2) {
-		this.img2 = img2;
-	}
-	public String getImg3() {
-		return img3;
-	}
-	public void setImg3(String img3) {
-		this.img3 = img3;
-	}
+
 	public int getOrderCnt() {
 		return orderCnt;
 	}
@@ -114,10 +94,9 @@ public class ProductDTO {
 	@Override
 	public String toString() {
 		return "ProductDTO [productId=" + productId + ", cateId=" + cateId + ", pname=" + pname + ", pprice=" + pprice
-				+ ", stock=" + stock + ", description=" + description + ", img1=" + img1 + ", img2=" + img2 + ", img3="
-				+ img3 + ", orderCnt=" + orderCnt + ", viewCnt=" + viewCnt + ", registerDate=" + registerDate
-				+ ", deleteYn=" + deleteYn + ", deleteDate=" + deleteDate + ", updateDate=" + updateDate + "]";
+				+ ", stock=" + stock + ", description=" + description + ", orderCnt=" + orderCnt + ", viewCnt="
+				+ viewCnt + ", registerDate=" + registerDate + ", deleteYn=" + deleteYn + ", deleteDate=" + deleteDate
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
 
 }

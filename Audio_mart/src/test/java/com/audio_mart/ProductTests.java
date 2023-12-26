@@ -44,9 +44,6 @@ public class ProductTests {
 		params.setPprice(20000);
 		params.setStock(10);
 		params.setDescription("줄을 유선으로 수정하고 가격을 2만원으로 할인한 유선 이어폰이 입고되었습니다! :)");
-		params.setImg1("C:/첫 번째 이미지 경로");
-		params.setImg2("C:/두 번째 이미지 경로");
-		params.setImg3("C:/세 번째 이미지 경로");
 		
 		boolean result = productMapper.updateProduct(params);
 		System.out.println("상품 수정 쿼리 결과는 " + result + " 입니다.");

@@ -9,9 +9,6 @@
 		, pprice
 		, stock
 		, description
-		, img1
-		, img2
-		, img3
 		, order_cnt
 		, view_cnt
 		, register_date
@@ -19,6 +16,11 @@
 		, delete_date
 		, update_date
 	</sql>
+	
+	<!--  카테고리 호출 -->
+	<select id="cateList" resultType="CategoryDTO">
+		select * from category	
+	</select>
 	
 	<insert id="insertProduct"  parameterType="ProductDTO">
 		INSERT INTO product (
@@ -30,9 +32,6 @@
 			,#{pprice}
 			,#{stock}
 			,#{description}
-			,#{img1}
-			,#{img2}
-			,#{img3}
 			,0
 			,0
 			,now()
@@ -63,9 +62,6 @@
 			, pprice = #{pprice}
 			, stock = #{stock}
 			, description =#{description}
-			, img1 = #{img1}
-			, img2 = #{img2}
-			, img3 = #{img3}
 		WHERE 
 			product_id = #{productId}
 		AND	delete_yn = 'N'
