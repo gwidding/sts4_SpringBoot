@@ -2,7 +2,7 @@ package com.audio_mart.domain;
 
 import java.time.LocalDateTime;
 
-public class ordersDTO {
+public class OrdersDTO {
 	
 	private int orderId;
 	private int idx;

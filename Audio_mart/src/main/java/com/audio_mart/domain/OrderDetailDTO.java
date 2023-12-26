@@ -1,6 +1,6 @@
 package com.audio_mart.domain;
 
-public class orderDetailDTO {
+public class OrderDetailDTO {
 	
 	private int orderDetailId;
 	private int orderId;
