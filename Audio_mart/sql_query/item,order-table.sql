@@ -24,14 +24,17 @@ create table product (
 
 create table orders (
 	order_id integer not null auto_increment primary key
-    , idx integer not null
+    , member_idx integer not null
     , price integer not null
     , payment_method ENUM('CreditCard', 'BankTransfer', 'Pay')
     , order_notes varchar(25) not null
     , order_date datetime not null default NOW()
     , update_date datetime null
     , order_status ENUM('NORMAL', 'REFUND', 'EXCHANGE') not null default 'NORMAL'
+    
+    ,foreign key (member_idx) references member(idx)
 );
+
 
 create table orderDetail (
 	order_detail_id integer not null auto_increment primary key
@@ -42,6 +45,16 @@ create table orderDetail (
     ,FOREIGN KEY (order_id) REFERENCES orders(order_id)
     ,FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
+create table product_image (
+	image_id integer not null auto_increment primary key
+    , product_id integer not null
+    , img_name varchar(255) not null
+    , img_description varchar(500) null
+    , img_path varchar(255) not null
+    , is_primary tinyint not null default 0
+);
+ALTER TABLE product_image ADD CONSTRAINT `FK_product_TO_product_image_1` 
+	FOREIGN KEY (product_id) REFERENCES product(product_id);
 
 insert into category (cate_name) values ('이어폰');
 insert into category (cate_name) values ('헤드셋');
@@ -50,7 +63,7 @@ insert into category (cate_name) values ('마이크');
 insert into category (cate_name) values ('액세서리');
 
 select * from category;
-select * from product;
+
 
 alter table product drop column img3;
 ALTER TABLE product MODIFY COLUMN delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL;
