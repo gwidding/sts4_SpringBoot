@@ -49,6 +49,12 @@ public class ProductServiceImpl implements ProductService{
 		List<ProductDTO> productList = productMapper.productList();
 		return productList;
 	}
+
+	@Override
+	public List<ProductDTO> getDeletionList() {
+		List<ProductDTO> deletionList = productMapper.deletionList();
+		return deletionList;
+	}
 	
 
 }

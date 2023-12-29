@@ -19,6 +19,8 @@ public interface ProductService {
 	public boolean removeProduct(Long productId);
 	// 상품 목록 가져오기
 	public List<ProductDTO> getProductList();
+	// 내려간 상품 목록 가져오기
+	public List<ProductDTO> getDeletionList();
 	
 
 }

@@ -16,5 +16,6 @@ public interface ProductMapper {
 	public boolean updateProduct(ProductDTO params);
 	public boolean deleteProduct(Long productId);
 	public List<ProductDTO> productList();
+	public List<ProductDTO> deletionList();
 
 }

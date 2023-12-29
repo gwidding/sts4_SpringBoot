@@ -114,6 +114,7 @@ public class AdminController extends UiUtils{
         
 		try {
 			boolean isUpdated = productService.updateProduct(params);
+			System.out.println(params);
 			if (isUpdated == false) {
 				System.out.println("상품 수정에 실패했습니다.");
 			}
@@ -136,7 +137,36 @@ public class AdminController extends UiUtils{
         }
         
         List<ProductDTO> itemList = productService.getProductList();
+        List<ProductDTO> deleteList = productService.getDeletionList();
         model.addAttribute("itemList", itemList);
+        model.addAttribute("deleteList",deleteList);
         return "manage/itemList";       
 	}
+	
+	@PostMapping("/admin/itemDelete")
+	public String deloadItem(HttpSession session, @RequestParam(value="productId", required=false) Long productId ) {
+		
+		if (!isAdmin(session)) {
+        	return "redirect:/home";
+        }
+		
+		if (productId == null) {
+			System.out.println("올바르지 않은 접근. 상품 번호 null");
+			return "redirect:/admin/itemList";
+		}
+		
+		try {
+			boolean isDeload = productService.removeProduct(productId);
+			if (isDeload == false) {
+				System.out.println("상품 내리기에 실패하였습니다.");
+			}
+		} catch (DataAccessException e) {
+			System.out.println("DB문제 - 상품 삭제 실패");
+		} catch (Exception e) {
+			System.out.println("시스템문제 - 상품 삭제 실패");
+		}
+		
+		return "redirect:/admin/itemList";
+	}
+	
 }
