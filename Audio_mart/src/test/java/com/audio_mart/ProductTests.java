@@ -39,7 +39,7 @@ public class ProductTests {
 	public void testOfUpdateP() {
 		ProductDTO params = new ProductDTO();
 		
-		params.setProductId((long) 1);
+		params.setProductId((long) 11);
 		params.setPname("유선 이어폰");
 		params.setPprice(20000);
 		params.setStock(10);

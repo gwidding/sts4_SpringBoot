@@ -47,8 +47,7 @@
 		FROM
 			product
 		WHERE
-			delete_yn = 'N'
-		AND product_id = #{productId}
+			product_id = #{productId}
 		ORDER BY
 			product_id DESC,
 			register_date DESC
@@ -64,7 +63,6 @@
 			, description =#{description}
 		WHERE 
 			product_id = #{productId}
-		AND	delete_yn = 'N'
 	</update>
 	
 	<update id="deleteProduct" parameterType="long">

@@ -26,6 +26,7 @@ public class ProductController {
 	// 상품 업로드
 	@PostMapping("/upload")
 	public ResponseEntity<String> uploadProduct(@RequestBody ProductDTO product) {
+		System.out.println("들어오나?");
 		boolean isUploaded = productService.uploadProduct(product);
 		if (isUploaded) {
 			return ResponseEntity.ok(product.getPname() + " 상품이 성공적으로 등록되었습니다.");
