@@ -11,14 +11,14 @@ public interface MemberService {
 	public boolean login(String custid, String password);
 	
 	// 회원정보
-	public MemberDTO findByIdx(int idx);
+	public MemberDTO findByIdx(Long idx);
 	public MemberDTO findByCustid(String custid);
 	
 	// 회원정보 수정
 	public boolean updateMember(MemberDTO parmas);
 	
 	// 회원 탈퇴
-	public boolean deleteMember(int idx);
+	public boolean deleteMember(Long idx);
 	
 	public List<MemberDTO> getMemberList();
 

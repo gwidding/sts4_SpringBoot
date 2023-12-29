@@ -33,8 +33,8 @@
 					<th>상품 설명</th>
 					<th>주문 수</th>
 					<th>조회 수</th>
-					<th>등록 일자</th>
 					<th>판매 여부</th>
+					<th>등록 일자</th>
 					<th>상품 내린 일자</th>
 					<th>수정 일자</th>
 				</tr>
@@ -44,7 +44,7 @@
 				<tr th:if="${not #lists.isEmpty(itemList)}" th:each="item : ${itemList}">
 					<td scope="item" th:text="${item.productId}"></td>
 					<td th:text="${item.cateId}"></td>
-					<td><a href="#" th:text="${item.pname}"></a></td>
+					<td><a th:href="@{/admin/registerItem( productId=${item.productId} )}" th:text="${item.pname}"></a></td>
 					<td th:text="${#numbers.formatInteger(item.pprice,3,'COMMA') + '원'}"></td>
 					<td th:text="${item.stock}"></td>
 					<td th:text="${item.description}"></td>

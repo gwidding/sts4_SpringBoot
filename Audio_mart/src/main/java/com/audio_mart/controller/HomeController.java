@@ -18,7 +18,7 @@ public class HomeController {
 	private MemberService memberService;
 	
 	private MemberDTO getMemberInfo(HttpSession session) {
-        Integer idx = (Integer) session.getAttribute("idx");
+        Long idx = (Long) session.getAttribute("idx");
         if (idx != null) {
             return memberService.findByIdx(idx);
         }

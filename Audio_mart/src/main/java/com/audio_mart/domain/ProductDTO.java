@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class ProductDTO {
 	
-	private int productId;
-	private int cateId;
+	private Long productId;
+	private Long cateId;
 	private String pname;
 	private int pprice;
 	private int stock;
@@ -18,16 +18,16 @@ public class ProductDTO {
 	private LocalDateTime updateDate;
 	
 	
-	public int getProductId() {
+	public Long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
-	public int getCateId() {
+	public Long getCateId() {
 		return cateId;
 	}
-	public void setCateId(int cateId) {
+	public void setCateId(Long cateId) {
 		this.cateId = cateId;
 	}
 	public String getPname() {

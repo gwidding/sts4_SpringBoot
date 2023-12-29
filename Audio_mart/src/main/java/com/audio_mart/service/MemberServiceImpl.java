@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService{
 
 
 	@Override
-	public MemberDTO findByIdx(int idx) {
+	public MemberDTO findByIdx(Long idx) {
 		MemberDTO member = memberMapper.findByIdx(idx);
 		return member;
 	}
@@ -55,7 +55,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public boolean deleteMember(int idx) {
+	public boolean deleteMember(Long idx) {
 		boolean queryResult = memberMapper.deleteMember(idx);
 		System.out.println(idx + " 회원 삭제 결과 : " + queryResult);
 		return queryResult;

@@ -50,7 +50,7 @@ public class MemberController extends UiUtils{
 	}
 	
 	@PostMapping("/member/delete")
-	public String deleteMember(@RequestParam(value ="idx", required = false) int idx) {
+	public String deleteMember(@RequestParam(value ="idx", required = false) Long idx) {
 		if (idx < 1) {
 			System.out.println("아이디 전달 안 됨");
 			return "redirect:/member/myaccount";

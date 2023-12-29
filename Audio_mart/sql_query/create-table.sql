@@ -1,7 +1,7 @@
 use audio_mart;
 
 create table member (
-	idx integer not null auto_increment primary key
+	idx int not null auto_increment primary key
 	, custid varchar(50) not null unique
     , pwd varchar(100) not null
     , custname varchar(30) not null

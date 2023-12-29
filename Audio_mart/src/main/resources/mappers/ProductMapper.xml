@@ -41,7 +41,7 @@
 		)
 	</insert>
 	
-	<select id="findByProductId" parameterType="integer" resultType="ProductDTO">
+	<select id="findByProductId" parameterType="long" resultType="ProductDTO">
 		SELECT
 			<include refid="productColumns" />
 		FROM
@@ -67,7 +67,7 @@
 		AND	delete_yn = 'N'
 	</update>
 	
-	<update id="deleteProduct" parameterType="integer">
+	<update id="deleteProduct" parameterType="long">
 		UPDATE product
 		SET
 			delete_date = now()

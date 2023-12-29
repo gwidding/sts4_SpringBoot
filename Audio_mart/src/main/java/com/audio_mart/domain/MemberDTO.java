@@ -3,7 +3,7 @@ package com.audio_mart.domain;
 import java.time.LocalDateTime;
 
 public class MemberDTO {
-	private int idx;
+	private Long idx;
 	private String custid;
 	private String pwd;
 	private String custname;
@@ -15,10 +15,11 @@ public class MemberDTO {
 	private LocalDateTime deletionTime;
 	private boolean admin;
 	
-	public int getIdx() {
+	
+	public Long getIdx() {
 		return idx;
 	}
-	public void setIdx(int idx) {
+	public void setIdx(Long idx) {
 		this.idx = idx;
 	}
 	public String getCustid() {

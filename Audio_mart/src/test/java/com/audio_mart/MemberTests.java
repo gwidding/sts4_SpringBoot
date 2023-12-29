@@ -37,7 +37,7 @@ public class MemberTests {
 	@Test
 	public void testOfUpdate() {
 		MemberDTO params = new MemberDTO();
-		params.setIdx(1);
+		params.setIdx((long) 1);
 		params.setCustname("수정한 1번 고객");
 		params.setPwd("test");
 		params.setAddr("수정한 주소1");
@@ -49,9 +49,9 @@ public class MemberTests {
 	
 	@Test
 	public void testOfDelete() {
-		boolean result = memberMapper.deleteMember(1);
+		boolean result = memberMapper.deleteMember((long) 1);
 		if (result) {
-			MemberDTO member = memberMapper.findByIdx(1);
+			MemberDTO member = memberMapper.findByIdx((long) 1);
 			try {
 				String memberJson = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(member);
 				System.out.println("삭제한 회원 " + memberJson);

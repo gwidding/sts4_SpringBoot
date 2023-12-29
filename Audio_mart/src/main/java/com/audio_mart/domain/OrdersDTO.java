@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class OrdersDTO {
 	
-	private int orderId;
-	private int idx;
+	private Long orderId;
+	private Long memberIdx;
 	private int price;
 	private String paymentMethod;
 	private String orderNotes;
@@ -13,18 +13,17 @@ public class OrdersDTO {
 	private LocalDateTime updateDate;
 	private String orderStatus;
 	
-	
-	public int getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(int orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
-	public int getIdx() {
-		return idx;
+	public Long getMemberIdx() {
+		return memberIdx;
 	}
-	public void setIdx(int idx) {
-		this.idx = idx;
+	public void setMemberIdx(Long memberIdx) {
+		this.memberIdx = memberIdx;
 	}
 	public int getPrice() {
 		return price;
@@ -64,9 +63,8 @@ public class OrdersDTO {
 	}
 	@Override
 	public String toString() {
-		return "ordersDTO [orderId=" + orderId + ", idx=" + idx + ", price=" + price + ", paymentMethod="
+		return "OrdersDTO [orderId=" + orderId + ", memberIdx=" + memberIdx + ", price=" + price + ", paymentMethod="
 				+ paymentMethod + ", orderNotes=" + orderNotes + ", orderDate=" + orderDate + ", updateDate="
 				+ updateDate + ", orderStatus=" + orderStatus + "]";
-	}
-	
+	}	
 }

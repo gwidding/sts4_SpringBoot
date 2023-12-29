@@ -19,7 +19,7 @@ public class ProductTests {
 	public void testOfInsertP() {
 		ProductDTO params = new ProductDTO();
 		
-		params.setCateId(2);
+		params.setCateId((long) 2);
 		params.setPname("무선 헤드셋");
 		params.setPprice(400000);
 		params.setStock(15);
@@ -31,7 +31,7 @@ public class ProductTests {
 	
 	@Test
 	public void testOfSelectP() {
-		ProductDTO result = productMapper.findByProductId(2);
+		ProductDTO result = productMapper.findByProductId((long) 2);
 		System.out.println(result);
 	}
 	
@@ -39,7 +39,7 @@ public class ProductTests {
 	public void testOfUpdateP() {
 		ProductDTO params = new ProductDTO();
 		
-		params.setProductId(1);
+		params.setProductId((long) 1);
 		params.setPname("유선 이어폰");
 		params.setPprice(20000);
 		params.setStock(10);
@@ -51,7 +51,7 @@ public class ProductTests {
 	
 	@Test
 	public void testOfDeleteP() {
-		boolean result = productMapper.deleteProduct(2);
+		boolean result = productMapper.deleteProduct((long) 2);
 		System.out.println("상품 삭제 결과는 " + result + " 입니다.");
 	}
 	

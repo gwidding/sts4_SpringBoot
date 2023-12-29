@@ -17,7 +17,13 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public boolean uploadProduct(ProductDTO params) {
-		boolean queryResult = productMapper.insertProduct(params);
+		boolean queryResult = false;
+		System.out.println("확인 : " + params.getProductId() );
+		if (params.getProductId() == null) {
+			queryResult = productMapper.insertProduct(params);
+		} else {
+			queryResult = productMapper.updateProduct(params);
+		}
 		return queryResult;
 	}
 	
@@ -28,18 +34,18 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public boolean updateProduct(ProductDTO params) {
-		boolean queryResult = productMapper.updateProduct(params);
-		return queryResult;
+		
+		return true;
 	}
 
 	@Override
-	public ProductDTO findByProductId(int ProductId) {
+	public ProductDTO findByProductId(Long ProductId) {
 		ProductDTO productInfo = productMapper.findByProductId(ProductId);
 		return productInfo;
 	}
 
 	@Override
-	public boolean removeProduct(int productId) {
+	public boolean removeProduct(Long productId) {
 		boolean queryResult = productMapper.deleteProduct(productId);
 		return queryResult;
 	}

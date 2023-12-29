@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.MemberDTO;
@@ -27,7 +28,7 @@ public class AdminController extends UiUtils{
 	private ProductService productService;
 	
 	private MemberDTO getMemberInfo(HttpSession session) {
-        Integer idx = (Integer) session.getAttribute("idx");
+        Long idx = (Long) session.getAttribute("idx");
         if (idx != null) {
             return memberService.findByIdx(idx);
         }
@@ -47,13 +48,22 @@ public class AdminController extends UiUtils{
 	}
 	
 	@GetMapping("/admin/registerItem")
-	public String registerForm(HttpSession session, Model model) {
+	public String registerForm(HttpSession session, @RequestParam(value = "productId", required = false) Long productId, Model model) {
 		MemberDTO memberInfo = getMemberInfo(session);
         if (memberInfo == null || memberInfo.isAdmin() == false) {
         	System.out.println("관리자 외에 허용되지 않은 접근입니다.");
         	return "redirect:/home";
         }
-        model.addAttribute("product",new ProductDTO());
+        if (productId == null) {
+        	model.addAttribute("product",new ProductDTO());
+        } else {
+        	ProductDTO product = productService.findByProductId(productId);
+        	if (product == null) {
+        		System.out.println("조회된 상품이 존재하지 않습니다.");
+        		return "redirect:/admin/itemList";
+        	}
+        	model.addAttribute("product", product);
+        }
         List<CategoryDTO> categoryList = productService.getCategoryList();
         model.addAttribute("categories", categoryList);
         

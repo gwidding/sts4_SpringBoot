@@ -36,7 +36,7 @@ public class ProductController {
 	
 	// 상품 정보 수정
 	@PatchMapping("/{productId}/update")
-	public ResponseEntity<String> updateProduct(@PathVariable int productId, @RequestBody ProductDTO updatedProduct) {
+	public ResponseEntity<String> updateProduct(@PathVariable Long productId, @RequestBody ProductDTO updatedProduct) {
 	    boolean isUpdated = productService.updateProduct(updatedProduct);
 	    if (isUpdated) {
 	        return ResponseEntity.ok(updatedProduct.getPname() + " 상품이 성공적으로 수정 되었습니다.");
@@ -46,7 +46,7 @@ public class ProductController {
 	}
 	// 상품 삭제(내리기)
 	@DeleteMapping("/{productId}/remove")
-	public ResponseEntity<String> removeProduct(@PathVariable int productId) {
+	public ResponseEntity<String> removeProduct(@PathVariable Long productId) {
 	    boolean isRemoved = productService.removeProduct(productId);
 	    if (isRemoved) {
 	        return ResponseEntity.ok("상품이 성공적으로 삭제처리 되었습니다.");
@@ -57,7 +57,7 @@ public class ProductController {
 	
 	// 상품번호 -> 상품 정보
 	@GetMapping("/{productId}")
-	public ResponseEntity<ProductDTO> getProduct(@PathVariable int productId) {
+	public ResponseEntity<ProductDTO> getProduct(@PathVariable Long productId) {
 		ProductDTO product = productService.findByProductId(productId);
 		
 		if (product != null) {

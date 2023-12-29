@@ -54,7 +54,7 @@ public class LoginController extends UiUtils{
 	// 추후 변경 필요 : 로그인 확인 시 다른 페이지로 이동
 	@GetMapping("/member/checkLoginStatus")
 	public String checkLoginStatus(HttpSession session, RedirectAttributes redirectAttributes) {
-		Integer idx = (Integer) session.getAttribute("idx");
+		Long idx = (Long) session.getAttribute("idx");
 		if (idx != null) {
 			MemberDTO memberInfo = memberService.findByIdx(idx);
 			redirectAttributes.addFlashAttribute("memberInfo", memberInfo);

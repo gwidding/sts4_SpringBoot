@@ -2,28 +2,27 @@ package com.audio_mart.domain;
 
 public class OrderDetailDTO {
 	
-	private int orderDetailId;
-	private int orderId;
-	private int productId;
+	private Long orderDetailId;
+	private	Long orderId;
+	private Long productId;
 	private int quantity;
-	
-	
-	public int getOrderDetailId() {
+
+	public Long getOrderDetailId() {
 		return orderDetailId;
 	}
-	public void setOrderDetailId(int orderDetailId) {
+	public void setOrderDetailId(Long orderDetailId) {
 		this.orderDetailId = orderDetailId;
 	}
-	public int getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(int orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
-	public int getProductId() {
+	public Long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
 	public int getQuantity() {

@@ -1,3 +1,17 @@
+function isValid(field, fieldName, focusField) {
+
+	if (isEmpty(field.value) == true) {
+		/* 종성으로 조사(을 또는 를) 구분 */
+		var message = (fieldName + "을 확인해 주세요."); 
+		field.focus();
+		alert(message);
+		return false;
+	}
+
+	return true;
+}
+
+
 /**
  * 자료형에 상관없이 값이 비어있는지 확인
  * 
