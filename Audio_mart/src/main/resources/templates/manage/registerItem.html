@@ -71,7 +71,7 @@
 				
 				<div>
 					<button type="submit" class="btn"><p th:text="${(product.productId == null) ? '상품 업로드' : '상품 수정하기'}"></p></button>
-					<button type="button" th:onclick="deleteProduct([[ ${product.productId} ]])">상품 내리기</button>
+					<button type="button" th:if="${product.productId != null}" th:onclick="deleteProduct([[ ${product.productId} ]])">상품 내리기</button>
 				</div>
 
 			</form>
