@@ -45,13 +45,16 @@ create table orderDetail (
     ,FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
 create table product_image (
-	image_id int not null auto_increment primary key
+	img_id int not null auto_increment primary key
     , product_id int not null
     , img_name varchar(255) not null
-    , img_description varchar(500) null
     , img_path varchar(255) not null
-    , is_primary tinyint not null default 0
+    , is_rep tinyint not null default 0
+    , delete_yn ENUM('Y', 'N') not null default 'N'
+    , memo varchar(500) null
 );
+drop table product_image;
+
 ALTER TABLE product_image ADD CONSTRAINT `FK_product_TO_product_image_1` 
 	FOREIGN KEY (product_id) REFERENCES product(product_id);
 
@@ -62,6 +65,9 @@ insert into category (cate_name) values ('마이크');
 insert into category (cate_name) values ('액세서리');
 
 select * from product;
+
+select * FROM information_schema.TABLE_CONSTRAINTS
+WHERE TABLE_SCHEMA = 'audio_mart';
 
 alter table product drop column img3;
 ALTER TABLE product MODIFY COLUMN delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL;

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.audio_mart.mapper.ProductImgMapper">
+
+	<sql id="productImageColumns">
+		img_id
+		, product_id
+		, img_name
+		, img_path
+		, is_rep
+		, delete_yn
+		, memo
+	</sql>
+
+	<insert id="insertImg" parameterType="ProductImgDTO">
+		INSERT INTO product_image (
+			<include refid="productImageColumns" />
+		) VALUES (
+			#{imgId}
+			, #{productId}
+			, #{imgName}
+			, #{imgPath}
+			, IFNULL(#{isRep}, 0)
+			, 'N'
+			, #{memo}
+		)
+	</insert>
+	
+	<update id="updateImg" parameterType="ProductImgDTO">
+		UPDATE product_image
+		SET
+			product_id = #{productId}
+			, img_name = #{imgName}
+			, img_path = #{imgPath}
+			, is_rep = IFNULL(#{isRep}, 0)
+			, memo = #{memo}
+		WHERE
+			img_id = #{imgId}
+	</update>
+	
+	<update id="deleteImg" parameterType="long">
+		UPDATE product_image
+		SET
+			delete_yn = 'Y'
+		WHERE
+			img_id = #{imgId}
+	</update>
+
+</mapper>
