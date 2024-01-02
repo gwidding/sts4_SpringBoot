@@ -53,7 +53,6 @@ create table product_image (
     , delete_yn ENUM('Y', 'N') not null default 'N'
     , memo varchar(500) null
 );
-drop table product_image;
 
 ALTER TABLE product_image ADD CONSTRAINT `FK_product_TO_product_image_1` 
 	FOREIGN KEY (product_id) REFERENCES product(product_id);
@@ -74,3 +73,5 @@ ALTER TABLE product MODIFY COLUMN delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL;
 alter table product Add column update_date datetime null;
 -- alter table category rename column cateName to cate_name;
 
+
+select * from product_image;

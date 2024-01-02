@@ -40,8 +40,7 @@
 	<update id="updateImg" parameterType="ProductImgDTO">
 		UPDATE product_image
 		SET
-			product_id = #{productId}
-			, img_name = #{imgName}
+			img_name = #{imgName}
 			, img_path = #{imgPath}
 			, is_rep = IFNULL(#{isRep}, 0)
 			, memo = #{memo}
@@ -54,6 +53,8 @@
 		SET
 			delete_yn = 'Y'
 		WHERE
+			delete_yn ='N'
+		AND
 			img_id = #{imgId}
 	</update>
 	
