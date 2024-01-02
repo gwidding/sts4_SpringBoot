@@ -26,6 +26,17 @@
 		)
 	</insert>
 	
+	<select id="imgDetail" parameterType="long">
+		SELECT
+			*
+		FROM
+			product_image
+		WHERE
+			delete_yn = 'N'
+		AND 
+			img_id = #{imgId}
+	</select>
+	
 	<update id="updateImg" parameterType="ProductImgDTO">
 		UPDATE product_image
 		SET
@@ -45,5 +56,28 @@
 		WHERE
 			img_id = #{imgId}
 	</update>
-
+	
+	<select id="getImgList" parameterType="long">
+		SELECT
+			*
+		FROM
+			product_image
+		WHERE
+			delete_yn = 'N'
+		AND
+			product_id = #{productId}
+		ORDER BY
+			is_rep DESC
+			,img_id
+	</select>
+	
+	<select id="selectImgTotalCnt" parameterType="long">
+		SELECT count(*)
+		FROM
+			product_image
+		WHERE
+			delete_yn ='N'
+		AND
+			product_id = #{productId}
+	</select>
 </mapper>
