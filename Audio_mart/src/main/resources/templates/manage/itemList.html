@@ -67,48 +67,48 @@
 		
 		<!-- 내려간 상품 -->
 		<div>
-		<h1> Deload 상품 목록</h1>
-
-		<table>
-			<thead>
-				<tr>
-					<th>상품번호</th>
-					<th>카테고리</th>
-					<th>상품 이름</th>
-					<th>가격</th>
-					<th>재고 현황</th>
-					<th>상품 설명</th>
-					<th>주문 수</th>
-					<th>조회 수</th>
-					<th>판매 여부</th>
-					<th>등록 일자</th>
-					<th>상품 내린 일자</th>
-					<th>수정 일자</th>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr th:if="${not #lists.isEmpty(itemList)}" th:each="item : ${deleteList}">
-					<td scope="item" th:text="${item.productId}"></td>
-					<td th:text="${item.cateId}"></td>
-					<td><a th:href="@{/admin/registerItem( productId=${item.productId} )}" th:text="${item.pname}"></a></td>
-					<td th:text="${#numbers.formatInteger(item.pprice,3,'COMMA') + '원'}"></td>
-					<td th:text="${item.stock}"></td>
-					<td th:text="${item.description}"></td>
-					<td th:text="${item.orderCnt}"></td>
-					<td th:text="${item.viewCnt}"></td>
-					<td th:text="${#strings.equals(item.deleteYn, 'Y') ? '내림' : '판매 중'}"></td>
-					<td th:text="${#temporals.format(item.registerDate, 'yyyy-MM-dd HH:mm')}"></td>
-					<td th:text="${#temporals.format(item.deleteDate, 'yyyy-MM-dd')}"></td>
-					<td th:text="${#temporals.format(item.updateDate, 'yyyy-MM-dd')}"></td>
-				</tr>
-				<tr th:unless="${not #lists.isEmpty(itemList)}">
-					<td colspan="5">조회되는 상품이 없습니다.</td>
-				</tr>
+			<h1> Deload 상품 목록</h1>
+	
+			<table>
+				<thead>
+					<tr>
+						<th>상품번호</th>
+						<th>카테고리</th>
+						<th>상품 이름</th>
+						<th>가격</th>
+						<th>재고 현황</th>
+						<th>상품 설명</th>
+						<th>주문 수</th>
+						<th>조회 수</th>
+						<th>판매 여부</th>
+						<th>등록 일자</th>
+						<th>상품 내린 일자</th>
+						<th>수정 일자</th>
+					</tr>
+				</thead>
 				
-			</tbody>
-		</table>
-	</div>
+				<tbody>
+					<tr th:if="${not #lists.isEmpty(itemList)}" th:each="item : ${deleteList}">
+						<td scope="item" th:text="${item.productId}"></td>
+						<td th:text="${item.cateId}"></td>
+						<td><a th:href="@{/admin/registerItem( productId=${item.productId} )}" th:text="${item.pname}"></a></td>
+						<td th:text="${#numbers.formatInteger(item.pprice,3,'COMMA') + '원'}"></td>
+						<td th:text="${item.stock}"></td>
+						<td th:text="${item.description}"></td>
+						<td th:text="${item.orderCnt}"></td>
+						<td th:text="${item.viewCnt}"></td>
+						<td th:text="${#strings.equals(item.deleteYn, 'Y') ? '내림' : '판매 중'}"></td>
+						<td th:text="${#temporals.format(item.registerDate, 'yyyy-MM-dd HH:mm')}"></td>
+						<td th:text="${#temporals.format(item.deleteDate, 'yyyy-MM-dd')}"></td>
+						<td th:text="${#temporals.format(item.updateDate, 'yyyy-MM-dd')}"></td>
+					</tr>
+					<tr th:unless="${not #lists.isEmpty(itemList)}">
+						<td colspan="5">조회되는 상품이 없습니다.</td>
+					</tr>
+					
+				</tbody>
+			</table>
+		</div>
 	</div>
 	
 	
