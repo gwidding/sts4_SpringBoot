@@ -15,7 +15,6 @@ import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.domain.ProductDTO;
 import com.audio_mart.service.MemberService;
-import com.audio_mart.service.ProductImgServiceImpl;
 import com.audio_mart.service.ProductService;
 import com.audio_mart.util.UiUtils;
 

@@ -1,12 +1,16 @@
 package com.audio_mart.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.audio_mart.domain.MemberDTO;
+import com.audio_mart.domain.ProductDTO;
 import com.audio_mart.service.MemberService;
+import com.audio_mart.service.ProductService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -16,6 +20,9 @@ public class HomeController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	private MemberDTO getMemberInfo(HttpSession session) {
         Long idx = (Long) session.getAttribute("idx");
@@ -58,11 +65,15 @@ public class HomeController {
     @GetMapping("/product")
     public String showItem(Model model, HttpSession session) {
         MemberDTO memberInfo = getMemberInfo(session);
-        System.out.println("로그인 되어 있는 회원 번호 : " + (memberInfo != null ? memberInfo.getIdx() : "로그인 안됨"));
         
+        // 로그인 상태면 마이페이지 뜨도록 회원정보 보내기
         if (memberInfo != null) {
             model.addAttribute("memberInfo", memberInfo);
         }
+        
+        List<ProductDTO> itemList = productService.getProductList();
+        model.addAttribute("products", itemList);
+        
         return "item/product";
     }
 }
