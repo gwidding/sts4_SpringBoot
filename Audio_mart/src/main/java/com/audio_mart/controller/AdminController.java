@@ -87,7 +87,7 @@ public class AdminController extends UiUtils{
 	
 	// 상품 등록하기
 	@PostMapping("/admin/registerItem")
-	public String registerProduct(final ProductDTO params, HttpSession session, MultipartFile imgFile, Model model) {
+	public String registerProduct(final ProductDTO params, HttpSession session,@RequestParam("imgFile") MultipartFile imgFile, Model model) {
 		// 관리자 확인
 		if (!isAdmin(session)) {
         	return "redirect:/home";
@@ -95,6 +95,7 @@ public class AdminController extends UiUtils{
         
 		try {
 			boolean isRegisterd = productService.uploadProduct(params);
+			System.out.println(imgFile.getOriginalFilename());
 //			ProductImgServiceImpl.saveImg(params, imgFile);
 			
 			if (isRegisterd == false) {

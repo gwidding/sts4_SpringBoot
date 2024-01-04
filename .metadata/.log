@@ -4117,3 +4117,15 @@ Binding(CTRL+SHIFT+C,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-04 20:28:36.845
+!MESSAGE [Info]	ESLint server running in node v18.17.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-04 20:28:36.965
+!MESSAGE [Info]	Using Typescript version (user-setting) 5.1.6 from path "C:\sts-4.20.1.RELEASE\plugins\org.eclipse.wildwebdeveloper_1.1.1.202308101949\node_modules\typescript\lib\tsserver.js"
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-04 20:28:36.972
+!MESSAGE [Info]	Typescript Server version info: {version=5.1.6, source=user-setting}
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-04 20:28:37.645
+!MESSAGE [Info]	No ES Library found for file: file:///C:/Users/okeunji/Documents/stsSpring/Audio_mart/src/main/resources/static/js/admin-page.js

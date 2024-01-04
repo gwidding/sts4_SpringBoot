@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.domain.ProductDTO;
@@ -75,5 +76,27 @@ public class HomeController {
         model.addAttribute("products", itemList);
         
         return "item/product";
+    }
+    
+    // 상세 상품 뷰 열기
+    @GetMapping("/product-detail")
+    public String showProductDetail(Model model, @RequestParam(value = "productId", required = false) Long productId, HttpSession session) {
+    	
+    	MemberDTO memberInfo = getMemberInfo(session);
+    	
+    	if (productId == null) {
+    		System.out.println("상품 번호가 비었습니다. - 잘못된 접근");
+    		return "redirect:/home";
+    	}
+    	
+    	// 로그인 상태면 마이페이지, 주문자 정보 전달
+        if (memberInfo != null) {
+            model.addAttribute("memberInfo", memberInfo);
+        }
+        ProductDTO product = productService.findByProductId(productId);
+        model.addAttribute("product", product);
+        
+        return "item/product-detail";  	
+    	
     }
 }

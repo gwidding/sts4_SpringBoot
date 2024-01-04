@@ -43,6 +43,9 @@
 			            <a th:if="${memberInfo != null}" href="/member/checkLoginStatus" class="flex-c-m trans-04 p-lr-25">
 			                <p th:text="'환영합니다 ' + ${memberInfo.custname} + '님 :D  마이 페이지'" ></p>
 			            </a>
+			            <a th:if="${memberInfo != null && memberInfo.admin==true}" href="/admin" class="flex-c-m trans-04 p-lr-25">
+			                <p>관리자 페이지</p>
+			            </a>
 			            <a th:if="${memberInfo != null}" href="/member/logout" class="flex-c-m trans-04 p-lr-25">
 			                <p>로그아웃</p>
 			            </a>
@@ -558,7 +561,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html" th:text="${product.pname}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"></a>
+								<a th:href="@{/product-detail( productId=${product.productId} )}" th:text="${product.pname}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"></a>
 
 								<span th:text="${#numbers.formatInteger(product.pprice,3,'COMMA')} + '원'" class="stext-105 cl3"></span>
 							</div>
