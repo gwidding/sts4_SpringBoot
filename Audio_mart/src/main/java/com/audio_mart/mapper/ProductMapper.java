@@ -17,5 +17,7 @@ public interface ProductMapper {
 	public boolean deleteProduct(Long productId);
 	public List<ProductDTO> productList();
 	public List<ProductDTO> deletionList();
+	
+	public boolean saveImg(ProductDTO params);
 
 }

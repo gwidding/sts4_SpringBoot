@@ -15,6 +15,7 @@ import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.domain.ProductDTO;
 import com.audio_mart.service.MemberService;
+import com.audio_mart.service.ProductImgServiceImpl;
 import com.audio_mart.service.ProductService;
 import com.audio_mart.util.UiUtils;
 
@@ -95,6 +96,7 @@ public class AdminController extends UiUtils{
         
 		try {
 			boolean isRegisterd = productService.uploadProduct(params);
+//			ProductImgServiceImpl.saveImg(params, imgFile);
 			
 			if (isRegisterd == false) {
 				System.out.println("상품 등록에 실패했습니다.");

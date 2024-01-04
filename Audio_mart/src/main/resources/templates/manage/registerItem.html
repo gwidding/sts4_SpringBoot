@@ -95,6 +95,7 @@
 <script th:inline="javascript">
 	/* <![CDATA[ */
    
+   // 상품 등록
 	function registerItem(form) {
 		var result = (
 			isValid(form.pname, "상품 이름", null, null)
@@ -108,6 +109,7 @@
 		}
 	}
 	
+	// 상품 삭제
 	function deleteProduct(idx, queryString) {
 		
 		if (confirm(idx + "번 상품을 홈페이지에서 내리겠습니까?")) {
@@ -130,15 +132,17 @@
 		}
 	}
 	
+	// 이미지 선택 시 미리보기
 	$("#imgFile").change(function() {
 		if (this.files && this.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function(data) {
-				$("#imgFile").attr("src", data.target.result).width(500);
+				$("#previewImg").attr("src", data.target.result).width(500);
 			}
 			reader.readAsDataURL(this.files[0]);
 		};
 	});
+	
 
 </script>
 

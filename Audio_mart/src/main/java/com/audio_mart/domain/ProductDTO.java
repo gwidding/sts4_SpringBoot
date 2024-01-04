@@ -18,7 +18,14 @@ public class ProductDTO {
 	private LocalDateTime updateDate;
 	
 	private String thumbImg;
+	private String imgPath;
 	
+	public String getImgPath() {
+		return imgPath;
+	}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
 	public Long getProductId() {
 		return productId;
 	}
@@ -105,8 +112,10 @@ public class ProductDTO {
 		return "ProductDTO [productId=" + productId + ", cateId=" + cateId + ", pname=" + pname + ", pprice=" + pprice
 				+ ", stock=" + stock + ", description=" + description + ", orderCnt=" + orderCnt + ", viewCnt="
 				+ viewCnt + ", registerDate=" + registerDate + ", deleteYn=" + deleteYn + ", deleteDate=" + deleteDate
-				+ ", updateDate=" + updateDate + ", thumbImg=" + thumbImg + "]";
+				+ ", updateDate=" + updateDate + ", thumbImg=" + thumbImg + ", imgPath=" + imgPath + "]";
 	}
+	
+
 
 
 }

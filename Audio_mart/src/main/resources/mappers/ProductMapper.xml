@@ -41,6 +41,16 @@
 		)
 	</insert>
 	
+	<update id="saveImg" parameterType="ProductDTO">
+		update 
+			product 
+		set 
+			thumb_img = #{thumbImg}
+			, img_path = #{imgPath}
+		where
+			product_id = #{productId} 
+	</update>
+	
 	<select id="findByProductId" parameterType="long" resultType="ProductDTO">
 		SELECT
 			<include refid="productColumns" />
