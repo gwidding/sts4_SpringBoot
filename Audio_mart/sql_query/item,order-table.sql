@@ -21,6 +21,7 @@ create table product (
     
     ,FOREIGN KEY (cate_id) REFERENCES category(cate_id)
 );
+alter table product add (thumbImg varchar(200) null);
 
 create table orders (
 	order_id int not null auto_increment primary key

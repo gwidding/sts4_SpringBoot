@@ -23,8 +23,8 @@
 		<div class="menu-trigger"></div>
 				
 		<div>
-			<form id="productForm" th:action="@{${(product.productId == null) ? '/admin/registerItem' : '/admin/updateItem'} }" th:object="${product}" 
-					method="post" onsubmit="return registerItem(this)">
+			<form id="productForm" th:action="@{${(product.productId == null) ? '/admin/registerItem' : '/admin/updateItem'} }" 
+				th:object="${product}" method="post" onsubmit="return registerItem(this)" enctype="multipart/form-data">
 			    <input type="hidden" th:field="*{productId}" />
 
 				<h1>등록할 상품 </h1>
@@ -66,8 +66,15 @@
 							<textarea  th:field="*{description}" placeholder="상품 설명 " />
 						</td>
 					</tr>
+					
+					<tr>
+						<td>
+							<label> 상품 이미지 업로드</label>
+							<input type="file" id="imgFile" name="imgFile"/>
+							<div><img id="previewImg" src=""></div>
+						</td>
+					</tr>
 				</table>
-				<!--<input type="file" name="images" accept="image/*" multiple/>-->
 				
 				<div>
 					<button type="submit" class="btn"><p th:text="${(product.productId == null) ? '상품 업로드' : '상품 수정하기'}"></p></button>
@@ -123,15 +130,16 @@
 		}
 	}
 	
-	function setImg(event) {
-		var reader = new FileReader();
-		reader.inload = function(event) {
-			var img = document.createElement("img");
-			img.setAttribute("src", event.target.result);
-			document.querySelector("div#image_container").appendChild(img);
+	$("#imgFile").change(function() {
+		if (this.files && this.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(data) {
+				$("#imgFile").attr("src", data.target.result).width(500);
+			}
+			reader.readAsDataURL(this.files[0]);
 		};
-		reader.readAsDataURL(event.target.files[0]);
-	}
+	});
+
 </script>
 
 </html>

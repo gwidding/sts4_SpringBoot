@@ -28,7 +28,7 @@ public class LoginController extends UiUtils{
 	@GetMapping("/member/login")
 	public String showLoginPage(Model model, HttpSession session) {
 
-		if (session.getAttribute("custid") != null) {
+		if (session.getAttribute("idx") != null) {
 			return "redirect:/home";
 		}
 

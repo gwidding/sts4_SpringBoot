@@ -16,11 +16,11 @@ public class ImageController {
 	@Autowired
 	private ProductImgService imgService;
 	
-	@GetMapping("/images/{productId}")
-	public List<ProductImgDTO> getImgList(@PathVariable("productId") Long productId) {
-		List<ProductImgDTO> imgList = imgService.getImgList(productId);
-		return imgList;
-	}
+//	@GetMapping("/productImg/{productId}")
+//	public List<ProductImgDTO> getImgList(@PathVariable("productId") Long productId) {
+//		List<ProductImgDTO> imgList = imgService.getImgList(productId);
+//		return imgList;
+//	}
 	
 	
 }

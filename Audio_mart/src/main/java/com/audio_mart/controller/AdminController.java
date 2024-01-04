@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.MemberDTO;
@@ -26,6 +27,8 @@ public class AdminController extends UiUtils{
 	private MemberService memberService;
 	@Autowired
 	private ProductService productService;
+	
+	/* 회원 관리 - 관리자 확인*/
 	
 	// 회원번호로 회원 정보 가져오기
 	private MemberDTO getMemberInfo(HttpSession session) {
@@ -58,6 +61,8 @@ public class AdminController extends UiUtils{
 	}
 	
 	
+	/* 상품 - 관리자만 가능*/
+	
 	// 상품 등록 및 수정 폼 열기
 	@GetMapping("/admin/registerItem")
 	public String registerForm(HttpSession session, @RequestParam(value = "productId", required = false) Long productId, Model model) {
@@ -82,14 +87,15 @@ public class AdminController extends UiUtils{
 	
 	// 상품 등록하기
 	@PostMapping("/admin/registerItem")
-	public String registerProduct(final ProductDTO params, HttpSession session, Model model) {
-		
+	public String registerProduct(final ProductDTO params, HttpSession session, MultipartFile imgFile, Model model) {
+		// 관리자 확인
 		if (!isAdmin(session)) {
         	return "redirect:/home";
         }
         
 		try {
 			boolean isRegisterd = productService.uploadProduct(params);
+			
 			if (isRegisterd == false) {
 				System.out.println("상품 등록에 실패했습니다.");
 			}
@@ -128,7 +134,7 @@ public class AdminController extends UiUtils{
 		return "redirect:/admin/itemList";
 	}
 	
-	
+	// 상품 목록 조회
 	@GetMapping("/admin/itemList")
 	public String showItemList(HttpSession session, Model model) {
 		
@@ -143,6 +149,7 @@ public class AdminController extends UiUtils{
         return "manage/itemList";       
 	}
 	
+	// 상품 삭제 POST
 	@PostMapping("/admin/itemDelete")
 	public String deloadItem(HttpSession session, @RequestParam(value="productId", required=false) Long productId ) {
 		

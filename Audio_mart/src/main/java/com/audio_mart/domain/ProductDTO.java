@@ -17,6 +17,7 @@ public class ProductDTO {
 	private LocalDateTime deleteDate;
 	private LocalDateTime updateDate;
 	
+	private String thumbImg;
 	
 	public Long getProductId() {
 		return productId;
@@ -91,12 +92,21 @@ public class ProductDTO {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	
+	public String getThumbImg() {
+		return thumbImg;
+	}
+	public void setThumbImg(String thumbImg) {
+		this.thumbImg = thumbImg;
+	}
 	@Override
 	public String toString() {
 		return "ProductDTO [productId=" + productId + ", cateId=" + cateId + ", pname=" + pname + ", pprice=" + pprice
 				+ ", stock=" + stock + ", description=" + description + ", orderCnt=" + orderCnt + ", viewCnt="
 				+ viewCnt + ", registerDate=" + registerDate + ", deleteYn=" + deleteYn + ", deleteDate=" + deleteDate
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", thumbImg=" + thumbImg + "]";
 	}
+
 
 }
