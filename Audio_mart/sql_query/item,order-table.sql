@@ -56,6 +56,7 @@ create table product_image (
     , memo varchar(500) null
 );
 
+
 ALTER TABLE product_image ADD CONSTRAINT `FK_product_TO_product_image_1` 
 	FOREIGN KEY (product_id) REFERENCES product(product_id);
 

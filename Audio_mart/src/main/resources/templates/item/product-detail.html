@@ -35,22 +35,22 @@
 						Free shipping for standard order over $100
 					</div>
 
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
-						</a>
+					<div class="right-top-bar flex-w h-full" th:object="${memberInfo}">
+						<input type="hidden" th:if="${memberInfo != null}" th:field="*{idx}" />
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							My Account
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
-						</a>
+						<a th:if="${memberInfo == null}" href="/member/login" class="flex-c-m trans-04 p-lr-25">
+			                <p>로그인</p>
+			            </a>
+			            <a th:if="${memberInfo != null}" href="/member/checkLoginStatus" class="flex-c-m trans-04 p-lr-25">
+			                <p th:text="'환영합니다 ' + ${memberInfo.custname} + '님 :D  마이 페이지'" ></p>
+			            </a>
+			            <a th:if="${memberInfo != null && memberInfo.admin==true}" href="/admin" class="flex-c-m trans-04 p-lr-25">
+			                <p>관리자 페이지</p>
+			            </a>
+			            <a th:if="${memberInfo != null}" href="/member/logout" class="flex-c-m trans-04 p-lr-25">
+			                <p>로그아웃</p>
+			            </a>
+			            
 					</div>
 				</div>
 			</div>
@@ -66,17 +66,12 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li>
-								<a href="index.html">Home</a>
-								<ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul>
+							<li class="active-menu">
+								<a href="/home">Home</a>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="/product">Shop</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
@@ -119,7 +114,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="/home"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -156,21 +151,19 @@
 				</li>
 
 				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
+					<div class="right-top-bar flex-w h-full" th:object="${memberInfo}">
+						<input type="hidden" th:if="${memberInfo != null && memberInfo.idx != null}" th:field="*{idx}" />
+						
+						<a th:if="${memberInfo == null}" href="/member/login" class="flex-c-m p-lr-10 trans-04">
+							<p>로그인</p>
 						</a>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							My Account
+						<a th:if="${memberInfo != null}" href="/member/checkLoginStatus" class="flex-c-m p-lr-10 trans-04">
+							<p th:text="'환영합니다 ' + ${memberInfo.custname} + '님 :D  마이 페이지'" ></p>
 						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
+						
+						<a th:if="${memberInfo != null}" href="/member/logout" class="flex-c-m p-lr-10 trans-04">
+							<p>로그아웃</p>
 						</a>
 					</div>
 				</li>
@@ -178,19 +171,14 @@
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
-					<ul class="sub-menu-m">
-						<li><a href="index.html">Homepage 1</a></li>
-						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li>
-					</ul>
+					<a href="/home">Home</a>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
+					<a href="/product">Shop</a>
 				</li>
 
 				<li>
@@ -314,27 +302,25 @@
 	</div>
 
 
-	<!-- breadcrumb -->
+	<!-- 사이트 이동 경로 -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/home" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Men
+				<span th:text="${product.cateId}"/> Men
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<span class="stext-109 cl4">
-				Lightweight Jacket
-			</span>
+			<span class="stext-109 cl4" th:text="${product.pname}"></span>
 		</div>
 	</div>
 		
 
-	<!-- Product Detail -->
+	<!-- 상품 상세 정보 -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
 			<div class="row">
@@ -381,58 +367,18 @@
 					
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							Lightweight Jacket
-						</h4>
+						<h4 th:text="${product.pname}" class="mtext-105 cl2 js-name-detail p-b-14"/>
 
-						<span class="mtext-106 cl2">
-							$58.79
-						</span>
-
-						<p class="stext-102 cl3 p-t-23">
-							Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-						</p>
+						<span th:text="${#numbers.formatInteger(product.pprice,3,'COMMA')} + ' 원'" class="mtext-106 cl2" />
 						
-						<!--  -->
+						<p th:text="${product.description}" class="stext-102 cl3 p-t-23" />
+						
+						남은 수량 
+						<p th:text="${product.stock}" class="stext-102 cl3 p-t-23" />
+						
+						<!-- 주문 수량, 카트 담기  -->
 						<div class="p-t-33">
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-203 flex-c-m respon6">
-									Size
-								</div>
-
-								<div class="size-204 respon6-next">
-									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>Choose an option</option>
-											<option>Size S</option>
-											<option>Size M</option>
-											<option>Size L</option>
-											<option>Size XL</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-								</div>
-							</div>
-
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-203 flex-c-m respon6">
-									Color
-								</div>
-
-								<div class="size-204 respon6-next">
-									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>Choose an option</option>
-											<option>Red</option>
-											<option>Blue</option>
-											<option>White</option>
-											<option>Grey</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-								</div>
-							</div>
-
+	
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
 									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
