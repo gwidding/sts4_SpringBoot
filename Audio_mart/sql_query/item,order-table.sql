@@ -46,6 +46,7 @@ create table orderDetail (
     ,FOREIGN KEY (order_id) REFERENCES orders(order_id)
     ,FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
+
 create table product_image (
 	img_id int not null auto_increment primary key
     , product_id int not null
@@ -56,7 +57,6 @@ create table product_image (
     , memo varchar(500) null
 );
 
-
 ALTER TABLE product_image ADD CONSTRAINT `FK_product_TO_product_image_1` 
 	FOREIGN KEY (product_id) REFERENCES product(product_id);
 
@@ -65,6 +65,15 @@ insert into category (cate_name) values ('헤드셋');
 insert into category (cate_name) values ('스피커');
 insert into category (cate_name) values ('마이크');
 insert into category (cate_name) values ('액세서리');
+
+CREATE TABLE cart (
+	cart_id int not null auto_increment primary key
+    , member_id int not null
+    , product_id int not null
+    , quantity int not null
+    , foreign key (member_id) references member(idx)
+    , foreign key (product_id) references product(product_id)
+);
 
 select * from product;
 
