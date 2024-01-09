@@ -30,9 +30,20 @@
 	</update>
 	
 	<delete id="deleteCart" parameterType="long">
-	
-	
+		DELETE FROM cart
+		WHERE 
+			cart_id = #{cartId}	
 	</delete>
+	
+	<delete id="deleteMemberCart" parameterType="long">
+		DELETE cart
+	    FROM cart
+	    JOIN member ON cart.member_id = member.idx
+	    WHERE
+	        cart.member_id = #{memberId}
+	        AND member.deletion_yn = 'Y'
+	</delete>
+	
 	
 	<select id="selectByCartId" parameterType="long" resultType="CartDTO">
 		SELECT *
@@ -43,12 +54,14 @@
 
 
 	<select id="selectCartList" parameterType="long" resultType="CartDTO">
-		SELECT *
-		FROM cart
-		WHERE
-			member_id = #{memberId}
-		ORDER BY
-			cart_id
+		SELECT c.*
+	    FROM cart c JOIN product p 
+	    			ON c.product_id = p.product_id
+	    WHERE
+	        c.member_id = #{memberId}
+	        AND p.delete_yn = 'N'
+	    ORDER BY
+	        c.cart_id
 	</select>
 	
 	<select id="selectCartTotalCnt" parameterType="long" resultType="int">
@@ -57,12 +70,6 @@
 		WHERE
 			member_id =#{memberId}
 	</select>
-
-
-
-
-
-
 
 
 </mapper>
