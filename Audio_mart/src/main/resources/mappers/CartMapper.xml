@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.audio_mart.mapper.CartMapper">
+
+	<sql id="cartColumns">
+		cart_id
+		, member_id
+		, product_id
+		, quantity
+	</sql>
+	
+	<insert id="insertCart" parameterType="CartDTO">
+		INSERT INTO cart (
+			<include refid="cartColumns" />
+		) VALUES (
+			#{cartId}
+			, #{memberId}
+			, #{productId}
+			, #{quantity}
+		)
+	</insert>
+	
+	<update id="updateCart" parameterType="CartDTO">
+		UPDATE cart
+		SET 
+			quantity = #{quantity}
+		WHERE
+			cart_id = #{cartId}
+	</update>
+	
+	<delete id="deleteCart" parameterType="long">
+	
+	
+	</delete>
+	
+	<select id="selectByCartId" parameterType="long" resultType="CartDTO">
+		SELECT *
+		FROM cart
+		WHERE
+			cart_id = #{cartId}
+	</select>
+
+
+	<select id="selectCartList" parameterType="long" resultType="CartDTO">
+		SELECT *
+		FROM cart
+		WHERE
+			member_id = #{memberId}
+		ORDER BY
+			cart_id
+	</select>
+	
+	<select id="selectCartTotalCnt" parameterType="long" resultType="int">
+		SELECT count(*)
+		FROM cart
+		WHERE
+			member_id =#{memberId}
+	</select>
+
+
+
+
+
+
+
+
+</mapper>
