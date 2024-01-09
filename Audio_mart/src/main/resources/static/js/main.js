@@ -217,12 +217,27 @@
     $('.btn-num-product-down').on('click', function(){
         var numProduct = Number($(this).next().val());
         if(numProduct > 0) $(this).next().val(numProduct - 1);
+        updateTotalAmount();
     });
 
     $('.btn-num-product-up').on('click', function(){
         var numProduct = Number($(this).prev().val());
         $(this).prev().val(numProduct + 1);
+        updateTotalAmount();
     });
+    
+    $('.num-product').on('input', function() {	
+		updateTotalAmount();
+	});
+	
+	function updateTotalAmount() {
+	    var priceString  = $('#pprice').text();
+	    var productPrice = parseInt(priceString.replace(/[^\d]/g, ''));
+	    var numProduct = parseInt($('.num-product').val());
+	    
+	    var totalAmount = productPrice * numProduct;
+	    $('#totalAmount').text(totalAmount.toLocaleString() + ' 원');
+	}
 
     /*==================================================================
     [ Rating ]*/

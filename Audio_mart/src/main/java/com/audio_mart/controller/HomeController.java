@@ -99,4 +99,19 @@ public class HomeController {
         return "item/product-detail";  	
     	
     }
+    
+    // 장바구니 cart 뷰 열기
+    @GetMapping("/cart")
+    public String showCartView(Model model, HttpSession session) {
+    	
+    	MemberDTO memberInfo = getMemberInfo(session);
+    	
+    	if (memberInfo != null) {
+            model.addAttribute("memberInfo", memberInfo);
+        } else {
+        	System.out.println("로그인 후 장바구니 볼 수 있음");
+        }
+    	
+    	return "cart/shopping-cart";
+    }
 }

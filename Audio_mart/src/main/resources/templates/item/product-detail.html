@@ -368,11 +368,12 @@
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 th:text="${product.pname}" class="mtext-105 cl2 js-name-detail p-b-14"/>
-
-						<span th:text="${#numbers.formatInteger(product.pprice,3,'COMMA')} + ' 원'" class="mtext-106 cl2" />
 						
+						상품 가격 : 
+						<span th:text="${#numbers.formatInteger(product.pprice,3,'COMMA') + '원'}" id="pprice" class="mtext-106 cl2" />
+						<br>
 						상품 설명 : <p th:text="${product.description}" class="stext-102 cl3 p-t-23" />
-						
+						<br>
 						남은 수량 : 
 						<p th:text="${product.stock}" class="stext-102 cl3 p-t-23" />
 						
@@ -387,7 +388,7 @@
 										</div>
 
 										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" 
-												id="num-product" value="1" onchange="updateTotalAmount(0)">
+												id="num-product" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
@@ -395,8 +396,9 @@
 									</div>
 									
 									<div>
-										총 상품 금액 : <span id="totalAmount"></span>
-										
+										<br>
+										총 상품 금액 : <span id="totalAmount"  th:text="${#numbers.formatInteger(product.pprice,3,'COMMA') + ' 원'}"></span>
+										<br>
 									</div>
 
 									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
@@ -406,7 +408,7 @@
 							</div>	
 						</div>
 
-						<!-- 소셜 -->
+						<!-- 위시, 좋아요 -->
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
@@ -709,28 +711,9 @@
 			})
 		});
 	</script>
+<!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	
-	
 	<!--===============================================================================================-->
-	
-	<script th:inline="javascript">
- 
-	    var pprice = /*[[ ${product.pprice} ]]*/ null; // 변경된 상품 가격
-	    
-	   function updateTotalAmount(change) {
-	        var input = document.getElementById("num-product");
-	        
-	        
-	            input.value = parseInt(input.value) + change;
-	            alert(input.value);
-	        
-	        var quantity = input.value;
-	        var totalAmount = pprice * quantity;
-	        document.getElementById("totalAmount").innerText = totalAmount + "원";
-	    }
-	    updateTotalAmount(0);
-	</script>
 
 </body>
 </html>
