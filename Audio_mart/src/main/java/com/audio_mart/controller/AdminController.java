@@ -28,7 +28,7 @@ public class AdminController extends UiUtils{
 	@Autowired
 	private ProductService productService;
 	
-	/* 회원 관리 - 관리자 확인*/
+	/* ----------------------회원 관리 - 관리자 확인---------------------------*/
 	
 	// 회원번호로 회원 정보 가져오기
 	private MemberDTO getMemberInfo(HttpSession session) {
@@ -61,7 +61,7 @@ public class AdminController extends UiUtils{
 	}
 	
 	
-	/* 상품 - 관리자만 가능*/
+	/*-------------------- 상품 - 관리자만 가능------------------------*/
 	
 	// 상품 등록 및 수정 폼 열기
 	@GetMapping("/admin/registerItem")
