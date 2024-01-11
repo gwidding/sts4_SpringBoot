@@ -45,16 +45,16 @@
 	</delete>
 	
 	
-	<select id="selectByCartId" parameterType="long" resultType="CartDTO">
-		SELECT *
-		FROM cart
-		WHERE
-			cart_id = #{cartId}
+	<select id="selectByCartId" parameterType="long" resultType="CartDTO">			
+		SELECT c.cart_id, c.member_id, c.product_id, c.quantity, p.pname AS pname, p.pprice AS pprice
+        FROM cart c
+    	    JOIN product p ON c.product_id = p.product_id
+        WHERE c.cart_id = #{cartId}
 	</select>
 
 
 	<select id="selectCartList" parameterType="long" resultType="CartDTO">
-		SELECT c.*
+		SELECT c.cart_id, c.member_id, c.product_id, c.quantity, p.pname AS pname, p.pprice AS pprice
 	    FROM cart c JOIN product p 
 	    			ON c.product_id = p.product_id
 	    WHERE

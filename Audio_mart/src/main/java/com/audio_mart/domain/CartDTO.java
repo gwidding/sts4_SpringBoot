@@ -7,6 +7,10 @@ public class CartDTO {
 	private Long productId;
 	private int quantity;
 	
+	private String pname;
+	private int pprice;
+	
+	
 	public Long getCartId() {
 		return cartId;
 	}
@@ -32,11 +36,23 @@ public class CartDTO {
 		this.quantity = quantity;
 	}
 	
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+	public int getPprice() {
+		return pprice;
+	}
+	public void setPprice(int pprice) {
+		this.pprice = pprice;
+	}
+	
 	@Override
 	public String toString() {
 		return "CartDTO [cartId=" + cartId + ", memberId=" + memberId + ", productId=" + productId + ", quantity="
-				+ quantity + "]";
+				+ quantity + ", pname=" + pname + ", pprice=" + pprice + "]";
 	}
-
 
 }

@@ -16,7 +16,7 @@ public interface CartMapper {
 	public boolean deleteCart(Long cartId);
 	// 회원 탈퇴 시 장바구니 삭제
 	public boolean deleteMemberCart(Long memberId);
-	// 한 상품에 대한 정보
+	// 한 상품에 대한 정보 + 상품 정보
 	public CartDTO selectByCartId(Long cartId);
 	// 해당 회원의 장바구니 목록
 	public List<CartDTO> selectCartList(Long memberId);
