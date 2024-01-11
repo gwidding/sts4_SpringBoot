@@ -182,7 +182,7 @@
 				</li>
 
 				<li>
-					<a href="shoping-cart.html">Cart</a>
+					<a href="/cart">Cart</a>
 				</li>
 
 				<li>
@@ -310,7 +310,7 @@
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/product" class="stext-109 cl8 hov-cl1 trans-04">
 				<span th:text="${product.cateId}"/> Men
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
@@ -371,9 +371,7 @@
 						
 						상품 가격 : 
 						<span th:text="${#numbers.formatInteger(product.pprice,3,'COMMA') + '원'}" id="pprice" class="mtext-106 cl2" />
-						<br>
-						상품 설명 : <p th:text="${product.description}" class="stext-102 cl3 p-t-23" />
-						<br>
+						<br><br>
 						남은 수량 : 
 						<p th:text="${product.stock}" class="stext-102 cl3 p-t-23" />
 						
@@ -386,9 +384,14 @@
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
-
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" 
-												id="num-product" value="1">
+										
+										<!--<form id="addToCartForm" method="post" th:object="${cart}">-->
+										
+										<input type="hidden"  id="productId"  th:field="*{productId}">
+										<input type="hidden" th:field="*{memberInfo.memberIdx}">
+										
+										<input class="mtext-104 cl3 txt-center num-product" type="number" th:field="*{quantity}" 
+												name="num-product" id="num-product" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
@@ -397,11 +400,11 @@
 									
 									<div>
 										<br>
-										총 상품 금액 : <span id="totalAmount"  th:text="${#numbers.formatInteger(product.pprice,3,'COMMA') + ' 원'}"></span>
+										총 상품 금액 : <span id="totalAmount" name="totalAmount" th:text="${#numbers.formatInteger(product.pprice,3,'COMMA') + ' 원'}"></span>
 										<br>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
 								</div>
@@ -425,7 +428,7 @@
 				<div class="tab01">
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
-						<li class="nav-item p-b-10">
+						<li class="nav-item p-b-10">						
 							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
 						</li>
 
@@ -443,13 +446,13 @@
 						<!-- - -->
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
-								<p class="stext-102 cl6">
+								<p class="stext-102 cl6" th:text="${product.description}">
 									Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
 								</p>
 							</div>
 						</div>
 
-						<!-- - -->
+						<!-- 상품 상세 정보 -->
 						<div class="tab-pane fade" id="information" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
@@ -508,7 +511,7 @@
 							</div>
 						</div>
 
-						<!-- - -->
+						<!-- 댓글 리뷰 -->
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">

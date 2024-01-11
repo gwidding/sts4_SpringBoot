@@ -33,8 +33,6 @@ public class CartController extends UiUtils{
     }
 	
 	// 장바구니 cart 뷰 열기
-
-	
     @GetMapping("/cart")
     public String showCartView(Model model, HttpSession session) {
     	
@@ -50,5 +48,23 @@ public class CartController extends UiUtils{
         }
     	
     	return "cart/shopping-cart";
+    }
+    
+    @PostMapping("/add-to-cart")
+    @ResponseBody
+    public String addToCart(@RequestBody CartDTO cartRequest, HttpSession session) {
+    	MemberDTO memberInfo = getMemberInfo(session);
+    	
+    	if (memberInfo != null ) {
+    		Long productId = cartRequest.getProductId();
+    		int quantity = cartRequest.getQuantity();
+    		
+    		cartService.addToCart(memberInfo.getIdx(), productId, quantity);
+    		System.out.println("장바구니 담기 완료");
+    		return "Product added to cart successfully";
+    	} else {
+    		return showMessageWithRedirect("로그인 후 장바구니 이용이 가능합니다.", "/member/login", Method.GET, null, model);
+    	}
+    	
     }
 }
