@@ -18,7 +18,7 @@
 				<input type="password" th:field="*{pwd}" placeholder="비밀번호" class="input" />
 				<input type="text" th:field="*{custname}" placeholder="이름" class="input" />
 				<input type="text" th:field="*{phone}" placeholder="010-0000-0000" class="input" />
-				<input type="text" th:field="*{addr}" placeholder="주소" class="input" />
+				<input type="text" id="member_addr" th:field="*{addr}" placeholder="주소" class="input" readonly onclick="findAddr()"/>
 				<button type="submit" class="btn">Sign Up</button>
 			</form>
 		</div>
@@ -50,5 +50,29 @@
 </body>
 
 <script src="/js/login-page.js"></script>
+<script>
+function findAddr(){
+	new daum.Postcode({
+        oncomplete: function(data) {
+        	
+        	console.log(data);
+        	
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var jibunAddr = data.jibunAddress; // 지번 주소 변수
+            
+            var fullAddress = '';
+            
+            if(roadAddr !== ''){
+                fullAddress += roadAddr;
+            } 
+            else if(jibunAddr !== ''){
+                fullAddress += jibunAddr;
+            }
+            document.getElementById("member_addr").value = fullAddress;
+        }
+    }).open();
+}
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </html>
