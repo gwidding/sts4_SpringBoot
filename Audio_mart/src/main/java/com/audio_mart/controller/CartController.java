@@ -7,15 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.audio_mart.constant.Method;
 import com.audio_mart.domain.CartDTO;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.service.CartService;
 import com.audio_mart.service.MemberService;
+import com.audio_mart.util.UiUtils;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class CartController {
+public class CartController extends UiUtils{
 	
 	@Autowired
 	private MemberService memberService;
@@ -31,6 +33,8 @@ public class CartController {
     }
 	
 	// 장바구니 cart 뷰 열기
+
+	
     @GetMapping("/cart")
     public String showCartView(Model model, HttpSession session) {
     	
@@ -40,8 +44,9 @@ public class CartController {
             model.addAttribute("memberInfo", memberInfo);
             List<CartDTO> cartList = cartService.getCartList(memberInfo.getIdx());
             model.addAttribute("cartList", cartList);
+            System.out.println(cartList);
         } else {
-        	System.out.println("로그인 후 장바구니 볼 수 있음");
+        	return showMessageWithRedirect("로그인 후 장바구니 이용이 가능합니다.", "/member/login", Method.GET, null, model);
         }
     	
     	return "cart/shopping-cart";
