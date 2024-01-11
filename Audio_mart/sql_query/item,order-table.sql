@@ -75,7 +75,7 @@ CREATE TABLE cart (
     , foreign key (product_id) references product(product_id)
 );
 
-select * from product;
+select * from cart;
 
 select * FROM information_schema.TABLE_CONSTRAINTS
 WHERE TABLE_SCHEMA = 'audio_mart';
