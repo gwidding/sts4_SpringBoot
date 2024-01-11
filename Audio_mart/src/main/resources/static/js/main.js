@@ -226,7 +226,7 @@
         updateTotalAmount();
     });
     
-    $('.num-product').on('input', function() {	
+    $('.num-product').on('input', function() {
 		updateTotalAmount();
 	});
 	
@@ -237,6 +237,18 @@
 	    
 	    var totalAmount = productPrice * numProduct;
 	    $('#totalAmount').text(totalAmount.toLocaleString() + ' 원');
+	    
+	    i = 1;
+	    while( ($('#pprice' + i).text()) ) {
+			var priceString  = $('#pprice' + i).text();
+		    var productPrice = parseInt(priceString.replace(/[^\d]/g, ''));
+		    var numProduct = parseInt($('#num-product' + i).val());
+		    
+		    var totalAmount = productPrice * numProduct;
+		    $('#totalAmount' + i).text(totalAmount.toLocaleString() + ' 원');
+		    i++;
+		    
+		}
 	}
 
     /*==================================================================
