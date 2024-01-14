@@ -15,6 +15,7 @@ import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.domain.ProductDTO;
 import com.audio_mart.service.MemberService;
+import com.audio_mart.service.ProductImgServiceImpl;
 import com.audio_mart.service.ProductService;
 import com.audio_mart.util.UiUtils;
 
@@ -87,7 +88,8 @@ public class AdminController extends UiUtils{
 	
 	// 상품 등록하기
 	@PostMapping("/admin/registerItem")
-	public String registerProduct(final ProductDTO params, HttpSession session,@RequestParam("imgFile") MultipartFile imgFile, Model model) {
+	public String registerProduct(final ProductDTO params, @RequestParam("imgFile") MultipartFile imgFile, 
+										HttpSession session, Model model) {
 		// 관리자 확인
 		if (!isAdmin(session)) {
         	return "redirect:/home";
@@ -95,12 +97,16 @@ public class AdminController extends UiUtils{
         
 		try {
 			boolean isRegisterd = productService.uploadProduct(params);
-			System.out.println(imgFile.getOriginalFilename());
-//			ProductImgServiceImpl.saveImg(params, imgFile);
-			
 			if (isRegisterd == false) {
 				System.out.println("상품 등록에 실패했습니다.");
 			}
+			if (!imgFile.isEmpty()) {
+                // 파일 업로드 및 파일명 DB에 저장
+                ProductImgServiceImpl.saveImg(params, imgFile);
+//                productService.updateProductImageFileName(params);
+            }
+			System.out.println(imgFile.getOriginalFilename());
+			
 		} catch (DataAccessException e) {
 			System.out.println("상품등록 - DB에 문제");
 		} catch (Exception e) {
