@@ -55,9 +55,7 @@ public class CartController extends UiUtils{
     	MemberDTO memberInfo = getMemberInfo(session);
     	
     	if (memberInfo != null ) {
-    		
     		cartService.addToCart(params);
-    		System.out.println(params);
     		System.out.println("장바구니 담기 완료");
     		return "redirect:/cart";
     	} else {

@@ -1785,8 +1785,9 @@ button.mfp-close {
   width: 140px;
   height: 45px;
   border: 1px solid #e6e6e6;
-  border-radius: 3px;
+  border-radius: 5px;
   overflow: hidden;
+  margin-right: 10px;
 }
 
 .btn-num-product-up,
@@ -1933,18 +1934,19 @@ input.num-product::-webkit-inner-spin-button {
 
 .table-shopping-cart .column-3 {
   width: 120px;
-  font-size: 16px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .table-shopping-cart .column-4 {
   width: 145px;
-  text-align: right;
+  text-align: center;
 }
 
 .table-shopping-cart .column-5 {
   width: 172px;
   padding-right: 50px;
-  text-align: right;
+  text-align: center;
   font-size: 16px;
 }
 
@@ -2955,9 +2957,9 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .how-itemcart1 {
-  width: 60px;
+  width: 77px;
   position: relative;
-  margin-right: 20px;
+  margin-right: 25px;
   cursor: pointer;
 }
 

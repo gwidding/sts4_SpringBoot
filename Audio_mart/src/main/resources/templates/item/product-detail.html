@@ -372,7 +372,7 @@
 						상품 가격 : 
 						<span th:text="${#numbers.formatInteger(product.pprice,3,'COMMA') + '원'}" id="pprice" class="mtext-106 cl2" />
 
-						<p th:text="'남은 수량 : ' + ${product.stock}" class="stext-102 cl3 p-t-23" />
+						<p th:text="'남은 수량 : ' + ${product.stock} + '개'" class="stext-102 cl3 p-t-23" />
 						
 						<!-- 주문 수량, 카트 담기  -->
 						<div class="p-t-33">
