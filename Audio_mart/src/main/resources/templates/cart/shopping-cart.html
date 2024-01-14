@@ -86,7 +86,7 @@
 								<a href="contact.html">Contact</a>
 							</li>
 						</ul>
-					</div>	
+					</div>
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
@@ -178,7 +178,7 @@
 				</li>
 
 				<li>
-					<a href="/cart" >Cart</a>
+					<a href="/cart">Cart</a>
 				</li>
 
 				<li>
@@ -247,7 +247,7 @@
 
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
+							<img src="images/item-cart-02.png" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -633,19 +633,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	
 	<script>
 		function updateTotalAmount() {
-	    i = 1;
-	    while( ($('#pprice' + i).text()) ) {
-			var priceString  = $('#pprice' + i).text();
-		    var productPrice = parseInt(priceString.replace(/[^\d]/g, ''));
-		    var numProduct = parseInt($('#num-product' + i).val());
-		    
-		    var totalAmount = productPrice * numProduct;
-		    $('#totalAmount' + i).text(totalAmount.toLocaleString() + ' 원');
-		    i++;
+		    i = 1;
+		    while( ($('#pprice' + i).text()) ) {
+				var priceString  = $('#pprice' + i).text();
+			    var productPrice = parseInt(priceString.replace(/[^\d]/g, ''));
+			    var numProduct = parseInt($('#num-product' + i).val());
+			    
+			    var totalAmount = productPrice * numProduct;
+			    $('#totalAmount' + i).text(totalAmount.toLocaleString() + ' 원');
+			    i++;
+			}
 		}
-	}
 	
 		$( document ).ready(function() {
 			updateTotalAmount();
