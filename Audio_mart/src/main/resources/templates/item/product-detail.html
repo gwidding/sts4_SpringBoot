@@ -371,9 +371,8 @@
 						
 						상품 가격 : 
 						<span th:text="${#numbers.formatInteger(product.pprice,3,'COMMA') + '원'}" id="pprice" class="mtext-106 cl2" />
-						<br><br>
-						남은 수량 : 
-						<p th:text="${product.stock}" class="stext-102 cl3 p-t-23" />
+
+						<p th:text="'남은 수량 : ' + ${product.stock}" class="stext-102 cl3 p-t-23" />
 						
 						<!-- 주문 수량, 카트 담기  -->
 						<div class="p-t-33">
@@ -381,6 +380,9 @@
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
 									<form id="addToCartForm" th:action="@{/add-to-cart}" method="post" th:object="${newCart}">
+										
+										<input type="hidden" name="memberId" th:value="${memberInfo.idx}" />
+    									<input type="hidden" name="productId" th:value="${product.productId}" />
 										
 										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
