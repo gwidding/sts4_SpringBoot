@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.audio_mart.constant.Method;
 import com.audio_mart.domain.CartDTO;
@@ -42,7 +43,6 @@ public class CartController extends UiUtils{
             model.addAttribute("memberInfo", memberInfo);
             List<CartDTO> cartList = cartService.getCartList(memberInfo.getIdx());
             model.addAttribute("cartList", cartList);
-            System.out.println(cartList);
         } else {
         	return showMessageWithRedirect("로그인 후 장바구니 이용이 가능합니다.", "/member/login", Method.GET, null, model);
         }
@@ -51,20 +51,16 @@ public class CartController extends UiUtils{
     }
     
     @PostMapping("/add-to-cart")
-    @ResponseBody
-    public String addToCart(@RequestBody CartDTO cartRequest, HttpSession session) {
+    public String addToCart(final CartDTO params, HttpSession session, Model model) {
     	MemberDTO memberInfo = getMemberInfo(session);
     	
     	if (memberInfo != null ) {
-    		Long productId = cartRequest.getProductId();
-    		int quantity = cartRequest.getQuantity();
-    		
-    		cartService.addToCart(memberInfo.getIdx(), productId, quantity);
-    		System.out.println("장바구니 담기 완료");
-    		return "Product added to cart successfully";
+    		System.out.println(params);
+    		//cartService.addToCart(params);
+    		//System.out.println("장바구니 담기 완료");
+    		return "redirect:/cart";
     	} else {
     		return showMessageWithRedirect("로그인 후 장바구니 이용이 가능합니다.", "/member/login", Method.GET, null, model);
     	}
-    	
     }
 }

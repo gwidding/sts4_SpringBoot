@@ -20,9 +20,9 @@ public class CartTest {
 	public void testOfInsert() {
 		CartDTO params = new CartDTO();
 		
-		params.setMemberId((long) 2);
-		params.setProductId((long) 5);
-		params.setQuantity(5);
+		params.setMemberId((long) 4);
+		params.setProductId((long) 2);
+		params.setQuantity(3);
 		
 		boolean result = cartMapper.insertCart(params);
 		System.out.println("장바구니 작성 결과는 " + result + " 입니다.");

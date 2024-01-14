@@ -216,7 +216,7 @@
     [ +/- num product ]*/
     $('.btn-num-product-down').on('click', function(){
         var numProduct = Number($(this).next().val());
-        if(numProduct > 0) $(this).next().val(numProduct - 1);
+        if(numProduct > 1) $(this).next().val(numProduct - 1);
         updateTotalAmount();
     });
 
@@ -231,12 +231,14 @@
 	});
 	
 	function updateTotalAmount() {
-	    var priceString  = $('#pprice').text();
-	    var productPrice = parseInt(priceString.replace(/[^\d]/g, ''));
-	    var numProduct = parseInt($('.num-product').val());
-	    
-	    var totalAmount = productPrice * numProduct;
-	    $('#totalAmount').text(totalAmount.toLocaleString() + ' 원');
+		if ($('#pprice').text() ) {
+		    var priceString  = $('#pprice').text();
+		    var productPrice = parseInt(priceString.replace(/[^\d]/g, ''));
+		    var numProduct = parseInt($('.num-product').val());
+		    
+		    var totalAmount = productPrice * numProduct;
+		    $('#totalAmount').text(totalAmount.toLocaleString() + ' 원');
+		}
 	    
 	    i = 1;
 	    while( ($('#pprice' + i).text()) ) {
@@ -247,7 +249,6 @@
 		    var totalAmount = productPrice * numProduct;
 		    $('#totalAmount' + i).text(totalAmount.toLocaleString() + ' 원');
 		    i++;
-		    
 		}
 	}
 

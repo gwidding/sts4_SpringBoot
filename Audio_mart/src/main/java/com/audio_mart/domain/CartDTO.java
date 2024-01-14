@@ -5,7 +5,7 @@ public class CartDTO {
 	private Long cartId;
 	private Long memberId;
 	private Long productId;
-	private int quantity;
+	private int quantity = 1;
 	
 	private String pname;
 	private int pprice;

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.audio_mart.domain.CartDTO;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.domain.ProductDTO;
 import com.audio_mart.service.MemberService;
@@ -95,6 +96,7 @@ public class HomeController {
         }
         ProductDTO product = productService.findByProductId(productId);
         model.addAttribute("product", product);
+        model.addAttribute("newCart", new CartDTO());
         
         return "item/product-detail";  	
     	

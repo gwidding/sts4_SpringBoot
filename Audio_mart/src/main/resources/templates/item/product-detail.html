@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 	<title>Product Detail</title>
 	<meta charset="UTF-8">
@@ -380,33 +380,31 @@
 	
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
-									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
+									<form id="addToCartForm" th:action="@{/add-to-cart}" method="post" th:object="${newCart}">
+										
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+											
+											<input class="mtext-104 cl3 txt-center num-product" type="number" th:field="*{quantity}"
+													name="num-product" id="num-product">
+	
+											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
 										</div>
 										
-										<!--<form id="addToCartForm" method="post" th:object="${cart}">-->
-										
-										<input type="hidden"  id="productId"  th:field="*{productId}">
-										<input type="hidden" th:field="*{memberInfo.memberIdx}">
-										
-										<input class="mtext-104 cl3 txt-center num-product" type="number" th:field="*{quantity}" 
-												name="num-product" id="num-product" value="1">
-
-										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-plus"></i>
+										<div>
+											<br>
+											총 상품 금액 : <span id="totalAmount" name="totalAmount" th:text="${#numbers.formatInteger(product.pprice,3,'COMMA') + ' 원'}"></span>
+											<br>
 										</div>
-									</div>
-									
-									<div>
-										<br>
-										총 상품 금액 : <span id="totalAmount" name="totalAmount" th:text="${#numbers.formatInteger(product.pprice,3,'COMMA') + ' 원'}"></span>
-										<br>
-									</div>
-
-									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-										Add to cart
-									</button>
+	
+										<button type="button" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+											Add to cart
+										</button>
+									</form>
 								</div>
 							</div>	
 						</div>
@@ -689,12 +687,28 @@
 
 		/*---------------------------------------------*/
 
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
+		$('.js-addcart-detail').on('click', function() {
+    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+
+    swal({
+        title: nameProduct,
+        text: "is added to cart !",
+        icon: "success",
+        buttons: {
+            cancel: "장바구니 담기 취소",
+            confirm: "장바구니로 이동"
+        }
+    }).then(function(isConfirm) {
+        if (isConfirm) {
+            // SweetAlert 확인 버튼을 눌렀을 때, 장바구니로 이동
+            $('#addToCartForm').submit();
+        } else {
+            // SweetAlert 취소 버튼을 눌렀을 때, 여기에 추가 동작 정의
+            alert("장바구니에 담기가 취소되었습니다.")
+        }
+    });
+});
+		
 	
 	</script>
 <!--===============================================================================================-->
@@ -716,7 +730,6 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	<!--===============================================================================================-->
 
 </body>
 </html>
