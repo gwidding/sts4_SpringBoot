@@ -28,11 +28,11 @@ create table orders (
 	order_id int not null auto_increment primary key
     , member_idx int not null
     , price int not null
-    , payment_method ENUM('CreditCard', 'BankTransfer', 'Pay')
+    , payment_method ENUM('신용카드', '계좌이체', '무통장입금')
     , order_notes varchar(25) not null
     , order_date datetime not null default NOW()
     , update_date datetime null
-    , order_status ENUM('NORMAL', 'REFUND', 'EXCHANGE') not null default 'NORMAL'
+    , order_status ENUM('정상', '환불', '교환') not null default '정상'
     
     ,foreign key (member_idx) references member(idx)
 );
@@ -76,6 +76,7 @@ CREATE TABLE cart (
 );
 
 select * from cart;
+select * from orders;
 
 select * FROM information_schema.TABLE_CONSTRAINTS
 WHERE TABLE_SCHEMA = 'audio_mart';
