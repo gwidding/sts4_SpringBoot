@@ -102,7 +102,7 @@ public class AdminController extends UiUtils{
 			}
 			if (!imgFile.isEmpty()) {
                 // 파일 업로드 및 파일명 DB에 저장
-                ProductImgServiceImpl.saveImg(params, imgFile);
+//                ProductImgServiceImpl.saveImg(params, imgFile);
 //                productService.updateProductImageFileName(params);
             }
 			System.out.println(imgFile.getOriginalFilename());

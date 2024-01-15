@@ -99,8 +99,5 @@ public class HomeController {
         model.addAttribute("newCart", new CartDTO());
         
         return "item/product-detail";  	
-    	
     }
-    
-    
 }

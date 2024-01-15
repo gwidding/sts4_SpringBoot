@@ -29,7 +29,7 @@ public class LoginController extends UiUtils{
 	public String showLoginPage(Model model, HttpSession session) {
 
 		if (session.getAttribute("idx") != null) {
-			return "redirect:/home";
+			return showMessageWithRedirect("이미 로그인 되어있습니다.", "/home", Method.GET, null, model);
 		}
 
 		model.addAttribute("newMember", new MemberDTO());

@@ -61,7 +61,7 @@
 	        c.member_id = #{memberId}
 	        AND p.delete_yn = 'N'
 	    ORDER BY
-	        c.cart_id
+	        c.cart_id DESC
 	</select>
 	
 	<select id="selectCartTotalCnt" parameterType="long" resultType="int">

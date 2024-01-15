@@ -2990,6 +2990,7 @@ input.num-product::-webkit-inner-spin-button {
   -o-transition: all 0.3s;
   -moz-transition: all 0.3s;
   opacity: 0;
+  pointer-events: none;
 }
 
 .how-itemcart1:hover:after {
