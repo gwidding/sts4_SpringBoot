@@ -1,5 +1,6 @@
 package com.audio_mart.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,7 @@ public class CartController extends UiUtils{
     }
     
     @PostMapping("/cart/delete")
-	public String deleteMember(@RequestParam(value ="cartId", required = false) Long cartId) {
+	public String deleteCart(@RequestParam(value ="cartId", required = false) Long cartId) {
 		if (cartId < 1) {
 			System.out.println("장바구니 번호 전달 안 됨");
 			return "redirect:/cart";
@@ -84,4 +85,26 @@ public class CartController extends UiUtils{
 		
 		return "redirect:/cart";
 	}
+    
+//    @PostMapping("/cart/update")
+//    public String updateCart(@RequestParam(value="cart") CartDTO[] cartArray, Model model) {
+//    	List<CartDTO> cartList = Arrays.asList(cartArray);
+//    	if (cartList == null || cartList.isEmpty()) {
+//    		return showMessageWithRedirect("장바구니가 비었습니다.", "/cart", Method.GET, null, model);
+//    	}
+//    	try {
+//    		for (CartDTO cart : cartList) {
+//    			boolean isUpdated = cartService.updateCart(cart);
+//    			if (!isUpdated) {
+//    				System.out.println(cart.getCartId() + "번 장바구니 수정 실패");
+//    			}
+//    		}
+//    	} catch(DataAccessException e) {
+//			System.out.println("데베 문제");
+//		} catch(Exception e) {
+//			System.out.println("시스템 문제");
+//		}
+//    	
+//    	return showMessageWithRedirect("장바구니 수정이 완료되었습니다.", "/cart", Method.GET, null, model);
+//    }
 }

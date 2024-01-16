@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="add"/>
+		<item key="selection" value="text"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="add"/>
-			<item value="quan"/>
-			<item value="설명"/>
-			<item value="경로"/>
-			<item value="form"/>
-			<item value="product"/>
-			<item value="btn-num"/>
-			<item value="total"/>
-			<item value="+"/>
-			<item value="each"/>
-			<item value="hot"/>
-			<item value="coupon"/>
-			<item value="cart"/>
-			<item value="ㅊㅁㄳ"/>
-			<item value="num-product"/>
+			<item value="text"/>
+			<item value="input"/>
+			<item value="option"/>
+			<item value="wrap-num"/>
+			<item value="column-4"/>
+			<item value="column-5"/>
+			<item value="column"/>
+			<item value="table-shopp"/>
+			<item value="button"/>
+			<item value="update"/>
+			<item value="onclick"/>
+			<item value="after"/>
+			<item value="deleteProduct"/>
+			<item value="deleteCart"/>
+			<item value="order"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Long"/>
