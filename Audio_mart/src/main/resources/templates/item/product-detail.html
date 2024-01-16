@@ -6,20 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/combined-style.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -381,7 +368,7 @@
 								<div class="size-204 flex-w flex-m respon6-next">
 									<form id="addToCartForm" th:action="@{/add-to-cart}" method="post" th:object="${newCart}">
 										
-										<input type="hidden" name="memberId" th:value="${memberInfo.idx}" />
+										<input type="hidden" th:if="${memberInfo != null}" name="memberId" th:value="${memberInfo.idx}" />
     									<input type="hidden" name="productId" th:value="${product.productId}" />
 										
 										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
@@ -690,26 +677,44 @@
 		/*---------------------------------------------*/
 
 		$('.js-addcart-detail').on('click', function() {
-    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-
-    swal({
-        title: nameProduct,
-        text: "is added to cart !",
-        icon: "success",
-        buttons: {
-            cancel: "장바구니 담기 취소",
-            confirm: "장바구니로 이동"
-        }
-    }).then(function(isConfirm) {
-        if (isConfirm) {
-            // SweetAlert 확인 버튼을 눌렀을 때, 장바구니로 이동
-            $('#addToCartForm').submit();
-        } else {
-            // SweetAlert 취소 버튼을 눌렀을 때, 여기에 추가 동작 정의
-            alert("장바구니에 담기가 취소되었습니다.")
-        }
-    });
-});
+		    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			var member = /*[[ ${memberInfo} ]] */ null; 
+			if (member == null) {
+		        // 사용자가 로그인하지 않은 경우
+		        swal({
+		            title: "로그인 필요",
+		            text: "상품을 장바구니에 담으려면 로그인이 필요합니다.",
+		            icon: "warning",
+		            buttons: {
+		                confirm: "로그인",
+		                cancel: "취소"
+		            }
+		        }).then(function(isConfirmed) {
+		            if (isConfirmed) {
+		                window.location.href = "member/login"; // 로그인 페이지 URL로 수정해야 합니다.
+		            }
+		        });
+		        return; // 함수 종료
+		    }
+			
+		    swal({
+		        title: nameProduct,
+		        text: "is added to cart !",
+		        icon: "success",
+		        buttons: {
+		            cancel: "장바구니 담기 취소",
+		            confirm: "장바구니로 이동"
+		        }
+		    }).then(function(isConfirm) {
+		        if (isConfirm) {
+		            // SweetAlert 확인 버튼을 눌렀을 때, 장바구니로 이동
+		            $('#addToCartForm').submit();
+		        } else {
+		            // SweetAlert 취소 버튼을 눌렀을 때, 여기에 추가 동작 정의
+		            alert("장바구니에 담기가 취소되었습니다.")
+		        }
+		    });
+		});
 		
 	
 	</script>
