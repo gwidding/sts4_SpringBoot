@@ -272,11 +272,6 @@
 					</li>
 				</ul>
 				
-				<!-- 주문테이블] 주문번호 orderId(input hidden), 회원번호memberId($memberInfo.idx hidden), 가격price(합계), 
-				paymentMethod(select value), orderNotes(select value), orderDate(자동으로 될 듯), orderStatus(자동 정상)  -->
-				
-				<!-- 상세 주문 테이블] 상세주문번호 orderDetailId, 참조할 주문번호(orderId), 상품번호(productId), quantity(수량) -->
-				
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
 						Total: $75.00
@@ -372,8 +367,15 @@
 							</div>
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-								<span class="stext-111 cl8 plh3 size-111 p-lr-15" th:text="${memberInfo.addr}" name="state"></span>
+								<!--  -->
+								<span class="stext-111 c16 p-t-2" th:text="${memberInfo.addr}" name="state"></span>
 								
+								<input type="checkbox" id="defaultAddr" onchange="toggleReadOnly()" >
+       							<label for="defaultAddr" class="stext-112 c18">기본 배송지로 주문</label>
+       							
+       							<div class="bor8 bg0 m-b-12">
+									<input class="stext-111 c18 plh3 size-111 p-lr-15" type="text" id="addrInput" th:value="${memberInfo.addr}" onclick="findAddr()"/>
+								</div>
 								
 								<div class="p-t-15" th:object="${memberInfo}">
 									<span class="stext-112 cl8"> 배송비 무료 </span>
@@ -617,9 +619,7 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
-
-	
+	<script src="js/main.js"></script>	
 	<script th:inline="javascript">
 		/* <![CDATA[ */
 		
@@ -638,14 +638,47 @@
 			}
 		}
 		
-		// 장바구니 상품 총 가격 계산
-		function subtotal() {
-			
-		}
+	    function toggleReadOnly() {
+		    var isDefault = document.getElementById("defaultAddr");
+		    var addrInput = document.getElementById("addrInput");
 		
-		/* ]]> */
+		    if (isDefault.checked) {
+				addrInput.value = /*[[ ${memberInfo.addr} ]]*/ null;
+		        addrInput.readOnly = true;
+		        addrInput.removeAttribute("onclick");
+		    } else {
+		        addrInput.readOnly = false;
+		        addrInput.setAttribute("onclick", "findAddr()");
+		    }
+		}
+		/* ]]>*/
 	</script>
 	
+	<!-- 주소 api -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		function findAddr(){
+			new daum.Postcode({
+		        oncomplete: function(data) {
+		        	
+		        	console.log(data);
+		        	
+		            var roadAddr = data.roadAddress; // 도로명 주소 변수
+		            var jibunAddr = data.jibunAddress; // 지번 주소 변수
+		            
+		            var fullAddress = '';
+		            
+		            if(roadAddr !== ''){
+		                fullAddress += roadAddr;
+		            } 
+		            else if(jibunAddr !== ''){
+		                fullAddress += jibunAddr;
+		            }
+		            document.getElementById("addrInput").value = fullAddress;
+		        }
+		    }).open();
+	    }
+	</script>
 
 </body>
 </html>
