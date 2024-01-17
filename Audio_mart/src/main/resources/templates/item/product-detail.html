@@ -676,45 +676,7 @@
 
 		/*---------------------------------------------*/
 
-		$('.js-addcart-detail').on('click', function() {
-		    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			var member = /*[[ ${memberInfo} ]] */ null; 
-			if (member == null) {
-		        // 사용자가 로그인하지 않은 경우
-		        swal({
-		            title: "로그인 필요",
-		            text: "상품을 장바구니에 담으려면 로그인이 필요합니다.",
-		            icon: "warning",
-		            buttons: {
-		                confirm: "로그인",
-		                cancel: "취소"
-		            }
-		        }).then(function(isConfirmed) {
-		            if (isConfirmed) {
-		                window.location.href = "member/login"; // 로그인 페이지 URL로 수정해야 합니다.
-		            }
-		        });
-		        return; // 함수 종료
-		    }
-			
-		    swal({
-		        title: nameProduct,
-		        text: "is added to cart !",
-		        icon: "success",
-		        buttons: {
-		            cancel: "장바구니 담기 취소",
-		            confirm: "장바구니로 이동"
-		        }
-		    }).then(function(isConfirm) {
-		        if (isConfirm) {
-		            // SweetAlert 확인 버튼을 눌렀을 때, 장바구니로 이동
-		            $('#addToCartForm').submit();
-		        } else {
-		            // SweetAlert 취소 버튼을 눌렀을 때, 여기에 추가 동작 정의
-		            alert("장바구니에 담기가 취소되었습니다.")
-		        }
-		    });
-		});
+		
 		
 	
 	</script>
@@ -737,6 +699,53 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	
+	<script th:inline="javascript">
+		/* <![CDATA[ */
+		
+		$('.js-addcart-detail').on('click', function() {
+		    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			var member = /*[[ ${memberInfo} ]]*/ null; 
+
+			if (member == null) {
+		        // 사용자가 로그인하지 않은 경우
+		        swal({
+		            title: "로그인 필요",
+		            text: "상품을 장바구니에 담으려면 로그인이 필요합니다.",
+		            icon: "warning",
+		            buttons: {
+		                confirm: "로그인",
+		                cancel: "취소"
+		            }
+		        }).then(function(isConfirmed) {
+		            if (isConfirmed) {
+		                window.location.href = "member/login";
+		            }
+		        });
+		    } else {
+				
+			    swal({
+			        title: nameProduct,
+			        text: "장바구니 담기 완료 !",
+			        icon: "success",
+			        buttons: {
+			            cancel: "담기 취소",
+			            confirm: "장바구니로 이동"
+			        }
+			    }).then(function(isConfirm) {
+			        if (isConfirm) {
+			            // SweetAlert 확인 버튼을 눌렀을 때, 장바구니로 이동
+			            $('#addToCartForm').submit();
+			        } else {
+			            // SweetAlert 취소 버튼을 눌렀을 때, 여기에 추가 동작 정의
+			            alert("장바구니에 담기가 취소되었습니다.")
+			        }
+			    });
+			}
+			
+		});
+		/* ]]>*/
+	</script>
 
 </body>
 </html>
