@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.audio_mart.mapper.OrderMapper">
+
+	<sql id="ordersColumn">
+		order_id, member_idx, price, payment_method, order_addr,
+		order_notes, order_date, update_date, order_status
+	</sql>
+
+	<sql id="orderDetailColumn">
+		order_detail_id, order_id, product_id, quantity
+	</sql>
+
+	<insert id="insertOrder" parameterType="OrdersDTO">
+		INSERT INTO orders ( 
+			<include refid="ordersColumn" />
+		) VALUES (
+			#{orderId}, #{memberIdx}, #{price}, #{paymentMethod}, #{orderAddr},
+			#{orderNotes}, NOW(), null, '정상'
+		)
+	</insert>
+	
+	<insert id="insertOrderDetail" parameterType="OrderDetailDTO">
+		INSERT INTO orderDetail (
+			order_id, product_id, quantity
+		) VALUES (
+		 #{orderId}, #{productId}, #{quantity}		 
+		)
+	</insert>
+
+</mapper>
