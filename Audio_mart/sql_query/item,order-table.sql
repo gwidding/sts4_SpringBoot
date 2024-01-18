@@ -29,14 +29,15 @@ create table orders (
     , member_idx int not null
     , price int not null
     , payment_method ENUM('신용카드', '계좌이체', '무통장입금')
-    , order_notes varchar(25) not null
+    , order_addr varchar(60) not null
+    , order_notes varchar(60) not null
     , order_date datetime not null default NOW()
     , update_date datetime null
     , order_status ENUM('정상', '환불', '교환') not null default '정상'
     
     ,foreign key (member_idx) references member(idx)
 );
-
+desc orders;
 create table orderDetail (
 	order_detail_id int not null auto_increment primary key
     , order_id int not null
@@ -82,9 +83,9 @@ select * FROM information_schema.TABLE_CONSTRAINTS
 WHERE TABLE_SCHEMA = 'audio_mart';
 
 alter table product drop column img3;
-ALTER TABLE product MODIFY COLUMN delete_yn ENUM('Y','N') DEFAULT 'N' NOT NULL;
+ALTER TABLE orders MODIFY COLUMN order_addr varchar(60) not null;
 alter table product Add column update_date datetime null;
--- alter table category rename column cateName to cate_name;
-
+alter table orders rename column order_notes to order_addr;
+desc orders;
 
 select * from product_image;
