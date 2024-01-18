@@ -11,6 +11,7 @@ public interface MemberMapper {
 	public MemberDTO findByCustid(String custid);
 	public boolean updateMember(MemberDTO params);
 	public boolean deleteMember(Long idx);
+	public boolean deleteCartForDeletion(Long idx);
 	public List<MemberDTO> memberList();
 //	public int selectMemberTotalCount();
 }

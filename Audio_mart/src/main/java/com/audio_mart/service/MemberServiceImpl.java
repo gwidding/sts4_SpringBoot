@@ -57,8 +57,9 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public boolean deleteMember(Long idx) {
 		boolean queryResult = memberMapper.deleteMember(idx);
-		System.out.println(idx + " 회원 삭제 결과 : " + queryResult);
-		return queryResult;
+		boolean cartDeleteResult = memberMapper.deleteCartForDeletion(idx);
+		System.out.println(idx + " 회원 삭제 결과 : " + queryResult + " 장바구니 삭제 결과 : " + cartDeleteResult);
+		return queryResult & cartDeleteResult;
 	}
 
 	@Override

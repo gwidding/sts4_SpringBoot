@@ -76,6 +76,16 @@
 			idx = #{idx}
 	</update>
 	
+	<delete id="deleteCartForDeletion" parameterType="Long">
+		DELETE FROM cart
+		WHERE member_id = #{idx}
+			AND EXISTS (
+				SELECT 1
+				FROM member
+				WHERE idx = #{idx} AND deletion_yn = 'Y'
+		)
+	</delete>
+	
 	<select id="memberList">
 		SELECT *
 		FROM member
