@@ -6,6 +6,8 @@ public class OrderDetailDTO {
 	private	Long orderId;
 	private Long productId;
 	private int quantity;
+	
+	private Long memberId;
 
 	public Long getOrderDetailId() {
 		return orderDetailId;
@@ -32,10 +34,16 @@ public class OrderDetailDTO {
 		this.quantity = quantity;
 	}
 	
+	public Long getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(Long memberId) {
+		this.memberId = memberId;
+	}
 	@Override
 	public String toString() {
-		return "orderDetailDTO [orderDetailId=" + orderDetailId + ", orderId=" + orderId + ", productId=" + productId
-				+ ", quantity=" + quantity + "]";
-	}
+		return "OrderDetailDTO [orderDetailId=" + orderDetailId + ", orderId=" + orderId + ", productId=" + productId
+				+ ", quantity=" + quantity + ", memberId=" + memberId + "]";
+	}	
 	
 }

@@ -37,7 +37,7 @@ create table orders (
     
     ,foreign key (member_idx) references member(idx)
 );
-desc orders;
+
 create table orderDetail (
 	order_detail_id int not null auto_increment primary key
     , order_id int not null
@@ -76,9 +76,12 @@ CREATE TABLE cart (
     , foreign key (product_id) references product(product_id)
 );
 
+select * from member;
 select * from cart;
-select * from orders;
+select * from product;
 
+update member set deletion_yn = 'N' where idx = 7;
+                
 select * FROM information_schema.TABLE_CONSTRAINTS
 WHERE TABLE_SCHEMA = 'audio_mart';
 

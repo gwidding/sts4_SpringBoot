@@ -24,9 +24,10 @@
 	<insert id="insertOrderDetail" parameterType="OrderDetailDTO">
 		INSERT INTO orderDetail (
 			order_id, product_id, quantity
-		) VALUES (
-		 #{orderId}, #{productId}, #{quantity}		 
-		)
+		) 
+		SELECT #{orderId}, product_id, quantity
+		FROM cart
+		WHERE member_id = #{memberId}
 	</insert>
 
 </mapper>
