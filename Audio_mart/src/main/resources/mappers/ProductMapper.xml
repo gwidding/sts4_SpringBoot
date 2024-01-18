@@ -85,6 +85,16 @@
 		AND	product_id = #{productId}
 	</update>
 	
+	<delete id="deleteCartForDeletion" parameterType="long">
+		DELETE FROM cart
+		WHERE product_id = #{productId}
+			AND EXISTS (
+				SELECT 1
+				FROM product
+				WHERE product_id = #{productId} AND delete_yn = 'Y'
+		)
+	</delete>
+	
 	<select id="productList">
 		SELECT *
 		FROM product

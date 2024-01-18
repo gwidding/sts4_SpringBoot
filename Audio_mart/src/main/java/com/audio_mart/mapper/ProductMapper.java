@@ -15,6 +15,7 @@ public interface ProductMapper {
 	public ProductDTO findByProductId(Long productId);
 	public boolean updateProduct(ProductDTO params);
 	public boolean deleteProduct(Long productId);
+	public boolean deleteCartForDeletion(Long productId);
 	public List<ProductDTO> productList();
 	public List<ProductDTO> deletionList();
 	
