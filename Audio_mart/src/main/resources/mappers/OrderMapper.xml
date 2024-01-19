@@ -12,14 +12,20 @@
 		order_detail_id, order_id, product_id, quantity
 	</sql>
 
-	<insert id="insertOrder" parameterType="OrdersDTO">
+	<insert id="insertOrder" parameterType="OrdersDTO"  useGeneratedKeys="true" keyProperty="orderId">
 		INSERT INTO orders ( 
 			<include refid="ordersColumn" />
 		) VALUES (
 			#{orderId}, #{memberIdx}, #{price}, #{paymentMethod}, #{orderAddr},
 			#{orderNotes}, NOW(), null, '정상'
 		)
+		
+		<selectKey resultType="long" keyProperty="orderId" order="AFTER">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey>
 	</insert>
+	
+	
 	
 	<insert id="insertOrderDetail" parameterType="OrderDetailDTO">
 		INSERT INTO orderDetail (

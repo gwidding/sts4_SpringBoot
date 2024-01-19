@@ -8,6 +8,6 @@ public interface OrderService {
 	// 주문하기
 	public boolean addToOrder(OrdersDTO params);
 	// 주문 상세 정보 저장하기
-	public boolean addToOrder(OrderDetailDTO params);
+	public boolean addToOrderDetail(OrderDetailDTO params);
 
 }

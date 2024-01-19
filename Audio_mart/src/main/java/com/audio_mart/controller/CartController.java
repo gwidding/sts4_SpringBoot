@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.audio_mart.constant.Method;
 import com.audio_mart.domain.CartDTO;
 import com.audio_mart.domain.MemberDTO;
+import com.audio_mart.domain.OrderDetailDTO;
+import com.audio_mart.domain.OrdersDTO;
 import com.audio_mart.service.CartService;
 import com.audio_mart.service.MemberService;
+import com.audio_mart.service.OrderService;
 import com.audio_mart.util.UiUtils;
 
 import jakarta.servlet.http.HttpSession;
@@ -25,7 +28,10 @@ public class CartController extends UiUtils{
 	@Autowired
 	private MemberService memberService;
 	@Autowired
-	CartService cartService;
+	private CartService cartService;
+	@Autowired
+	private OrderService orderService;
+	
 	
 	private MemberDTO getMemberInfo(HttpSession session) {
         Long idx = (Long) session.getAttribute("idx");
@@ -45,6 +51,7 @@ public class CartController extends UiUtils{
             model.addAttribute("memberInfo", memberInfo);
             List<CartDTO> cartList = cartService.getCartList(memberInfo.getIdx());
             model.addAttribute("cartList", cartList);
+            model.addAttribute("newOrder", new OrdersDTO());
         } else {
         	return showMessageWithRedirect("로그인 후 장바구니 이용이 가능합니다.", "/member/login", Method.GET, null, model);
         }
@@ -55,7 +62,7 @@ public class CartController extends UiUtils{
     @PostMapping("/add-to-cart")
     public String addToCart(final CartDTO params, HttpSession session, Model model) {
     	MemberDTO memberInfo = getMemberInfo(session);
-    	
+    	System.out.println("장바구니 " + params);
     	if (memberInfo != null ) {
     		cartService.addToCart(params);
     		System.out.println("장바구니 담기 완료");
@@ -84,6 +91,38 @@ public class CartController extends UiUtils{
 		
 		return "redirect:/cart";
 	}
+    
+    // 주문하기
+    @PostMapping("/cart/order")
+    public String orderCart(OrdersDTO order, HttpSession session, Model model) {
+    	
+    	System.out.println("받아온 값 " + order);
+    	try {
+    		boolean isAdded = orderService.addToOrder(order);
+    		
+    		if (isAdded) {
+    			OrderDetailDTO detail = new OrderDetailDTO();
+    			detail.setOrderId(order.getOrderId());
+    			detail.setMemberId(order.getMemberIdx());
+    			System.out.println("상세 주문 값 " + detail);
+    			boolean isDetailAdded = orderService.addToOrderDetail(detail);
+    			
+    			if (!isDetailAdded ) {
+    				System.out.println("주문 상세 추가 실패 " + isDetailAdded);
+    			}
+    		}
+    		else {
+    			System.out.println("주문 실패");    			
+    		}
+
+    	} catch(DataAccessException e) {
+			System.out.println("데베 문제");
+		} catch(Exception e) {
+			System.out.println("시스템 문제");
+		}
+    	
+    	return "redirect:/cart";
+    }
     
 //    @PostMapping("/cart/update")
 //    public String updateCart(@RequestParam(value="cart") CartDTO[] cartArray, Model model) {

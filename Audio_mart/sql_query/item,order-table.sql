@@ -30,7 +30,7 @@ create table orders (
     , price int not null
     , payment_method ENUM('신용카드', '계좌이체', '무통장입금')
     , order_addr varchar(60) not null
-    , order_notes varchar(60) not null
+    , order_notes varchar(60) null
     , order_date datetime not null default NOW()
     , update_date datetime null
     , order_status ENUM('정상', '환불', '교환') not null default '정상'
@@ -76,7 +76,8 @@ CREATE TABLE cart (
     , foreign key (product_id) references product(product_id)
 );
 
-select * from member;
+select * from orders;
+select * from orderDetail;
 select * from cart;
 select * from product;
 

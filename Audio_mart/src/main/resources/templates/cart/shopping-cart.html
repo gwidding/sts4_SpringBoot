@@ -40,7 +40,7 @@
 		
 
 	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85" th:with="subTotal=${#numbers.formatInteger(#aggregates.sum(cartList.![(pprice * quantity)]),3,'COMMA') + '원'}">
+	<div class="bg0 p-t-75 p-b-85" th:with="subTotal=${#aggregates.sum(cartList.![(pprice * quantity)]) }">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -82,78 +82,82 @@
 						<h4 class="mtext-109 cl2 p-b-30">
 							Cart Totals
 						</h4>
+						<form th:action="@{/cart/order}" method="post" th:object="${newOrder}">
 
-						<div class="flex-w flex-t bor12 p-b-13">
-							<div class="size-208">
-								<span class="stext-110 cl2"> Subtotal: </span>
-							</div>
-
-							<div class="size-209">
-								<span class="mtext-110 cl2" th:text="${subTotal}"></span>
-							</div>
-						</div>
-
-						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-							<div class="size-208 w-full-ssm">
-								<span class="stext-110 cl2"> 기본 주소: </span>
-							</div>
-
-							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-								<span class="stext-111 c16 p-t-2" th:text="${memberInfo.addr}" name="state"></span>
-								
-								<input type="checkbox" id="defaultAddr" onchange="toggleReadOnly()" >
-       							<label for="defaultAddr" class="stext-112 c18">기본 배송지로 주문</label>
-       							
-       							<div class="bor8 bg0 m-b-12">
-									<input class="stext-111 c18 plh3 size-111 p-lr-15" type="text" id="addrInput" th:value="${memberInfo.addr}" onclick="findAddr()"/>
+							<div class="flex-w flex-t bor12 p-b-13">
+								<div class="size-208">
+									<span class="stext-110 cl2"> Subtotal: </span>
 								</div>
-								
-								<div class="p-t-15" th:object="${memberInfo}">
-									<span class="stext-112 cl8"> 배송비 무료 </span>
+	
+								<div class="size-209">
+									<span class="mtext-110 cl2" th:text="${#numbers.formatInteger(subTotal,3,'COMMA') + '원'}"></span>
+									<input type="hidden" name="price" th:value="${subTotal}" />
+									<input type="hidden" th:if="${memberInfo != null}" name="memberIdx" th:value="${memberInfo.idx}" />
+								</div>
+							</div>
+	
+							<div class="flex-w flex-t bor12 p-t-15 p-b-30">
+								<div class="size-208 w-full-ssm">
+									<span class="stext-110 cl2"> 기본 주소: </span>
+								</div>
+	
+								<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
+									<span class="stext-111 c16 p-t-2" th:text="${memberInfo.addr}" name="state"></span>
 									
-									<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="orderNotes">
-												<option>배송메모를 선택해주세요.</option>
-												<option value="택배함에 놔주세요.">택배함에 놔주세요.</option>
-												<option value="경비실에 맡겨주세요.">경비실에 맡겨주세요.</option>
-												<option value="배송 전에 미리 연락 바랍니다.">배송 전에 미리 연락 바랍니다.</option>
-												<option value="부재 시 집 앞에 놔주세요.">부재 시 집 앞에 놔주세요.</option>
+									<input type="checkbox" id="defaultAddr" onchange="toggleReadOnly()" >
+	       							<label for="defaultAddr" class="stext-112 c18">기본 배송지로 주문</label>
+	       							
+	       							<div class="bor8 bg0 m-b-12">
+										<input class="stext-111 c18 plh3 size-111 p-lr-15" type="text" id="addrInput" name="orderAddr" th:value="${memberInfo.addr}" onclick="findAddr()"/>
+									</div>
+									
+									<div class="p-t-15" th:object="${memberInfo}">
+										<span class="stext-112 cl8"> 배송비 무료 </span>
+										
+										<div class="rs1-select2 bor8 bg0">
+												<select class="js-select2" name="orderNotes" th:field="${newOrder.orderNotes}">
+													<option value="">배송메모를 선택해주세요.</option>
+													<option value="택배함에 놔주세요.">택배함에 놔주세요.</option>
+													<option value="경비실에 맡겨주세요.">경비실에 맡겨주세요.</option>
+													<option value="배송 전에 미리 연락 바랍니다.">배송 전에 미리 연락 바랍니다.</option>
+													<option value="부재 시 집 앞에 놔주세요.">부재 시 집 앞에 놔주세요.</option>
+												</select>
+												<div class="dropDownSelect2"></div>
+											</div>
+										
+										<div class="rs1-select2 bor8 bg0">
+											<select class="js-select2" name="paymentMethod" th:field="${newOrder.paymentMethod}">
+												<option value="" disabled selected hidden>결제 방식을 선택하세요</option>
+												<option value="신용카드">신용카드</option>
+												<option value="계좌이체">계좌이체</option>
+												<option value="무통장입금">무통장 입금</option>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
-									
-									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="paymentMethod">
-											<option>결제 방식을 선택하세요</option>
-											<option value="신용카드">신용카드</option>
-											<option value="계좌이체">계좌이체</option>
-											<option value="무통장입금">무통장 입금</option>
-										</select>
-										<div class="dropDownSelect2"></div>
+											
 									</div>
-										
 								</div>
 							</div>
-						</div>
-
-						<div class="flex-w flex-t p-t-27 p-b-33">
-							<div class="size-208">
-								<span class="mtext-101 cl2"> Total: </span>
+	
+							<div class="flex-w flex-t p-t-27 p-b-33">
+								<div class="size-208">
+									<span class="mtext-101 cl2"> Total: </span>
+								</div>
+	
+								<div class="size-209 p-t-1">
+									<span class="mtext-110 cl2" th:text="${#numbers.formatInteger(subTotal,3,'COMMA') + '원'}"> </span>
+								</div>
 							</div>
-
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2" th:text="${subTotal}"> </span>
-							</div>
-						</div>
-
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-							바로 구매
-						</button>
+	
+							<button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+								바로 구매
+							</button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+	</div>
 	
 	<!-- Footer -->
 	<div th:replace="~{fragments/common :: footer}"></div>
@@ -171,7 +175,7 @@
 	    // 페이지 로드 시 실행되는 함수
 	    window.onload = function() {
 	        // 추가할 클래스와 대상 요소의 id
-	        var className = 'actice-ment';
+	        var className = 'active-menu';
 	        var targetId = 'li-cart'; // 여러분이 원하는 id로 변경하세요.
 	
 	        // 대상 요소 찾기

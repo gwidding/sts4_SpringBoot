@@ -10,26 +10,20 @@ import com.audio_mart.mapper.OrderMapper;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-	private final OrderMapper orderMapper;
-
     @Autowired
-    public OrderServiceImpl(OrderMapper orderMapper) {
-        this.orderMapper = orderMapper;
-    }
+    OrderMapper orderMapper;
 	
 	@Override
 	public boolean addToOrder(OrdersDTO params) {
-		boolean queryResult = orderMapper.insertOrder(params);
-		
-		return false;
+		Long orderId = orderMapper.insertOrder(params);
+		System.out.println("주문 번호 " + orderId);
+		return (orderId > 0) ? true : false ;
 	}
 
 	@Override
-	public boolean addToOrder(OrderDetailDTO params) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addToOrderDetail(OrderDetailDTO params) {
+		boolean queryResult = orderMapper.insertOrderDetail(params);
+		
+		return queryResult;
 	}
-	
-	
-
 }
