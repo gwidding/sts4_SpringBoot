@@ -31,7 +31,7 @@ public class MemberController extends UiUtils{
 				return showMessageWithRedirect("회원가입에 실패하였습니다.", "/member/login", Method.GET, null, model);
 			}
 		} catch (DataAccessException e) {
-			return showMessageWithRedirect("데이터베이스 문제 발생 - 중복된 아이디 가능성", "/member/login", Method.GET, null, model);
+			return showMessageWithRedirect("데이터베이스 문제 발생", "/member/login", Method.GET, null, model);
 		} catch (Exception e) {
 			return showMessageWithRedirect("시스템 문제 발생", "/member/login", Method.GET, null, model);
 		}

@@ -20,6 +20,7 @@ public class MemberServiceImpl implements MemberService{
 	// 회원가입
 	@Override
 	public boolean signup(MemberDTO params) {
+		
 		boolean queryResult = memberMapper.insertMember(params);
 		return queryResult;
 	}
