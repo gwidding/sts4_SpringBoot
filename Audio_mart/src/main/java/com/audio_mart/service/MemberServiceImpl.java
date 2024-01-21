@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService{
 		boolean queryResult = memberMapper.insertMember(params);
 		return queryResult;
 	}
-
+	// 로그인 기능
 	@Override
 	public boolean login(String custid, String password) {
 		MemberDTO member = memberMapper.findByCustid(custid);

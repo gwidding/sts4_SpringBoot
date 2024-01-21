@@ -96,7 +96,6 @@ public class CartController extends UiUtils{
     @PostMapping("/cart/order")
     public String orderCart(OrdersDTO order, HttpSession session, Model model) {
     	
-    	System.out.println("받아온 값 " + order);
     	try {
     		boolean isAdded = orderService.addToOrder(order);
     		
@@ -104,24 +103,25 @@ public class CartController extends UiUtils{
     			OrderDetailDTO detail = new OrderDetailDTO();
     			detail.setOrderId(order.getOrderId());
     			detail.setMemberId(order.getMemberIdx());
-    			System.out.println("상세 주문 값 " + detail);
+    			
     			boolean isDetailAdded = orderService.addToOrderDetail(detail);
     			
     			if (!isDetailAdded ) {
     				System.out.println("주문 상세 추가 실패 " + isDetailAdded);
+    				showSuccessMessage("상세 주문 실패 ", "/cart", false, model);
     			}
     		}
     		else {
-    			System.out.println("주문 실패");    			
+    			showSuccessMessage("주문 실패 ", "/cart", false, model);
     		}
 
     	} catch(DataAccessException e) {
-			System.out.println("데베 문제");
+    		showSuccessMessage("주문 실패 - 데이터베이스 에러 ", "/cart", false, model);
 		} catch(Exception e) {
-			System.out.println("시스템 문제");
+			showSuccessMessage("주문 실패 - 시스템 에러 ", "/cart", false, model);
 		}
     	
-    	return "redirect:/cart";
+    	return showSuccessMessage("주문 완료! ", "/product", true, model);
     }
     
 //    @PostMapping("/cart/update")

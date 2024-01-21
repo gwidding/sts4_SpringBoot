@@ -234,7 +234,7 @@
 				document.dataForm.submit();
 			}
 		}
-		
+		// 기본 주소인지 확인. 아니면 주소 api
 	    function toggleReadOnly() {
 		    var isDefault = document.getElementById("defaultAddr");
 		    var addrInput = document.getElementById("addrInput");
@@ -248,6 +248,7 @@
 		        addrInput.setAttribute("onclick", "findAddr()");
 		    }
 		}
+		
 		/* ]]>*/
 	</script>
 	

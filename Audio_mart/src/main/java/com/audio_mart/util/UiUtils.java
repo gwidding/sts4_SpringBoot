@@ -26,4 +26,17 @@ public class UiUtils {
 				
 		return "utils/message-redirect";
 	}
+	
+	public String showSuccessMessage( @RequestParam(value = "message", required = false) String message,
+			  @RequestParam(value = "redirectUri", required = false) String redirectUri,
+			  @RequestParam(value = "isSuccess", required = true) boolean isSuccess,
+			  Model model) {
+		
+				model.addAttribute("message", message);
+				model.addAttribute("redirectUri", redirectUri);
+				model.addAttribute("isSuccess", isSuccess);
+		
+		return "utils/success-false";
+	}
+	
 }

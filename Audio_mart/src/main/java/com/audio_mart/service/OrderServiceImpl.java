@@ -23,7 +23,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public boolean addToOrderDetail(OrderDetailDTO params) {
 		boolean queryResult = orderMapper.insertOrderDetail(params);
-		
-		return queryResult;
+		boolean emptyCart = false;
+		if (queryResult) {
+			emptyCart = orderMapper.emptyCartForOrder(params.getMemberId());
+		}
+		return emptyCart;
 	}
 }

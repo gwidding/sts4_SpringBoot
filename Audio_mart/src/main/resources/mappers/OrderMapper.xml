@@ -8,10 +8,6 @@
 		order_notes, order_date, update_date, order_status
 	</sql>
 
-	<sql id="orderDetailColumn">
-		order_detail_id, order_id, product_id, quantity
-	</sql>
-
 	<insert id="insertOrder" parameterType="OrdersDTO"  useGeneratedKeys="true" keyProperty="orderId">
 		INSERT INTO orders ( 
 			<include refid="ordersColumn" />
@@ -25,8 +21,6 @@
 	    </selectKey>
 	</insert>
 	
-	
-	
 	<insert id="insertOrderDetail" parameterType="OrderDetailDTO">
 		INSERT INTO orderDetail (
 			order_id, product_id, quantity
@@ -35,5 +29,15 @@
 		FROM cart
 		WHERE member_id = #{memberId}
 	</insert>
+	
+	<delete id="emptyCartForOrder" parameterType="Long">
+		DELETE FROM cart
+		WHERE member_id = #{memberIdx}
+			AND EXISTS (
+				SELECT 1
+				FROM member
+				WHERE idx = #{memberIdx}
+		)
+	</delete>
 
 </mapper>
