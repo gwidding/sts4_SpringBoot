@@ -17,4 +17,5 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.audio_mart.constant.Method"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="com.audio_mart.domain.OrderDetailDTO"/>
 </qualifiedTypeNameHistroy>

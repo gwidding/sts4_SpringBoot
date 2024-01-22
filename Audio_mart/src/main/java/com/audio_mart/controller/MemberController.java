@@ -12,12 +12,19 @@ import com.audio_mart.constant.Method;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.service.MemberService;
 import com.audio_mart.util.UiUtils;
+import com.audio_mart.exception.Exception_signup;
 
 @Controller
-public class MemberController extends UiUtils{
+public class MemberController extends UiUtils {
 	
 	@Autowired
 	MemberService memberService;
+	
+	private Exception_signup exceptionSignup;
+	
+	public MemberController() {
+        this.exceptionSignup = new Exception_signup();
+    }
 	
 	// 회원가입
 	@PostMapping(value = "/member/register")
@@ -25,6 +32,12 @@ public class MemberController extends UiUtils{
 		try {
 //				String encryptedPassword = passwordEncoder.encode(params.getPwd());
 //		        params.setPwd(encryptedPassword);
+			// 아이디 유효성 검사
+			exceptionSignup.validateUserId(params.getCustid());
+			// 아이디 중복 검사
+			exceptionSignup.checkDupUserId(params.getCustid());
+			
+			// 각각 true, false에 따른 메세지 전달 -> 다 true면 서비스 실행
 			boolean isRegistered = memberService.signup(params);
 			
 			if (isRegistered == false) {

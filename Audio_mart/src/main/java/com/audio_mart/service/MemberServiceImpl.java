@@ -10,7 +10,7 @@ import com.audio_mart.mapper.MemberMapper;
 
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberMapper memberMapper;
