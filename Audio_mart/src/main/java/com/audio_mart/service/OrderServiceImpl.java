@@ -1,5 +1,7 @@
 package com.audio_mart.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,11 @@ public class OrderServiceImpl implements OrderService {
 			emptyCart = orderMapper.emptyCartForOrder(params.getMemberId());
 		}
 		return emptyCart;
+	}
+
+	@Override
+	public List<OrderDetailDTO> getOrderList(Long memberIdx) {
+		
+		return orderMapper.orderList(memberIdx); 
 	}
 }

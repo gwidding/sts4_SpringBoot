@@ -8,7 +8,7 @@
 		order_notes, order_date, update_date, order_status
 	</sql>
 
-	<insert id="insertOrder" parameterType="OrdersDTO"  useGeneratedKeys="true" keyProperty="orderId">
+	<insert id="insertOrder" parameterType="OrdersDTO" useGeneratedKeys="true" keyProperty="orderId">
 		INSERT INTO orders ( 
 			<include refid="ordersColumn" />
 		) VALUES (
@@ -39,5 +39,12 @@
 				WHERE idx = #{memberIdx}
 		)
 	</delete>
+	
+	<select id="orderList" parameterType="Long">
+		SELECT od.*
+		FROM orderDetail od
+			JOIN orders o ON od.order_id = o.order_id
+		WHERE o.member_idx = #{memberIdx};
+	</select>
 
 </mapper>

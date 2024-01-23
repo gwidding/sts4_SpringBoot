@@ -59,7 +59,7 @@ public class MemberController extends UiUtils {
 	public String updateMember(@Valid @ModelAttribute("params")final MemberDTO params, BindingResult bindingResult, Model model) {
 		// 수정한 정보 유효성 검사
 		if (bindingResult.hasErrors()) {
-			// 비밀번호 필드의 오류를 무시
+			// 비밀번호 필드의 오류 무시
             bindingResult.rejectValue("pwd", "field.pwd", null, null);
             
 			StringBuilder errorMessage = new StringBuilder();

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+	<title>계정관리</title>	
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+
+	  <!-- Main content -->
+	  <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+		  
+	    <!-- Header -->
+	    <header class="bg-surface-primary border-bottom pt-6">
+	      <div class="container-fluid">
+	        <div class="mb-npx">
+	          <div class="row align-items-center">
+	            <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+	              <!-- Title -->
+	              <h1 class="h2 mb-0 ls-tight">마이 페이지</h1>
+	            </div>
+	            
+	            <!-- Actions -->
+	            <div class="col-sm-6 col-12 text-sm-end">
+	              <div class="mx-n1">
+	                <a th:href="@{/home}" class="btn d-inline-flex btn-sm btn-primary mx-1">
+	                  <span class=" pe-2">
+	                    <i class="bi bi-pencil"></i>
+	                  </span>
+	                  <span> < Home 돌아가기</span>
+	                </a>
+	              </div>
+	            </div>
+	          </div>
+	          
+	          <!-- Nav -->
+	          <ul class="nav nav-tabs mt-4 overflow-x border-0">
+	            <li class="nav-item ">
+	              <a href="#" class="nav-link font-regular">내 정보</a>
+	            </li>
+	            <li class="nav-item">
+	              <a href="#" class="nav-link active">주문 목록</a>
+	            </li>
+	          </ul>
+	        </div>
+	      </div>
+	    </header>
+	    
+	    <!-- Main -->
+	    <main class="py-6 bg-surface-secondary">
+	      <div class="container-fluid">
+	        <div class="row">
+	          <div class="col-xl-7 mx-auto">           
+	           
+	            <!-- Form -->
+	            <div class="mb-5">
+	              <h4 class="mb-0">내 정보</h4>
+	            </div>
+	            
+	            <table>
+			<thead>
+				<tr>
+					<th>상품정보</th>
+					<th>주문일자</th>
+					<th>주문번호</th>
+					<th>주문금액(수량)</th>
+					<th>주문상태</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:if="${not #lists.isEmpty(orderList)}" th:each="row : ${orderList}">
+					<td scope="row"><a href="#" th:text="${row.pname}"></a></td>
+					<td th:text="${#temporals.format(row.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
+					<td th:text="${row.orderId}"></td>
+					<td th:text="${row.price} + '(' + ${row.quantity} + ')'"></td>
+					<td th:text="${row.orderStatus}"></td>
+
+				</tr>
+				<tr th:unless="${not #lists.isEmpty(memberList)}">
+					<td colspan="5">주문 내역이 없습니다.</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	            
+	            <hr class="my-10" />
+	            
+	          </div>
+	        </div>
+	      </div>
+	    </main>
+	    
+	  </div>
+	</div>
+</body>
+
+<script src="/js/login-page.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:inline="javascript">
+	/* <![CDATA[ */
+	function updateMember(form) {
+		var result = (
+			isValid(form.custname, "이름", null, null)
+			&& isValid(form.phone, "전화번호", null, null)   
+			&& isValid(form.addr, "기본주소", null, null)		
+		);
+		
+		if (result == false) {
+			return false;
+		}
+	}
+	
+	function deleteMember(idx, queryString) {
+		if (confirm(idx + "번 회원님  탈퇴를 진행하겠습니까?")) {
+			var uri = /*[[ @{/member/delete} ]]*/ null;
+			var html = "";
+	
+			html += '<form name="dataForm" action="'+uri+'" method="post">';
+			html += '<input type="hidden" name="idx" value="' +idx+'" />';
+			
+			queryString = new URLSearchParams(queryString);
+			queryString.forEach(function(value, key) {
+				if (isEmpty(value) == false) {
+					html += '<input type="hidden" name="' + key + '" value="' + value + '" />';
+				}
+			});
+	
+			html += '</form>';
+	
+			$("body").append(html);
+			document.dataForm.submit();
+			
+			logoutUser();
+		}
+	}
+	
+	function logoutUser() {
+		$.get("/member/logout", function(resposne) {
+			alert("로그아웃 되었습니다. 다시 로그인해 주세요");
+		})
+	}
+	/* ]]> */
+</script>
+
+</html>

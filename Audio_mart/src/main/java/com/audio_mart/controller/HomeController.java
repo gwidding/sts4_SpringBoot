@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.audio_mart.constant.Method;
 import com.audio_mart.domain.CartDTO;
 import com.audio_mart.domain.MemberDTO;
+import com.audio_mart.domain.OrderDetailDTO;
 import com.audio_mart.domain.ProductDTO;
 import com.audio_mart.service.MemberService;
+import com.audio_mart.service.OrderService;
 import com.audio_mart.service.ProductService;
 import com.audio_mart.util.UiUtils;
 
@@ -27,6 +29,9 @@ public class HomeController extends UiUtils {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	private MemberDTO getMemberInfo(HttpSession session) {
         Long idx = (Long) session.getAttribute("idx");
@@ -65,6 +70,21 @@ public class HomeController extends UiUtils {
         
         model.addAttribute("memberInfo", memberInfo);
         return "member/myaccount";
+    }
+    // 주문 목록 보기
+    @GetMapping("/member/myOrder")
+    public String openMyOrder(Model model, HttpSession session) {
+    	
+    	MemberDTO memberInfo = getMemberInfo(session);
+    	
+    	if (memberInfo != null) {
+    		model.addAttribute("memberInfo", memberInfo);
+    		List<OrderDetailDTO> orderList = orderService.getOrderList(memberInfo.getIdx());
+    		model.addAttribute("orderList", orderList);
+    	} else {    		
+    		return showMessageWithRedirect("로그인이 필요합니다.", "/home", Method.GET, null, model);
+    	}
+    	return "member/my_orderList";
     }
     
     @GetMapping("/product")
