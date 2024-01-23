@@ -8554,3 +8554,30 @@ org.eclipse.jface.text.BadLocationException
 
 !ENTRY org.eclipse.help.base 2 0 2024-01-23 14:06:30.239
 !MESSAGE Unable to consume Lucene index from bundle 'org.eclipse.wst.server.ui.doc.user_1.1.600.v201901310132 [475]'. The index should be rebuilt with Lucene 9.7.0
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-01-23 16:41:26.070
+!MESSAGE Classpath changed for project: Audio_mart
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-23 17:26:12.557
+!MESSAGE [Info]	ESLint server running in node v18.17.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-23 17:26:12.749
+!MESSAGE [Info]	Using Typescript version (user-setting) 5.1.6 from path "C:\sts-4.20.1.RELEASE\plugins\org.eclipse.wildwebdeveloper_1.1.1.202308101949\node_modules\typescript\lib\tsserver.js"
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-23 17:26:12.763
+!MESSAGE [Info]	Typescript Server version info: {version=5.1.6, source=user-setting}
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-23 17:26:13.433
+!MESSAGE [Info]	No ES Library found for file: file:///C:/Users/okeunji/Documents/stsSpring/Audio_mart/src/main/resources/static/vendor/jqueryui/external/jquery/jquery.js
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-23 17:58:50.526
+!MESSAGE [Info]	ESLint server running in node v18.17.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-23 17:58:50.596
+!MESSAGE [Info]	Using Typescript version (user-setting) 5.1.6 from path "C:\sts-4.20.1.RELEASE\plugins\org.eclipse.wildwebdeveloper_1.1.1.202308101949\node_modules\typescript\lib\tsserver.js"
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-23 17:58:50.602
+!MESSAGE [Info]	Typescript Server version info: {version=5.1.6, source=user-setting}
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-01-23 17:58:51.502
+!MESSAGE [Info]	No ES Library found for file: file:///C:/Users/okeunji/Documents/stsSpring/Audio_mart/src/main/resources/static/js/login-page.js

@@ -72,10 +72,10 @@
 		                <input type="text" th:field="*{custname}" class="form-control" id="custname" maxlength="10" title="한글로만 이름을 적어주세요."/>
 	                </div>
 	                
-	                <div class="col-md-6">
+<!--	                <div class="col-md-6">
 	                    <label class="form-label" for="pwd">비밀번호</label>
-	                    <input type="text" th:field="*{pwd}" class="form-control" id="pwd"  maxlength="16" title="영어, 숫자로 8-16자만 가능합니다."/>
-	                </div>
+	                    <input type="password" th:field="*{pwd}" class="form-control" id="pwd" title="비밀번호 변경이 불가합니다." readonly/>
+	                </div>-->
 	                <div class="col-md-6">
 	                    <label class="form-label" for="phone">전화번호</label>
 	                    <input type="tel" th:field="*{phone}" class="form-control" id="phone" placeholder="010-0000-0000" maxlength="13" title="010-0000-0000 형식으로 작성해 주세요." />
@@ -120,7 +120,6 @@
 	function updateMember(form) {
 		var result = (
 			isValid(form.custname, "이름", null, null)
-			&& isValid(form.pwd, "비밀번호", null, null)
 			&& isValid(form.phone, "전화번호", null, null)
 			&& isValid(form.addr, "기본주소", null, null)		
 		);

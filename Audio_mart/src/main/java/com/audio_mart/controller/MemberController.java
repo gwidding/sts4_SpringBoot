@@ -37,9 +37,6 @@ public class MemberController extends UiUtils {
 			if (memberService.findByCustid(params.getCustid()) != null) {
 				return showMessageWithRedirect("중복된 아이디입니다. 다른 아이디를 사용해 주세요", "/member/login", Method.GET, null, model);
 			}
-
-//				String encryptedPassword = passwordEncoder.encode(params.getPwd());
-//		        params.setPwd(encryptedPassword);
 			
 			boolean isRegistered = memberService.signup(params);
 			
@@ -60,13 +57,25 @@ public class MemberController extends UiUtils {
 	// 회원 정보 수정
 	@PostMapping("/member/update")
 	public String updateMember(@Valid @ModelAttribute("params")final MemberDTO params, BindingResult bindingResult, Model model) {
+		// 수정한 정보 유효성 검사
 		if (bindingResult.hasErrors()) {
+			// 비밀번호 필드의 오류를 무시
+            bindingResult.rejectValue("pwd", "field.pwd", null, null);
+            
 			StringBuilder errorMessage = new StringBuilder();
 			bindingResult.getAllErrors().forEach(error ->errorMessage.append(error.getDefaultMessage()).append("\n"));
 			return showMessageWithRedirect(errorMessage.toString(), "/member/myaccount", Method.GET, null, model);
 		}
-		
-		memberService.updateMember(params);
+		try {
+			boolean isUpdated = memberService.updateMember(params);
+			if (!isUpdated) {
+				return showMessageWithRedirect("회원정보 수정 실패", "/member/myaccount", Method.GET, null, model);
+			}
+		} catch (DataAccessException e) {
+			return showMessageWithRedirect("회원정보 수정 실패 - 데이터베이스 문제", "/member/myaccount", Method.GET, null, model);
+		} catch (Exception e) {
+			return showMessageWithRedirect("회원정보 수정 실패 - 시스템 문제", "/member/myaccount", Method.GET, null, model);
+		}
 
 		return showMessageWithRedirect(params.getCustname() + "님의 정보가 수정되었습니다.", "/member/myaccount", Method.GET, null, model);
 	}

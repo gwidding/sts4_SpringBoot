@@ -8,17 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.audio_mart.constant.Method;
 import com.audio_mart.domain.CartDTO;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.domain.ProductDTO;
 import com.audio_mart.service.MemberService;
 import com.audio_mart.service.ProductService;
+import com.audio_mart.util.UiUtils;
 
 import jakarta.servlet.http.HttpSession;
 
 
 @Controller
-public class HomeController {
+public class HomeController extends UiUtils {
 	
 	@Autowired
 	private MemberService memberService;
@@ -44,13 +46,13 @@ public class HomeController {
     }
     
     @GetMapping("/admin")
-    public String openAdminPage(HttpSession session) {
+    public String openAdminPage(Model model, HttpSession session) {
         MemberDTO memberInfo = getMemberInfo(session);
         if (memberInfo == null || memberInfo.isAdmin() == false) {
         	System.out.println("관리자 외에 허용되지 않은 접근입니다.");
-        	return "redirect:/home";
+        	return showMessageWithRedirect("관리자 외에 허용되지 않은 접근입니다.", "/home", Method.GET, null, model);
         }
-        return "manage/admin";
+        return showMessageWithRedirect("관리자 외에 허용되지 않은 접근입니다.", "/manage/admin", Method.GET, null, model);
     }
     
     @GetMapping("/member/myaccount")
@@ -60,6 +62,7 @@ public class HomeController {
             System.out.println("로그인 해야 마이페이지 들어가짐");
             return "redirect:/home";
         }
+        
         model.addAttribute("memberInfo", memberInfo);
         return "member/myaccount";
     }
