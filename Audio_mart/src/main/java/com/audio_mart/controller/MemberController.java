@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,8 @@ import com.audio_mart.constant.Method;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.service.MemberService;
 import com.audio_mart.util.UiUtils;
-import com.audio_mart.exception.Exception_signup;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class MemberController extends UiUtils {
@@ -20,24 +22,25 @@ public class MemberController extends UiUtils {
 	@Autowired
 	MemberService memberService;
 	
-	private Exception_signup exceptionSignup;
-	
-	public MemberController() {
-        this.exceptionSignup = new Exception_signup();
-    }
-	
 	// 회원가입
-	@PostMapping(value = "/member/register")
-	public String registerMember(final MemberDTO params, Model model) {
+	@PostMapping("/member/register")
+	public String registerMember(@Valid final MemberDTO params, BindingResult bindingResult, Model model) {
 		try {
+			// 회원 정보 유효성 검사
+			if (bindingResult.hasErrors()) {
+				StringBuilder errorMessage = new StringBuilder();
+				bindingResult.getAllErrors().forEach(error ->errorMessage.append(error.getDefaultMessage()).append("\n"));
+				return showMessageWithRedirect(errorMessage.toString(), "/member/login", Method.GET, null, model);
+			}
+			
+			// 아이디 중복 검사
+			if (memberService.findByCustid(params.getCustid()) != null) {
+				return showMessageWithRedirect("중복된 아이디입니다. 다른 아이디를 사용해 주세요", "/member/login", Method.GET, null, model);
+			}
+
 //				String encryptedPassword = passwordEncoder.encode(params.getPwd());
 //		        params.setPwd(encryptedPassword);
-			// 아이디 유효성 검사
-			exceptionSignup.validateUserId(params.getCustid());
-			// 아이디 중복 검사
-			exceptionSignup.checkDupUserId(params.getCustid());
 			
-			// 각각 true, false에 따른 메세지 전달 -> 다 true면 서비스 실행
 			boolean isRegistered = memberService.signup(params);
 			
 			if (isRegistered == false) {
@@ -57,6 +60,7 @@ public class MemberController extends UiUtils {
 	// 회원 정보 수정
 	@PostMapping("/member/update")
 	public String updateMember(@ModelAttribute("params")final MemberDTO params, Model model) {
+		
 		memberService.updateMember(params);
 
 		return "redirect:/member/myaccount";
