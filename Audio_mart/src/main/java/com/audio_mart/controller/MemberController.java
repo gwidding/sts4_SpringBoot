@@ -59,11 +59,16 @@ public class MemberController extends UiUtils {
 	
 	// 회원 정보 수정
 	@PostMapping("/member/update")
-	public String updateMember(@ModelAttribute("params")final MemberDTO params, Model model) {
+	public String updateMember(@Valid @ModelAttribute("params")final MemberDTO params, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			StringBuilder errorMessage = new StringBuilder();
+			bindingResult.getAllErrors().forEach(error ->errorMessage.append(error.getDefaultMessage()).append("\n"));
+			return showMessageWithRedirect(errorMessage.toString(), "/member/myaccount", Method.GET, null, model);
+		}
 		
 		memberService.updateMember(params);
 
-		return "redirect:/member/myaccount";
+		return showMessageWithRedirect(params.getCustname() + "님의 정보가 수정되었습니다.", "/member/myaccount", Method.GET, null, model);
 	}
 	
 	@PostMapping("/member/delete")

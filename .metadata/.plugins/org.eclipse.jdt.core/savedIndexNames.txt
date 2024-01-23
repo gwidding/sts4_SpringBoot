@@ -92,7 +92,6 @@ INDEX VERSION 1.134+C:\Users\okeunji\Documents\stsSpring\.metadata\.plugins\org.
 2811352059.index
 1324671186.index
 2912490658.index
-288978545.index
 3364777522.index
 2503711345.index
 2287016570.index

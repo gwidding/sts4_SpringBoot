@@ -80,6 +80,7 @@ select * from orders;
 select * from orderDetail;
 select * from cart;
 select * from product;
+select * from member;
 
 update member set deletion_yn = 'N' where idx = 7;
                 
