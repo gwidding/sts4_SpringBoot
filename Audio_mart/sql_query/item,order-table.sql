@@ -81,6 +81,12 @@ select * from orderDetail;
 select * from cart;
 select * from product;
 select * from member;
+select * from orderDetail where member_idx = 2;
+
+SELECT od.*
+FROM orderDetail od
+JOIN orders o ON od.order_id = o.order_id
+WHERE o.member_idx = 1;
 
 update member set deletion_yn = 'N' where idx = 7;
                 

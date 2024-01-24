@@ -34,7 +34,6 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<OrderDetailDTO> getOrderList(Long memberIdx) {
-		
 		return orderMapper.orderList(memberIdx); 
 	}
 }
