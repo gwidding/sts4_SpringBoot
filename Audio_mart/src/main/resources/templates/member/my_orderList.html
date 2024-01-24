@@ -4,9 +4,11 @@
 	<meta charset="UTF-8">
 	<title>계정관리</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="/images/icons/favicon.png"/>
 	<link rel="stylesheet" type="text/css" href="/css/combined-style.css">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!--===============================================================================================-->
 </head>
 
 <body>
@@ -62,33 +64,38 @@
 	              <h4 class="mb-0">내 정보</h4>
 	            </div>
 	            
+	            <div class="container">
+					<div class="row">
+
+						<div class="wrap-table-shopping-cart">
+				            <table>
+								<thead class="table-shopping-cart">
+									<tr class="table_head">
+										<th class="column-2">상품정보</th>
+										<th class="column-1">주문일자</th>
+										<th class="column-3">주문번호</th>
+										<th class="column-4">주문금액(수량)</th>
+										<th class="column-5">주문상태</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<tr class="table_row" th:if="${not #lists.isEmpty(orderList)}" th:each="row : ${orderList}">
+										<td class="column-2"  scope="row"><a href="#" th:text="${row.pname}"></a></td>
+										<td class="column-1" th:text="${#temporals.format(row.orderDate, 'yyyy-MM-dd')}"></td>
+										<td class="column-3" th:text="${row.orderId}"></td>
+										<td class="column-4" th:text="${row.pAmountPrice} + '원 (' + ${row.quantity} + ')'"></td>
+										<td class="column-5" th:text="${row.orderStatus}"></td>
+									</tr>
+									<tr th:unless="${not #lists.isEmpty(orderList)}">
+										<td colspan="5">주문 내역이 없습니다.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 	            
-	            <table>
-					<thead class="table-shopping-cart">
-						<tr class="table_head">
-							<th class="column-2">상품정보</th>
-							<th class="column-1">주문일자</th>
-							<th class="column-3">주문번호</th>
-							<th class="column-4">주문금액(수량)</th>
-							<th class="column-5">주문상태</th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						<tr class="table_row" th:if="${not #lists.isEmpty(orderList)}" th:each="row : ${orderList}">
-							<td class="column-2"  scope="row"><a href="#" th:text="${row.pname}"></a></td>
-							<td class="column-1" th:text="${#temporals.format(row.orderDate, 'yyyy-MM-dd')}"></td>
-							<td class="column-3" th:text="${row.orderId}"></td>
-							<td class="column-4" th:text="${row.pAmountPrice} + '(' + ${row.quantity} + ')'"></td>
-							<td class="column-5" th:text="${row.orderStatus}"></td>
-						</tr>
-						<tr th:unless="${not #lists.isEmpty(orderList)}">
-							<td colspan="5">주문 내역이 없습니다.</td>
-						</tr>
-					</tbody>
-				</table>
-	            
-	            <hr class="my-10" />
 	            
 	          </div>
 	        </div>
