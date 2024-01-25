@@ -57,7 +57,7 @@ public class HomeController extends UiUtils {
         	System.out.println("관리자 외에 허용되지 않은 접근입니다.");
         	return showMessageWithRedirect("관리자 외에 허용되지 않은 접근입니다.", "/home", Method.GET, null, model);
         }
-        return showMessageWithRedirect("관리자 외에 허용되지 않은 접근입니다.", "/manage/admin", Method.GET, null, model);
+        return "manage/admin";
     }
     
     @GetMapping("/member/myaccount")

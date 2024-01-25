@@ -57,6 +57,12 @@ create table product_image (
     , delete_yn ENUM('Y', 'N') not null default 'N'
     , memo varchar(500) null
 );
+SELECT od.*, o.member_idx, p.pname, o.order_date, od.quantity * p.pprice as pAmountPrice,
+				o.payment_method, o.order_addr, o.order_notes, o.order_status, o.update_date
+FROM orderDetail od
+	JOIN orders o ON od.order_id = o.order_id
+	JOIN product p ON od.product_id = p.product_id
+WHERE o.member_idx = 5;
 
 ALTER TABLE product_image ADD CONSTRAINT `FK_product_TO_product_image_1` 
 	FOREIGN KEY (product_id) REFERENCES product(product_id);

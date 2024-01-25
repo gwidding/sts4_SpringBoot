@@ -15,7 +15,6 @@ public class MemberDTO {
 	@Pattern(regexp="^[a-zA-Z0-9]{4,20}$" , message="아이디는 4~20자의 영문, 숫자만 사용 가능합니다.")
 	private String custid;
 	
-	
 	@Pattern(regexp="^[a-zA-Z0-9]{8,16}$" , message="비밀번호는 8~16자의 영문, 숫자만 사용 가능합니다.")
 	private String pwd;
 	
