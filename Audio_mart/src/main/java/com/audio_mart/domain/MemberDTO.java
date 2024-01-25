@@ -9,15 +9,18 @@ public class MemberDTO {
 	
 	private Long idx;
 	
+	// 어차피 html에서 빈칸 허용 안 하긴 함
+	
 	@NotBlank(message = "아이디는 필수 항목입니다.")
 	@Pattern(regexp="^[a-zA-Z0-9]{4,20}$" , message="아이디는 4~20자의 영문, 숫자만 사용 가능합니다.")
 	private String custid;
+	
 	
 	@Pattern(regexp="^[a-zA-Z0-9]{8,16}$" , message="비밀번호는 8~16자의 영문, 숫자만 사용 가능합니다.")
 	private String pwd;
 	
 	@NotBlank(message = "이름은 필수 항목입니다.")
-	@Pattern(regexp="^[가-힣]{2,10}$" , message="비밀번호는 8~16자의 영문, 숫자만 사용 가능합니다.")
+	@Pattern(regexp="^[가-힣]{2,10}$" , message="이름은 2~10자의 한글만 가능합니다.")
 	private String custname;
 	
 	@NotBlank(message = "연락처는 필수 항목입니다.")

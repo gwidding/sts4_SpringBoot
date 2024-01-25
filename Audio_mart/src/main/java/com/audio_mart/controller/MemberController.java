@@ -60,7 +60,7 @@ public class MemberController extends UiUtils {
 		// 수정한 정보 유효성 검사
 		if (bindingResult.hasErrors()) {
 			// 비밀번호 필드의 오류 무시
-            bindingResult.rejectValue("pwd", "field.pwd", null, null);
+            bindingResult.rejectValue("pwd", "field.pwd", null, "");
             
 			StringBuilder errorMessage = new StringBuilder();
 			bindingResult.getAllErrors().forEach(error ->errorMessage.append(error.getDefaultMessage()).append("\n"));
