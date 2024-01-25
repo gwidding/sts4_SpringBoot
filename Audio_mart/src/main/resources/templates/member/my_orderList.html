@@ -1,158 +1,122 @@
 <!DOCTYPE html>
 <html lang="kor">
+
 <head>
 	<meta charset="UTF-8">
 	<title>계정관리</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="/images/icons/favicon.png"/>
-	<link rel="stylesheet" type="text/css" href="/css/combined-style.css">
+	<!--===============================================================================================-->
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/css/my-page.css">
+	<!--===============================================================================================-->
 </head>
 
 <body>
-	<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+	<div class="container">
+		<!-- Header -->
+		<header class="bg-surface-primary border-bottom pt-6">
+			<div class="side">
+				<!-- Title -->
+				<h1 class="title">마이 페이지</h1>
 
-	  <!-- Main content -->
-	  <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-		  
-	    <!-- Header -->
-	    <header class="bg-surface-primary border-bottom pt-6">
-	      <div class="container-fluid">
-	        <div class="mb-npx">
-	          <div class="row align-items-center">
-	            <div class="col-sm-6 col-12 mb-4 mb-sm-0">
-	              <!-- Title -->
-	              <h1 class="h2 mb-0 ls-tight">마이 페이지</h1>
-	            </div>
-	            
-	            <!-- Actions -->
-	            <div class="col-sm-6 col-12 text-sm-end">
-	              <div class="mx-n1">
-	                <a th:href="@{/home}" class="btn d-inline-flex btn-sm btn-primary mx-1">
-	                  <span class=" pe-2">
-	                    <i class="bi bi-pencil"></i>
-	                  </span>
-	                  <span> < Home 돌아가기</span>
-	                </a>
-	              </div>
-	            </div>
-	          </div>
-	          
-	          <!-- Nav -->
-	          <ul class="nav nav-tabs mt-4 overflow-x border-0">
-	            <li class="nav-item ">
-	              <a th:href="@{/member/myaccount}" class="nav-link font-regular">내 정보</a>
-	            </li>
-	            <li class="nav-item">
-	              <a th:href="@{/member/myOrder}" class="nav-link active">주문 목록</a>
-	            </li>
-	          </ul>
-	        </div>
-	      </div>
-	    </header>
-	    
-	    <!-- Main -->
-	    <main class="py-6 bg-surface-secondary">
-	      <div class="container-fluid">
-	        <div class="row">
-	          <div class="col-xl-7 mx-auto">           
-	           
-	            <!-- Form -->
-	            <div class="mb-5">
-	              <h4 class="mb-0">내 정보</h4>
-	            </div>
-	            
-	            <div class="container">
-					<div class="row">
+				<button type="button" class="btn" th:onclick="|location.href='@{/home}'|">홈으로 돌아가기</button>
+			</div>
 
-						<div class="wrap-table-shopping-cart">
-				            <table>
-								<thead class="table-shopping-cart">
-									<tr class="table_head">
-										<th class="column-2">상품정보</th>
-										<th class="column-1">주문일자</th>
-										<th class="column-3">주문번호</th>
-										<th class="column-4">주문금액(수량)</th>
-										<th class="column-5">주문상태</th>
-									</tr>
-								</thead>
-								
-								<tbody>
-									<tr class="table_row" th:if="${not #lists.isEmpty(orderList)}" th:each="row : ${orderList}">
-										<td class="column-2"  scope="row"><a href="#" th:text="${row.pname}"></a></td>
-										<td class="column-1" th:text="${#temporals.format(row.orderDate, 'yyyy-MM-dd')}"></td>
-										<td class="column-3" th:text="${row.orderId}"></td>
-										<td class="column-4" th:text="${row.pAmountPrice} + '원 (' + ${row.quantity} + ')'"></td>
-										<td class="column-5" th:text="${row.orderStatus}"></td>
-									</tr>
-									<tr th:unless="${not #lists.isEmpty(orderList)}">
-										<td colspan="5">주문 내역이 없습니다.</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+			<!-- Nav -->
+			<ul class="nav nav-tabs mt-4 overflow-x border-0">
+				<li class="nav-item ">
+					<a th:href="@{myaccount}" class="nav-link font-regular">내 정보</a>
+				</li>
+				<li class="nav-item">
+					<a th:href="@{myOrder}" class="nav-link active">주문 목록</a>
+				</li>
+			</ul>
+		</header>
+
+		<!-- Main -->
+		<main>
+			<div class="row">
+				<div class="main-box">
+
+					<!-- List -->
+					<div>
+						<h4 class="sub-title">주문 목록</h4>
 					</div>
+
+					<div class="wrap-table-list">
+						<table class="table-list">
+							<tr class="table_head">
+								<th class="column-1">상품정보</th>
+								<th class="column-2">주문일자</th>
+								<th class="column-3">주문번호</th>
+								<th class="column-4">주문금액</th>
+								<th class="column-5">주문상태</th>
+							</tr>
+							
+							<div th:each="row, num : ${orderList}">
+								<tr class="table_row" th:if="${not #lists.isEmpty(orderList)}">
+									<td class="column-1" scope="row">
+										<div class="column1-all-box">
+											<a class="how-itemcart1" th:href="@{/product-detail(productId=${row.productId})}">
+												<img src="/images/product-01.jpg" alt="IMG">
+											</a>
+											<div class="column1-box">
+										    	<span class="font-size-up" th:text="${row.pname}"></span>
+										    	<br/><span th:text="' 수량 : ' + ${row.quantity}"></span>
+										    </div>
+									    </div>
+									</td>
+	
+									<td class="column-2" th:text="${#temporals.format(row.orderDate, 'yyyy-MM-dd')}"></td>
+									<td class="column-3" th:text="${row.orderId}"></td>
+									<td class="column-4" th:text="${#numbers.formatInteger(row.pAmountPrice,3,'COMMA')} + '원'"></td>
+									<td class="column-5">
+										<div class="column5-box">
+											<span th:text="${row.orderStatus}"></span>
+											<span th:data-index="${num.index}" class="link toggle-button" onclick="toggleData(this)">[상세 보기/접기]</span>
+										</div>
+									</td>
+								</tr>
+								
+								<tr th:id="'hiddenData' + ${num.index}" class="hidden hidden_row">
+									<td th:if="${row.orderAddr != null}" th:utext="'배송지' + '<br><br>' + ${row.orderAddr}"></td>
+									<td th:if="${row.paymentMethod != null}" th:utext="'결제방법' + '<br><br>' + ${row.paymentMethod}"></td>
+									<td></td>
+									<td th:if="${row.orderNotes != null}" th:utext="'주문 메시지' + '<br><br>' + ${row.orderNotes }"></td>
+									<td th:text="${row.updateDate != null ? '교환/환불 날짜' + #temporals.format(row.updateDate, 'yyyy-MM-dd') : '주문완료'}"></td>
+
+								</tr>
+							</div>
+							
+							<tr th:unless="${not #lists.isEmpty(orderList)}">
+								<td colspan="5">주문 내역이 없습니다.</td>
+							</tr>
+						
+						</table>
+					</div>
+
 				</div>
-	            
-	            
-	          </div>
-	        </div>
-	      </div>
-	    </main>
-	    
-	  </div>
+			</div>
+		</main>
 	</div>
 </body>
 
 <script src="/js/login-page.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script th:inline="javascript">
-	/* <![CDATA[ */
-	function updateMember(form) {
-		var result = (
-			isValid(form.custname, "이름", null, null)
-			&& isValid(form.phone, "전화번호", null, null)   
-			&& isValid(form.addr, "기본주소", null, null)		
-		);
-		
-		if (result == false) {
-			return false;
-		}
-	}
-	
-	function deleteMember(idx, queryString) {
-		if (confirm(idx + "번 회원님  탈퇴를 진행하겠습니까?")) {
-			var uri = /*[[ @{/member/delete} ]]*/ null;
-			var html = "";
-	
-			html += '<form name="dataForm" action="'+uri+'" method="post">';
-			html += '<input type="hidden" name="idx" value="' +idx+'" />';
-			
-			queryString = new URLSearchParams(queryString);
-			queryString.forEach(function(value, key) {
-				if (isEmpty(value) == false) {
-					html += '<input type="hidden" name="' + key + '" value="' + value + '" />';
-				}
-			});
-	
-			html += '</form>';
-	
-			$("body").append(html);
-			document.dataForm.submit();
-			
-			logoutUser();
-		}
-	}
-	
-	function logoutUser() {
-		$.get("/member/logout", function(resposne) {
-			alert("로그아웃 되었습니다. 다시 로그인해 주세요");
-		})
-	}
-	/* ]]> */
+<script>
+    // JavaScript로 숨겨진 데이터 토글 처리
+    function toggleData(button) {
+        var index = button.getAttribute('data-index');
+        var hiddenRow = document.getElementById('hiddenData' + index);
+
+        if (hiddenRow.style.display === 'none' || hiddenRow.style.display === '') {
+            hiddenRow.style.display = 'table-row';
+        } else {
+            hiddenRow.style.display = 'none';
+        }
+    }
 </script>
+
 
 </html>
