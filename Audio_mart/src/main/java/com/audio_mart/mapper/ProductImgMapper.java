@@ -3,7 +3,6 @@ package com.audio_mart.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-
 import com.audio_mart.domain.ProductImgDTO;
 
 @Mapper

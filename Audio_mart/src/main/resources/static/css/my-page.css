@@ -1,0 +1,316 @@
+:root {
+  /* COLORS */
+  --white: #F5F5F5;
+  --gray: #333;
+  --blue: rgb(128, 128, 255);
+  --lightblue: rgb(128, 128, 255);
+  --tranline: rgba(128, 128, 255, 0.5);
+
+  /* RADII */
+  --button-radius: 0.7rem;
+
+  /* SIZES */
+  --max-width: 1500px;
+  --max-height: 800px;
+
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+@font-face {
+    font-family: 'KCCChassam';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+	font-family: 'KCCChassam';
+}
+body {
+  align-items: center;
+  background-color: var(--white);
+  background: url("https://res.cloudinary.com/dci1eujqw/image/upload/v1616769558/Codepen/waldemar-brandt-aThdSdgx0YM-unsplash_cnq4sb.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  height: 100vh;
+  place-items: center;
+}
+
+.title {
+
+}
+.sub-title {
+  font-size: xx-large ;
+  margin: 3%;
+}
+
+.side {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 2rem;
+	padding-bottom: 0;
+}
+
+.link {
+  color: var(--gray);
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.container {
+  background-color: var(--white);
+  border-radius: var(--button-radius);
+  box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25),
+    0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
+  height: var(--max-height);
+  max-width: var(--max-width);
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+}
+.main-box {
+	width: 70%;
+	margin: auto;
+	text-align: center;	
+}
+
+.container__form {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: all 0.6s ease-in-out;
+}
+
+.btn {
+  background-color: var(--blue);
+  background-image: linear-gradient(90deg, #031fa6 0%, var(--lightblue) 74%);
+  border-radius: 20px;
+  border: 1px solid var(--blue);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  padding: 0.7rem 2rem;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.btn-box {
+	width: 100%;
+	display: flex;
+	position: relative;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.form > .btn {
+  margin-top: 1.5rem;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.form {
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem;
+  height: 100%;
+  
+}
+
+.input {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 0.9rem;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+
+.wrap-table-list {
+  overflow: auto;
+  border-left: 1px solid var(--lightblue);
+  border-right: 1px solid var(--lightblue);
+  border-bottom: 1px solid var(--lightblue);
+  margin-bottom: 30px;
+}
+
+.table-list {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 680px;
+}
+
+.table-list tr {
+  border-top: 1px solid var(--lightblue);
+  border-bottom: 1px solid var(--tranline);
+}
+
+.table-list .column-1 {
+  width: 380px;
+  font-size: 15px;
+  padding-left: 20px;
+}
+
+.column1-all-box {
+	display: flex;
+}
+
+.column1-box {
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    height: 100px; 
+}
+
+.table-list .column-2 {
+  width: 160px;
+}
+
+.table-list .column-3 {
+  width: 120px;
+  text-align: center;
+}
+
+.table-list .column-4 {
+  width: 220px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.table-list .column-5 {
+  width: 170px;
+  padding-right: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.column5-box {
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    height: 100px; 
+    padding-bottom: 10px;
+}
+
+.table-list .hidden_row td {
+  padding-bottom: 0px;
+  font-size: 14px;
+  font-style: var(--gray);
+  border-top: 1px solid var(--white);
+  height: 60px;
+}
+
+
+.table-list .table_row {
+  height: 100px;
+}
+
+.table-list .table_row td {
+  padding-bottom: 20px;
+}
+
+.table-list .table_head th {
+  font-family: Poppins-Bold;
+  font-size: 17px;
+  color: #555;
+  text-transform: uppercase;
+  line-height: 1.6;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.table-list td {
+  color: #555;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.font-size-up {
+  font-size: 20px;
+}
+
+
+
+.hidden {
+	display:none;
+}
+
+
+
+/*//////////////////////////////////////////////////////////////////
+상품 이미지 */
+
+.how-itemcart1 {
+  display: flex;
+  width: 90px;
+  position: relative;
+  margin-right: 15px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.how-itemcart1 img {
+  width: 100%;
+}
+
+/*.how-itemcart1::after {
+  content: '\e870';
+  font-size: 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.how-itemcart1:hover:after {
+  opacity: 1;
+}
+
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}

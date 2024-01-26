@@ -4,23 +4,28 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.mapper.MemberMapper;
 
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberMapper memberMapper;
-//	@Autowired
-//    private PasswordEncoder passwordEncoder;
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 	
 	// 회원가입
 	@Override
 	public boolean signup(MemberDTO params) {
-		
+		// 비밀번호 암호화
+		String encryptedPassword = passwordEncoder.encode(params.getPwd());
+        params.setPwd(encryptedPassword);
+        
 		boolean queryResult = memberMapper.insertMember(params);
 		return queryResult;
 	}
@@ -29,8 +34,8 @@ public class MemberServiceImpl implements MemberService{
 	public boolean login(String custid, String password) {
 		MemberDTO member = memberMapper.findByCustid(custid);
 		
-//		boolean queryResult = (member != null && passwordEncoder.matches(password, member.getPwd()));
-		boolean queryResult = (member != null && password.equals(member.getPwd()) );
+		boolean queryResult = (member != null && passwordEncoder.matches(password, member.getPwd()));
+//		boolean queryResult = (member != null && password.equals(member.getPwd()) );
 		return queryResult;
 	}
 
@@ -50,6 +55,10 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public boolean updateMember(MemberDTO params) {
+		// 비밀번호 암호화
+//		String encryptedPassword = passwordEncoder.encode(params.getPwd());
+//        params.setPwd(encryptedPassword);
+        
 		boolean queryResult = memberMapper.updateMember(params);
 		System.out.println(params.getCustname() + " 회원 수정 결과 : " + queryResult);
 		return queryResult;

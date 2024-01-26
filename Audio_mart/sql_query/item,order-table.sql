@@ -57,6 +57,12 @@ create table product_image (
     , delete_yn ENUM('Y', 'N') not null default 'N'
     , memo varchar(500) null
 );
+SELECT od.*, o.member_idx, p.pname, o.order_date, od.quantity * p.pprice as pAmountPrice,
+				o.payment_method, o.order_addr, o.order_notes, o.order_status, o.update_date
+FROM orderDetail od
+	JOIN orders o ON od.order_id = o.order_id
+	JOIN product p ON od.product_id = p.product_id
+WHERE o.member_idx = 5;
 
 ALTER TABLE product_image ADD CONSTRAINT `FK_product_TO_product_image_1` 
 	FOREIGN KEY (product_id) REFERENCES product(product_id);
@@ -77,9 +83,24 @@ CREATE TABLE cart (
 );
 desc member;
 select * from orders;
-select * from orderDetail;
+select * from product_image;
 select * from cart;
 select * from product;
+select * from member;
+select * from orderDetail where member_idx = 2;
+
+SELECT
+	p.*, pi.img_path, pi.img_name, pi.is_rep, pi.delete_yn, pi.memo
+FROM product p
+	LEFT JOIN product_image pi ON p.product_id = pi.product_id
+WHERE
+	p.product_id = 2;
+    
+
+SELECT od.*
+FROM orderDetail od
+JOIN orders o ON od.order_id = o.order_id
+WHERE o.member_idx = 1;
 
 update member set deletion_yn = 'N' where idx = 7;
                 

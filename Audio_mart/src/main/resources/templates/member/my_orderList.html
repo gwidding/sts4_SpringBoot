@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+	<meta charset="UTF-8">
+	<title>계정관리</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/my-page.css">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+	<div class="container">
+		<!-- Header -->
+		<header class="bg-surface-primary border-bottom pt-6">
+			<div class="side">
+				<!-- Title -->
+				<h1 class="title">마이 페이지</h1>
+
+				<button type="button" class="btn" th:onclick="|location.href='@{/home}'|">홈으로 돌아가기</button>
+			</div>
+
+			<!-- Nav -->
+			<ul class="nav nav-tabs mt-4 overflow-x border-0">
+				<li class="nav-item ">
+					<a th:href="@{myaccount}" class="nav-link font-regular">내 정보</a>
+				</li>
+				<li class="nav-item">
+					<a th:href="@{myOrder}" class="nav-link active">주문 목록</a>
+				</li>
+			</ul>
+		</header>
+
+		<!-- Main -->
+		<main>
+			<div class="row">
+				<div class="main-box">
+
+					<!-- List -->
+					<div>
+						<h4 class="sub-title">주문 목록</h4>
+					</div>
+
+					<div class="wrap-table-list">
+						<table class="table-list">
+							<tr class="table_head">
+								<th class="column-1">상품정보</th>
+								<th class="column-2">주문일자</th>
+								<th class="column-3">주문번호</th>
+								<th class="column-4">주문금액</th>
+								<th class="column-5">주문상태</th>
+							</tr>
+							
+							<div th:each="row, num : ${orderList}">
+								<tr class="table_row" th:if="${not #lists.isEmpty(orderList)}">
+									<td class="column-1" scope="row">
+										<div class="column1-all-box">
+											<a class="how-itemcart1" th:href="@{/product-detail(productId=${row.productId})}">
+												<img src="/images/product-01.jpg" alt="IMG">
+											</a>
+											<div class="column1-box">
+										    	<span class="font-size-up" th:text="${row.pname}"></span>
+										    	<br/><span th:text="' 수량 : ' + ${row.quantity}"></span>
+										    </div>
+									    </div>
+									</td>
+	
+									<td class="column-2" th:text="${#temporals.format(row.orderDate, 'yyyy-MM-dd')}"></td>
+									<td class="column-3" th:text="${row.orderId}"></td>
+									<td class="column-4" th:text="${#numbers.formatInteger(row.pAmountPrice,3,'COMMA')} + '원'"></td>
+									<td class="column-5">
+										<div class="column5-box">
+											<span th:text="${row.orderStatus}"></span>
+											<span th:data-index="${num.index}" class="link toggle-button" onclick="toggleData(this)">[상세 보기/접기]</span>
+										</div>
+									</td>
+								</tr>
+								
+								<tr th:id="'hiddenData' + ${num.index}" class="hidden hidden_row">
+									<td th:if="${row.orderAddr != null}" th:utext="'배송지' + '<br><br>' + ${row.orderAddr}"></td>
+									<td th:if="${row.paymentMethod != null}" th:utext="'결제방법' + '<br><br>' + ${row.paymentMethod}"></td>
+									<td></td>
+									<td th:if="${row.orderNotes != null}" th:utext="'주문 메시지' + '<br><br>' + ${row.orderNotes }"></td>
+									<td th:text="${row.updateDate != null ? '교환/환불 날짜' + #temporals.format(row.updateDate, 'yyyy-MM-dd') : '주문완료'}"></td>
+
+								</tr>
+							</div>
+							
+							<tr th:unless="${not #lists.isEmpty(orderList)}">
+								<td colspan="5">주문 내역이 없습니다.</td>
+							</tr>
+						
+						</table>
+					</div>
+
+				</div>
+			</div>
+		</main>
+	</div>
+</body>
+
+<script src="/js/login-page.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    // JavaScript로 숨겨진 데이터 토글 처리
+    function toggleData(button) {
+        var index = button.getAttribute('data-index');
+        var hiddenRow = document.getElementById('hiddenData' + index);
+
+        if (hiddenRow.style.display === 'none' || hiddenRow.style.display === '') {
+            hiddenRow.style.display = 'table-row';
+        } else {
+            hiddenRow.style.display = 'none';
+        }
+    }
+</script>
+
+
+</html>

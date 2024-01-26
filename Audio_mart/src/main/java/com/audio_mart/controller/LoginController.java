@@ -21,10 +21,7 @@ public class LoginController extends UiUtils{
 	@Autowired
 	private MemberService memberService;
 	
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
-	
-	// 로그인,가입 폼
+	// 로그인,가입 뷰 보여주기
 	@GetMapping("/member/login")
 	public String showLoginPage(Model model, HttpSession session) {
 
@@ -37,7 +34,7 @@ public class LoginController extends UiUtils{
 	}
 	
 	// 로그인 post
-	@PostMapping(value = "/member/signin")
+	@PostMapping("/member/signin")
 	public String signin(@RequestParam("custid") String custid, @RequestParam("pwd") String pwd, HttpSession session, Model model) {
 		
 		if (memberService.login(custid, pwd)) {

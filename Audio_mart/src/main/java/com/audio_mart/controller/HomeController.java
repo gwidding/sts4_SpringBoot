@@ -8,23 +8,35 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.audio_mart.constant.Method;
 import com.audio_mart.domain.CartDTO;
 import com.audio_mart.domain.MemberDTO;
+import com.audio_mart.domain.OrderDetailDTO;
 import com.audio_mart.domain.ProductDTO;
+import com.audio_mart.domain.ProductImgDTO;
 import com.audio_mart.service.MemberService;
+import com.audio_mart.service.OrderService;
+import com.audio_mart.service.ProductImgService;
 import com.audio_mart.service.ProductService;
+import com.audio_mart.util.UiUtils;
 
 import jakarta.servlet.http.HttpSession;
 
 
 @Controller
-public class HomeController {
+public class HomeController extends UiUtils {
 	
 	@Autowired
 	private MemberService memberService;
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ProductImgService imgService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	private MemberDTO getMemberInfo(HttpSession session) {
         Long idx = (Long) session.getAttribute("idx");
@@ -44,11 +56,11 @@ public class HomeController {
     }
     
     @GetMapping("/admin")
-    public String openAdminPage(HttpSession session) {
+    public String openAdminPage(Model model, HttpSession session) {
         MemberDTO memberInfo = getMemberInfo(session);
         if (memberInfo == null || memberInfo.isAdmin() == false) {
         	System.out.println("관리자 외에 허용되지 않은 접근입니다.");
-        	return "redirect:/home";
+        	return showMessageWithRedirect("관리자 외에 허용되지 않은 접근입니다.", "/home", Method.GET, null, model);
         }
         return "manage/admin";
     }
@@ -60,8 +72,24 @@ public class HomeController {
             System.out.println("로그인 해야 마이페이지 들어가짐");
             return "redirect:/home";
         }
+        
         model.addAttribute("memberInfo", memberInfo);
         return "member/myaccount";
+    }
+    // 주문 목록 보기
+    @GetMapping("/member/myOrder")
+    public String openMyOrder(Model model, HttpSession session) {
+    	
+    	MemberDTO memberInfo = getMemberInfo(session);
+    	
+    	if (memberInfo != null) {
+    		model.addAttribute("memberInfo", memberInfo);
+    		List<OrderDetailDTO> orderList = orderService.getOrderList(memberInfo.getIdx());
+    		model.addAttribute("orderList", orderList);
+    	} else {    		
+    		return showMessageWithRedirect("로그인이 필요합니다.", "/home", Method.GET, null, model);
+    	}
+    	return "member/my_orderList";
     }
     
     @GetMapping("/product")
@@ -95,7 +123,10 @@ public class HomeController {
             model.addAttribute("memberInfo", memberInfo);
         }
         ProductDTO product = productService.findByProductId(productId);
-        model.addAttribute("product", product);
+        List<ProductImgDTO> imgList = imgService.getImgList(productId);
+        
+        model.addAttribute("product", product);        
+        model.addAttribute("imgList", imgList);
         model.addAttribute("newCart", new CartDTO());
         
         return "item/product-detail";  	

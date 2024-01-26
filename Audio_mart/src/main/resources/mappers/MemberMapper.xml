@@ -59,7 +59,6 @@
 		SET 
 			update_time = NOW()
 			, custname = #{custname}
-			, pwd = #{pwd}
 			, phone = #{phone}
 			, addr = #{addr}
 		WHERE

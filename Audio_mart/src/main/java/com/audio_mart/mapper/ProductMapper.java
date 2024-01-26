@@ -6,11 +6,13 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.ProductDTO;
+import com.audio_mart.domain.ProductImgDTO;
 
 @Mapper
 public interface ProductMapper {
 	
 	public boolean insertProduct(ProductDTO params);
+	public boolean insertImg(ProductImgDTO params);
 	public List<CategoryDTO> cateList();
 	public ProductDTO findByProductId(Long productId);
 	public boolean updateProduct(ProductDTO params);

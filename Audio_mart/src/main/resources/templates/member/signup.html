@@ -14,9 +14,9 @@
 		<div class="container__form container--signup">
 			<form class="form" id="join" th:action="@{/member/register}" th:object="${newMember}" method="post" onsubmit="return registerMember(this)">
 				<h2 class="form__title">Sign Up</h2>
-				<input type="text" th:field="*{custid}" placeholder="아이디" class="input"  maxlength="8" title="영어, 숫자로 4-8자만 가능합니다."/>
-				<input type="password" th:field="*{pwd}" placeholder="비밀번호" class="input"  maxlength="20" title="영어, 숫자로 8-20자만 가능합니다."/>
-				<input type="text" th:field="*{custname}" placeholder="이름" class="input" maxlength="10" title="한글 이름을 적어주세요."/>
+				<input type="text" th:field="*{custid}" placeholder="아이디" class="input"  maxlength="20" title="영어, 숫자로 4-20자만 가능합니다."/>
+				<input type="password" th:field="*{pwd}" placeholder="비밀번호" class="input"  maxlength="16" title="영어, 숫자로 8-16자만 가능합니다."/>
+				<input type="text" th:field="*{custname}" placeholder="이름" class="input" maxlength="10" title="한글로만 이름을 적어주세요."/>
 				<input type="text" th:field="*{phone}" placeholder="010-0000-0000" maxlength="13" class="input" />
 				<input type="text" id="member_addr" th:field="*{addr}" placeholder="주소" class="input" readonly onclick="findAddr()"/>
 				<button type="submit" class="btn" title="회원가입">Sign Up</button>

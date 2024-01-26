@@ -1,161 +1,167 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
 	<meta charset="UTF-8">
-	<title>계정관리</title>	
+	<title>계정관리</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/my-page.css">
 </head>
 
 <body>
-	<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+	<div class="container">
+		<!-- Header -->
+		<header class="bg-surface-primary border-bottom pt-6">
+			<div class="side">
+				<!-- Title -->
+				<h1 class="title">마이 페이지</h1>
 
-	  <!-- Main content -->
-	  <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-		  
-	    <!-- Header -->
-	    <header class="bg-surface-primary border-bottom pt-6">
-	      <div class="container-fluid">
-	        <div class="mb-npx">
-	          <div class="row align-items-center">
-	            <div class="col-sm-6 col-12 mb-4 mb-sm-0">
-	              <!-- Title -->
-	              <h1 class="h2 mb-0 ls-tight">마이 페이지</h1>
-	            </div>
-	            
-	            <!-- Actions -->
-	            <div class="col-sm-6 col-12 text-sm-end">
-	              <div class="mx-n1">
-	                <a th:href="@{/home}" class="btn d-inline-flex btn-sm btn-primary mx-1">
-	                  <span class=" pe-2">
-	                    <i class="bi bi-pencil"></i>
-	                  </span>
-	                  <span> < Home 돌아가기</span>
-	                </a>
-	              </div>
-	            </div>
-	          </div>
-	          
-	          <!-- Nav -->
-	          <ul class="nav nav-tabs mt-4 overflow-x border-0">
-	            <li class="nav-item ">
-	              <a href="#" class="nav-link active">All files</a>
-	            </li>
-	            <li class="nav-item">
-	              <a href="#" class="nav-link font-regular">Shared</a>
-	            </li>
-	            <li class="nav-item">
-	              <a href="#" class="nav-link font-regular">File requests</a>
-	            </li>
-	          </ul>
-	        </div>
-	      </div>
-	    </header>
-	    
-	    <!-- Main -->
-	    <main class="py-6 bg-surface-secondary">
-	      <div class="container-fluid">
-	        <div class="row">
-	          <div class="col-xl-7 mx-auto">           
-	           
-	            <!-- Form -->
-	            <div class="mb-5">
-	              <h4 class="mb-0">내 정보</h4>
-	            </div>
-	            
-	            <form class="mb-6" th:action="@{/member/update}" method="post" th:object="${memberInfo}" onsubmit="return updateMember(this)">
-					<input type="hidden" th:if="${memberInfo != null}" th:field="*{idx}" />
-					<input type="hidden" th:if="${memberInfo != null}" th:field="*{custid}" />
-	              <div class="row mb-5">
-					  
-	                <div class="col-md-6">
-		                <label class="form-label" for="custname">이름</label>
-		                <input type="text" th:field="*{custname}" class="form-control" id="custname">
-	                </div>
-	                
-	                <div class="col-md-6">
-	                    <label class="form-label" for="pwd">비밀번호</label>
-	                    <input type="text" th:field="*{pwd}" class="form-control" id="pwd">
-	                </div>
-	                <div class="col-md-6">
-	                    <label class="form-label" for="phone">전화번호</label>
-	                    <input type="tel" th:field="*{phone}" class="form-control" id="phone">
-	                </div>
-	               
-	                <div class="col-md-6">
-	                    <label class="form-label" for="joinTime">가입일자</label>
-	                    <p class="form-control" th:text="*{#temporals.format( joinTime, 'yyyy-MM-dd' )}"></p>
-	                </div>
-	                
-	                 <div class="col-12">  
-	                    <label class="form-label" for="addr">기본 주소</label>
-	                    <input type="text" th:field="*{addr}" class="form-control" id="addr">
-	                </div>
-	                
-	              </div>
-	              
-	              <div class="text-end" th:object="${params}">
-	                <button type="button" onclick="reloadPage()" class="btn btn-sm btn-neutral me-2">복구하기</button>
-	                <button type="submit" class="btn btn-sm btn-primary">저장하기</button>
-	                <button type="button" th:onclick="deleteMember([[ ${memberInfo.idx} ]])">탈퇴하기</button>
-	              </div>
-	              
-	            </form>
-	            <hr class="my-10" />
-	            
-	            
-	            
-	          </div>
-	        </div>
-	      </div>
-	    </main>
-	    
-	  </div>
+				<button type="button" class="btn" th:onclick="|location.href='@{/home}'|">홈으로 돌아가기</button>
+			</div>
+
+			<!-- Nav -->
+			<ul class="nav nav-tabs mt-4 overflow-x border-0">
+				<li class="nav-item ">
+					<a th:href="@{myaccount}" class="nav-link active">내 정보</a>
+				</li>
+				<li class="nav-item">
+					<a th:href="@{myOrder}" class="nav-link font-regular">주문 목록</a>
+				</li>
+			</ul>
+		</header>
+
+		<!-- Main -->
+		<main>
+			<div class="row">
+				<div class="main-box">
+
+					<!-- Form -->
+					<div>
+						<h4 class="sub-title">계정 관리</h4>
+					</div>
+
+					<form class="form" th:action="@{/member/update}" method="post" th:object="${memberInfo}"
+						onsubmit="return updateMember(this)">
+
+						<input type="hidden" th:if="${memberInfo != null}" th:field="*{idx}" />
+						<input type="hidden" th:if="${memberInfo != null}" th:field="*{custid}" />
+						<div class="row mb-5">
+
+							<div class="col-md-6">
+								<label class="form-label" for="custname">이름</label>
+								<input type="text" th:field="*{custname}" th:placeholder="*{custname}" class="input"
+									id="custname" maxlength="10" title="한글로만 이름을 적어주세요." />
+							</div>
+
+							<!--	                <div class="col-md-6">
+		                    <label class="form-label" for="pwd">비밀번호</label>
+		                    <input type="password" th:field="*{pwd}" class="form-control" id="pwd" title="비밀번호 변경이 불가합니다." readonly/>
+		                </div>-->
+							<div class="col-md-6">
+								<label class="form-label" for="phone">전화번호</label>
+								<input type="tel" th:field="*{phone}" th:placeholder="*{phone}" class="input" id="phone"
+									placeholder="010-0000-0000" maxlength="13" title="010-0000-0000 형식으로 작성해 주세요." />
+							</div>
+
+							<div class="col-md-6">
+								<label class="form-label" for="joinTime">가입일자</label>
+								<p class="input" th:text="*{#temporals.format( joinTime, 'yyyy-MM-dd' )}"></p>
+							</div>
+
+							<div class="col-12">
+								<label class="form-label" for="addr">기본 주소</label>
+								<input type="text" th:field="*{addr}" class="input" id="addr" readonly
+									onclick="findAddr()" />
+							</div>
+
+						</div>
+
+						<div class="btn-box" th:object="${params}">
+							<button type="button" class="btn"
+								th:onclick="deleteMember([[ ${memberInfo.idx} ]])">탈퇴하기</button>
+							<button type="button" class="btn" onclick="reloadPage()">복구하기</button>
+							<button type="submit" class="btn">저장하기</button>
+						</div>
+					</form>
+
+					<hr class="my-10" />
+
+				</div>
+			</div>
+		</main>
+
 	</div>
+
 </body>
 
 <script src="/js/login-page.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+	function findAddr() {
+		new daum.Postcode({
+			oncomplete: function (data) {
+
+				console.log(data);
+
+				var roadAddr = data.roadAddress; // 도로명 주소 변수
+				var jibunAddr = data.jibunAddress; // 지번 주소 변수
+
+				var fullAddress = '';
+
+				if (roadAddr !== '') {
+					fullAddress += roadAddr;
+				}
+				else if (jibunAddr !== '') {
+					fullAddress += jibunAddr;
+				}
+				document.getElementById("addr").value = fullAddress;
+			}
+		}).open();
+	}
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script th:inline="javascript">
 	/* <![CDATA[ */
 	function updateMember(form) {
 		var result = (
 			isValid(form.custname, "이름", null, null)
-			&& isValid(form.pwd, "비밀번호", null, null)
 			&& isValid(form.phone, "전화번호", null, null)
-			&& isValid(form.addr, "기본주소", null, null)		
+			&& isValid(form.addr, "기본주소", null, null)
 		);
-		
+
 		if (result == false) {
 			return false;
 		}
 	}
-	
+
 	function deleteMember(idx, queryString) {
 		if (confirm(idx + "번 회원님  탈퇴를 진행하겠습니까?")) {
 			var uri = /*[[ @{/member/delete} ]]*/ null;
 			var html = "";
-	
-			html += '<form name="dataForm" action="'+uri+'" method="post">';
-			html += '<input type="hidden" name="idx" value="' +idx+'" />';
-			
+
+			html += '<form name="dataForm" action="' + uri + '" method="post">';
+			html += '<input type="hidden" name="idx" value="' + idx + '" />';
+
 			queryString = new URLSearchParams(queryString);
-			queryString.forEach(function(value, key) {
+			queryString.forEach(function (value, key) {
 				if (isEmpty(value) == false) {
 					html += '<input type="hidden" name="' + key + '" value="' + value + '" />';
 				}
 			});
-	
+
 			html += '</form>';
-	
+
 			$("body").append(html);
 			document.dataForm.submit();
-			
+
 			logoutUser();
 		}
 	}
-	
+
 	function logoutUser() {
-		$.get("/member/logout", function(resposne) {
+		$.get("/member/logout", function (resposne) {
 			alert("로그아웃 되었습니다. 다시 로그인해 주세요");
 		})
 	}

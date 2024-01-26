@@ -14,8 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.domain.ProductDTO;
+import com.audio_mart.domain.ProductImgDTO;
 import com.audio_mart.service.MemberService;
-import com.audio_mart.service.ProductImgServiceImpl;
+import com.audio_mart.service.ProductImgService;
 import com.audio_mart.service.ProductService;
 import com.audio_mart.util.UiUtils;
 
@@ -28,6 +29,8 @@ public class AdminController extends UiUtils{
 	private MemberService memberService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ProductImgService imgService;
 	
 	/* ----------------------회원 관리 - 관리자 확인---------------------------*/
 	
@@ -102,10 +105,16 @@ public class AdminController extends UiUtils{
 			}
 			if (!imgFile.isEmpty()) {
                 // 파일 업로드 및 파일명 DB에 저장
-//                ProductImgServiceImpl.saveImg(params, imgFile);
-//                productService.updateProductImageFileName(params);
+				ProductImgDTO imgInfo = new ProductImgDTO();
+				imgInfo.setImgPath("images/products/");
+				imgInfo.setImgName(imgFile.getOriginalFilename());
+				System.out.println("상품 이미지 정보 : " + imgInfo);
+				
+				boolean isImgUpload = productService.uploadPImg(imgInfo);
+				if (!isImgUpload) {
+					System.out.println("상품 이미지 등록에 실패했습니다.");
+				}
             }
-			System.out.println(imgFile.getOriginalFilename());
 			
 		} catch (DataAccessException e) {
 			System.out.println("상품등록 - DB에 문제");

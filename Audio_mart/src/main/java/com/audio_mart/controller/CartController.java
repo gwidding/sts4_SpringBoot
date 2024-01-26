@@ -32,7 +32,7 @@ public class CartController extends UiUtils{
 	@Autowired
 	private OrderService orderService;
 	
-	
+	// 회원 로그인 확인
 	private MemberDTO getMemberInfo(HttpSession session) {
         Long idx = (Long) session.getAttribute("idx");
         if (idx != null) {
@@ -58,7 +58,7 @@ public class CartController extends UiUtils{
     	
     	return "cart/shopping-cart";
     }
-    
+    // 장바구니 추가하기
     @PostMapping("/add-to-cart")
     public String addToCart(final CartDTO params, HttpSession session, Model model) {
     	MemberDTO memberInfo = getMemberInfo(session);
@@ -72,6 +72,7 @@ public class CartController extends UiUtils{
     	}
     }
     
+    // 장바구니 상품 삭제
     @PostMapping("/cart/delete")
 	public String deleteCart(@RequestParam(value ="cartId", required = false) Long cartId) {
 		if (cartId < 1) {

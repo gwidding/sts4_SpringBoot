@@ -15,19 +15,14 @@ public class ImgTests {
 	
 	@Test
 	public void registerImg() {
-		for (int i = 1; i <= 3; i++) {
 			ProductImgDTO params = new ProductImgDTO();
-			params.setImgName(i + "번 이미지 이름");
-			params.setImgPath(i + "번 이미지 경로");
-			if (i == 2) {
-				params.setMemo("메모");				
-			}
-			params.setProductId((long) 2);
-			if (i == 3) {
-				params.setIsRep(1);				
-			}
+			params.setImgName("cuteDog.jpg");
+			params.setImgPath("images/products/");
+			params.setMemo("메모");						
+			params.setProductId((long) 28);
+		
 			imgService.registerImg(params);
-		}
+		
 		System.out.println("이미지 DB 등록 테스트");
 	}
 	
