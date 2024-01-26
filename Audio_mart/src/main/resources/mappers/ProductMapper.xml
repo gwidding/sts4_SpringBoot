@@ -39,23 +39,16 @@
 			,null
 			,null	
 		)
-		<selectKey resultType="int" keyProperty="productId" order="AFTER">
+		<selectKey resultType="long" keyProperty="productId" order="AFTER">
 	        SELECT LAST_INSERT_ID()
 	    </selectKey>
 	</insert>
 	
 	<insert id="insertImg" parameterType="ProductImgDTO">
 		INSERT INTO product_image (
-			img_id, product_id, img_name, img_path
-			, is_rep, delete_yn, memo
+			product_id, img_name, img_path, is_rep, delete_yn, memo
 		) VALUES (
-			#{imgId}
-			, #{productId}
-			, #{imgName}
-			, #{imgPath}
-			, IFNULL(#{isRep}, 0)
-			, 'N'
-			, #{memo}
+			#{productId}, #{imgName}, #{imgPath}, IFNULL(#{isRep}, 0), 'N', #{memo}
 		)
 	</insert>
 	

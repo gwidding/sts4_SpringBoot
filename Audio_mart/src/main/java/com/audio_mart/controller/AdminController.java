@@ -100,12 +100,12 @@ public class AdminController extends UiUtils{
         
 		try {
 			boolean isRegisterd = productService.uploadProduct(params);
-			if (isRegisterd == false) {
+			if (!isRegisterd) {
 				System.out.println("상품 등록에 실패했습니다.");
 			}
 			if (!imgFile.isEmpty()) {
-                // 파일 업로드 및 파일명 DB에 저장
 				ProductImgDTO imgInfo = new ProductImgDTO();
+				imgInfo.setProductId(params.getProductId());
 				imgInfo.setImgPath("images/products/");
 				imgInfo.setImgName(imgFile.getOriginalFilename());
 				System.out.println("상품 이미지 정보 : " + imgInfo);
@@ -117,6 +117,7 @@ public class AdminController extends UiUtils{
             }
 			
 		} catch (DataAccessException e) {
+			e.printStackTrace();
 			System.out.println("상품등록 - DB에 문제");
 		} catch (Exception e) {
 			System.out.println("상품등록 - 시스템 문제");
