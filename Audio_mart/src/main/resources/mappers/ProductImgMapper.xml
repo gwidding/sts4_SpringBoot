@@ -14,7 +14,8 @@
 
 	<insert id="insertImg" parameterType="ProductImgDTO">
 		INSERT INTO product_image (
-			<include refid="productImageColumns" />
+			img_id, product_id, img_name, img_path
+			, is_rep, delete_yn, memo
 		) VALUES (
 			#{imgId}
 			, #{productId}

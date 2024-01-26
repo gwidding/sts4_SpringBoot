@@ -9,7 +9,7 @@ public class ProductImgDTO {
 	private int isRep;
 	private String deleteYn;
 	private String memo;
-	
+
 
 	public Long getImgId() {
 		return imgId;

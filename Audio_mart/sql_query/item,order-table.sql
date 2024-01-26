@@ -83,11 +83,19 @@ CREATE TABLE cart (
 );
 
 select * from orders;
-select * from orderDetail;
+select * from product_image;
 select * from cart;
 select * from product;
 select * from member;
 select * from orderDetail where member_idx = 2;
+
+SELECT
+	p.*, pi.img_path, pi.img_name, pi.is_rep, pi.delete_yn, pi.memo
+FROM product p
+	LEFT JOIN product_image pi ON p.product_id = pi.product_id
+WHERE
+	p.product_id = 2;
+    
 
 SELECT od.*
 FROM orderDetail od

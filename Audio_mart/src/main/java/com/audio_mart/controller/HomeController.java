@@ -13,8 +13,10 @@ import com.audio_mart.domain.CartDTO;
 import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.domain.OrderDetailDTO;
 import com.audio_mart.domain.ProductDTO;
+import com.audio_mart.domain.ProductImgDTO;
 import com.audio_mart.service.MemberService;
 import com.audio_mart.service.OrderService;
+import com.audio_mart.service.ProductImgService;
 import com.audio_mart.service.ProductService;
 import com.audio_mart.util.UiUtils;
 
@@ -29,6 +31,9 @@ public class HomeController extends UiUtils {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ProductImgService imgService;
 	
 	@Autowired
 	private OrderService orderService;
@@ -118,7 +123,10 @@ public class HomeController extends UiUtils {
             model.addAttribute("memberInfo", memberInfo);
         }
         ProductDTO product = productService.findByProductId(productId);
-        model.addAttribute("product", product);
+        List<ProductImgDTO> imgList = imgService.getImgList(productId);
+        
+        model.addAttribute("product", product);        
+        model.addAttribute("imgList", imgList);
         model.addAttribute("newCart", new CartDTO());
         
         return "item/product-detail";  	

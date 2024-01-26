@@ -39,6 +39,24 @@
 			,null
 			,null	
 		)
+		<selectKey resultType="int" keyProperty="productId" order="AFTER">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey>
+	</insert>
+	
+	<insert id="insertImg" parameterType="ProductImgDTO">
+		INSERT INTO product_image (
+			img_id, product_id, img_name, img_path
+			, is_rep, delete_yn, memo
+		) VALUES (
+			#{imgId}
+			, #{productId}
+			, #{imgName}
+			, #{imgPath}
+			, IFNULL(#{isRep}, 0)
+			, 'N'
+			, #{memo}
+		)
 	</insert>
 	
 	<update id="saveImg" parameterType="ProductDTO">
@@ -48,7 +66,7 @@
 			thumb_img = #{thumbImg}
 			, img_path = #{imgPath}
 		where
-			product_id = #{productId} 
+			product_id = #{productId}
 	</update>
 	
 	<select id="findByProductId" parameterType="long" resultType="ProductDTO">

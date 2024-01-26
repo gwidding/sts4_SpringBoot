@@ -4,11 +4,14 @@ import java.util.List;
 
 import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.ProductDTO;
+import com.audio_mart.domain.ProductImgDTO;
 
 public interface ProductService {
 	
 	// 상품 등록하기
 	public boolean uploadProduct(ProductDTO params);
+	// 상품 이미지 등록하기
+	public boolean uploadPImg(ProductImgDTO params);
 	// 상품 카테고리 목록 가져오기
 	public List<CategoryDTO> getCategoryList();
 	// 상품 수정하기

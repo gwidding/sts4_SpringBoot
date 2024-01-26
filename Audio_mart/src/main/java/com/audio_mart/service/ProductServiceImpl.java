@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.audio_mart.domain.CategoryDTO;
 import com.audio_mart.domain.ProductDTO;
+import com.audio_mart.domain.ProductImgDTO;
 import com.audio_mart.mapper.ProductMapper;
 
 @Service
@@ -18,6 +19,12 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public boolean uploadProduct(ProductDTO params) {
 		boolean	queryResult = productMapper.insertProduct(params);
+		return queryResult;
+	}
+	
+	@Override
+	public boolean uploadPImg(ProductImgDTO params) {
+		boolean queryResult = productMapper.insertImg(params);
 		return queryResult;
 	}
 	
@@ -56,6 +63,8 @@ public class ProductServiceImpl implements ProductService{
 		List<ProductDTO> deletionList = productMapper.deletionList();
 		return deletionList;
 	}
+
+
 	
 
 }
