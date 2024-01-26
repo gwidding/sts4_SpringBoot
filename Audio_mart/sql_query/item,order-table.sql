@@ -75,7 +75,7 @@ CREATE TABLE cart (
     , foreign key (member_id) references member(idx)
     , foreign key (product_id) references product(product_id)
 );
-
+desc member;
 select * from orders;
 select * from orderDetail;
 select * from cart;
