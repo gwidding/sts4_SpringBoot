@@ -234,7 +234,7 @@
 				html += '<form name="dataForm" action="' + uri + '" method="post">';
 				html += '<input type="hidden" name="cartId" value="' + idx + '"/>';
 				
-				 // CSRF 토큰 추가
+				 // CSRF 토큰 추가 - 보안
 				 html += '<input type="hidden" name="' + csrfParameter + '" value="' + csrfToken + '"/>';
 				
 				html += '</form>';

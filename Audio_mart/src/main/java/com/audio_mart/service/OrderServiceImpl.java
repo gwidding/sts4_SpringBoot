@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
 			System.out.println("주문 수 증가 실패");
 		}
 		if (!stockResult) {
-			System.out.println("재고 수 관리 실패");
+			System.out.println("재고 수 감소 실패");
 		}
 		if (queryResult) {
 			emptyCart = orderMapper.emptyCartForOrder(memberId);
