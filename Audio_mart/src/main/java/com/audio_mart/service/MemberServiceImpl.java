@@ -39,7 +39,6 @@ public class MemberServiceImpl implements MemberService {
 		return queryResult;
 	}
 
-
 	@Override
 	public MemberDTO findByIdx(Long idx) {
 		MemberDTO member = memberMapper.findByIdx(idx);
@@ -80,10 +79,5 @@ public class MemberServiceImpl implements MemberService {
 		return memberList;
 	}
 
-	
-
-
-
-	
 
 }

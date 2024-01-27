@@ -12,7 +12,7 @@ import com.audio_mart.domain.ProductImgDTO;
 public interface ProductMapper {
 	
 	public boolean insertProduct(ProductDTO params);
-	public boolean insertImg(ProductImgDTO params);
+	public boolean insertImg(List<ProductImgDTO> imgList);
 	public List<CategoryDTO> cateList();
 	public ProductDTO findByProductId(Long productId);
 	public boolean updateProduct(ProductDTO params);

@@ -23,8 +23,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public boolean uploadPImg(ProductImgDTO params) {
-		boolean queryResult = productMapper.insertImg(params);
+	public boolean uploadPImg(List<ProductImgDTO> imgList) {
+		boolean queryResult = productMapper.insertImg(imgList);
 		return queryResult;
 	}
 	

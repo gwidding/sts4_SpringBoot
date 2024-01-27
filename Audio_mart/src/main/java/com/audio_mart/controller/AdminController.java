@@ -1,5 +1,6 @@
 package com.audio_mart.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +92,7 @@ public class AdminController extends UiUtils{
 	
 	// 상품 등록하기
 	@PostMapping("/admin/registerItem")
-	public String registerProduct(final ProductDTO params, @RequestParam("imgFile") MultipartFile imgFile, 
+	public String registerProduct(final ProductDTO params, @RequestParam("imgFile") List<MultipartFile> imgFile, 
 										HttpSession session, Model model) {
 		// 관리자 확인
 		if (!isAdmin(session)) {
@@ -104,13 +105,19 @@ public class AdminController extends UiUtils{
 				System.out.println("상품 등록에 실패했습니다.");
 			}
 			if (!imgFile.isEmpty()) {
-				ProductImgDTO imgInfo = new ProductImgDTO();
-				imgInfo.setProductId(params.getProductId());
-				imgInfo.setImgPath("images/products/");
-				imgInfo.setImgName(imgFile.getOriginalFilename());
-				System.out.println("상품 이미지 정보 : " + imgInfo);
+				List<ProductImgDTO> imgList = new ArrayList<>();
 				
-				boolean isImgUpload = productService.uploadPImg(imgInfo);
+				for (MultipartFile file : imgFile) {
+					
+					ProductImgDTO imgInfo = new ProductImgDTO();
+					imgInfo.setProductId(params.getProductId());
+					imgInfo.setImgPath("images/products/");
+					imgInfo.setImgName(file.getOriginalFilename());					
+					imgList.add(imgInfo);
+				}
+				System.out.println(imgList);
+				
+				boolean isImgUpload = productService.uploadPImg(imgList);
 				if (!isImgUpload) {
 					System.out.println("상품 이미지 등록에 실패했습니다.");
 				}

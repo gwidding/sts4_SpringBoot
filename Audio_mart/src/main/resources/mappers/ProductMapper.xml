@@ -44,12 +44,15 @@
 	    </selectKey>
 	</insert>
 	
-	<insert id="insertImg" parameterType="ProductImgDTO">
+	<insert id="insertImg" parameterType="java.util.List">
 		INSERT INTO product_image (
 			product_id, img_name, img_path, is_rep, delete_yn, memo
-		) VALUES (
-			#{productId}, #{imgName}, #{imgPath}, IFNULL(#{isRep}, 0), 'N', #{memo}
+		) VALUES
+		 <foreach collection="list" item="item" separator=","> 
+		(
+			#{item.productId}, #{item.imgName}, #{item.imgPath}, IFNULL(#{item.isRep}, 0), 'N', #{item.memo}
 		)
+		</foreach>
 	</insert>
 	
 	<update id="saveImg" parameterType="ProductDTO">
