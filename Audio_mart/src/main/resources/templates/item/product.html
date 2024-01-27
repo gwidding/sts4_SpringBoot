@@ -275,7 +275,8 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<a th:href="@{/product-detail( productId=${product.productId} )}">
-								<img src="images/product-01.jpg" alt="IMG-PRODUCT">
+								<img th:if="${product.thumbPath == null or product.thumbName == null}" src="images/product-01.jpg" class="img-fixed-size" alt="IMG-PRODUCT">
+                  				<img th:unless="${product.thumbPath == null or product.thumbName == null}" th:src="${product.thumbPath + product.thumbName}" class="img-fixed-size" alt="IMG-PRODUCT">
 							</a>
 						</div>
 

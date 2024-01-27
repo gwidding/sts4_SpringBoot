@@ -3049,7 +3049,13 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*//////////////////////////////////////////////////////////////////
-[ Hover ]*/
+[ Hover, 상품이미지 ]*/
+
+.img-fixed-size {
+    width: 270px;
+    height: 270px;
+    object-fit: cover; /* 이미지의 비율 유지하면서, 요소의 크기에 맞게 조절 */
+}
 
 .hov-cl0:hover {color: #fff;}
 .hov-bg0:hover {background-color: #fff;}

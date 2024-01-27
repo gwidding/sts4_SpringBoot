@@ -17,7 +17,6 @@ import com.audio_mart.domain.MemberDTO;
 import com.audio_mart.domain.ProductDTO;
 import com.audio_mart.domain.ProductImgDTO;
 import com.audio_mart.service.MemberService;
-import com.audio_mart.service.ProductImgService;
 import com.audio_mart.service.ProductService;
 import com.audio_mart.util.UiUtils;
 
@@ -30,8 +29,6 @@ public class AdminController extends UiUtils{
 	private MemberService memberService;
 	@Autowired
 	private ProductService productService;
-	@Autowired
-	private ProductImgService imgService;
 	
 	/* ----------------------회원 관리 - 관리자 확인---------------------------*/
 	
@@ -100,7 +97,14 @@ public class AdminController extends UiUtils{
         }
         
 		try {
+			// 썸네일 이미지 저장
+			if (!imgFile.isEmpty()) {
+				MultipartFile firstImg = imgFile.get(0);
+				params.setThumbName(firstImg.getOriginalFilename());
+				params.setThumbPath("images/products/");
+			}
 			boolean isRegisterd = productService.uploadProduct(params);
+			
 			if (!isRegisterd) {
 				System.out.println("상품 등록에 실패했습니다.");
 			}

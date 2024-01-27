@@ -17,15 +17,9 @@ public class ProductDTO {
 	private LocalDateTime deleteDate;
 	private LocalDateTime updateDate;
 	
-	private String thumbImg;
-	private String imgPath;
+	private String thumbName;
+	private String thumbPath;
 	
-	public String getImgPath() {
-		return imgPath;
-	}
-	public void setImgPath(String imgPath) {
-		this.imgPath = imgPath;
-	}
 	public Long getProductId() {
 		return productId;
 	}
@@ -99,23 +93,24 @@ public class ProductDTO {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
-	
-	public String getThumbImg() {
-		return thumbImg;
+	public String getThumbName() {
+		return thumbName;
 	}
-	public void setThumbImg(String thumbImg) {
-		this.thumbImg = thumbImg;
+	public void setThumbName(String thumbName) {
+		this.thumbName = thumbName;
+	}
+	public String getThumbPath() {
+		return thumbPath;
+	}
+	public void setThumbPath(String thumbPath) {
+		this.thumbPath = thumbPath;
 	}
 	@Override
 	public String toString() {
 		return "ProductDTO [productId=" + productId + ", cateId=" + cateId + ", pname=" + pname + ", pprice=" + pprice
 				+ ", stock=" + stock + ", description=" + description + ", orderCnt=" + orderCnt + ", viewCnt="
 				+ viewCnt + ", registerDate=" + registerDate + ", deleteYn=" + deleteYn + ", deleteDate=" + deleteDate
-				+ ", updateDate=" + updateDate + ", thumbImg=" + thumbImg + ", imgPath=" + imgPath + "]";
+				+ ", updateDate=" + updateDate + ", thumbName=" + thumbName + ", thumbPath=" + thumbPath + "]";
 	}
-	
-
-
 
 }

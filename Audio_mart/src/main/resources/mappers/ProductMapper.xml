@@ -24,20 +24,11 @@
 	
 	<insert id="insertProduct"  parameterType="ProductDTO">
 		INSERT INTO product (
-			<include refid="productColumns" />
+			product_id, cate_id, pname, pprice, stock, description, order_cnt
+			, view_cnt, register_date, delete_yn, delete_date, update_date, thumb_name, thumb_path
 		) VALUES (
-			#{productId}
-			,#{cateId}
-			,#{pname}
-			,#{pprice}
-			,#{stock}
-			,#{description}
-			,0
-			,0
-			,now()
-			,'N'
-			,null
-			,null	
+			#{productId}, #{cateId}, #{pname}, #{pprice}, #{stock} ,#{description},0
+			,0, now(), 'N', null, null, #{thumbName}, #{thumbPath}
 		)
 		<selectKey resultType="long" keyProperty="productId" order="AFTER">
 	        SELECT LAST_INSERT_ID()
@@ -60,7 +51,7 @@
 			product 
 		set 
 			thumb_img = #{thumbImg}
-			, img_path = #{imgPath}
+			, thumb_path = #{thumbPath}
 		where
 			product_id = #{productId}
 	</update>

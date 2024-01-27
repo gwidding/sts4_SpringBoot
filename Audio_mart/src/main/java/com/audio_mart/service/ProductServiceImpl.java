@@ -19,6 +19,7 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public boolean uploadProduct(ProductDTO params) {
 		boolean	queryResult = productMapper.insertProduct(params);
+		
 		return queryResult;
 	}
 	
