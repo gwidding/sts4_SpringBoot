@@ -18,6 +18,8 @@ public interface ProductService {
 	public boolean updateProduct(ProductDTO params);
 	// 한 상품 정보 가져오기
 	public ProductDTO findByProductId(Long ProductId);
+	// 상품 조회 수 증가하기
+	public boolean increaseViewCnt(Long ProductId);
 	// 상품 삭제하기
 	public boolean removeProduct(Long productId);
 	// 상품 목록 가져오기

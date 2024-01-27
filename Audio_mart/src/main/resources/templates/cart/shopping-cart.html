@@ -225,11 +225,20 @@
 			
 			if (confirm(idx + "번 상품을 장바구니에서 삭제하겠습니까?")) {
 				var uri = /*[[ @{/cart/delete} ]]*/ null;
+				
+				// CSRF 토큰 가져오기
+	            var csrfParameter = /*[[${_csrf.parameterName}]]*/ '_csrf';
+	            var csrfToken = /*[[${_csrf.token}]]*/ null;
+
 				var html = "";
 				html += '<form name="dataForm" action="' + uri + '" method="post">';
 				html += '<input type="hidden" name="cartId" value="' + idx + '"/>';
-	
+				
+				 // CSRF 토큰 추가
+				 html += '<input type="hidden" name="' + csrfParameter + '" value="' + csrfToken + '"/>';
+				
 				html += '</form>';
+				alert(html);
 				$("body").append(html);
 				document.dataForm.submit();
 			}

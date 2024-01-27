@@ -8,12 +8,15 @@ import org.springframework.stereotype.Service;
 import com.audio_mart.domain.OrderDetailDTO;
 import com.audio_mart.domain.OrdersDTO;
 import com.audio_mart.mapper.OrderMapper;
+import com.audio_mart.mapper.ProductMapper;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OrderMapper orderMapper;
+	@Autowired
+	ProductMapper productMapper;
 	
 	@Override
 	public boolean addToOrder(OrdersDTO params) {
@@ -25,9 +28,21 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public boolean addToOrderDetail(OrderDetailDTO params) {
 		boolean queryResult = orderMapper.insertOrderDetail(params);
+		
+		Long orderId = params.getOrderId();
+		Long memberId = params.getMemberId();
 		boolean emptyCart = false;
+		boolean orderCntResult = productMapper.increaseOrderCnt(orderId);
+		boolean stockResult = productMapper.decreaseStock(orderId);
+		
+		if (!orderCntResult) {
+			System.out.println("주문 수 증가 실패");
+		}
+		if (!stockResult) {
+			System.out.println("재고 수 관리 실패");
+		}
 		if (queryResult) {
-			emptyCart = orderMapper.emptyCartForOrder(params.getMemberId());
+			emptyCart = orderMapper.emptyCartForOrder(memberId);
 		}
 		return emptyCart;
 	}

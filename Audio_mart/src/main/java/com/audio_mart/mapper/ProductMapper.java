@@ -13,14 +13,21 @@ public interface ProductMapper {
 	
 	public boolean insertProduct(ProductDTO params);
 	public boolean insertImg(List<ProductImgDTO> imgList);
+	
 	public List<CategoryDTO> cateList();
 	public ProductDTO findByProductId(Long productId);
+	
 	public boolean updateProduct(ProductDTO params);
 	public boolean deleteProduct(Long productId);
 	public boolean deleteCartForDeletion(Long productId);
+	
 	public List<ProductDTO> productList();
 	public List<ProductDTO> deletionList();
 	
-	public boolean saveImg(ProductDTO params);
+	public boolean updateImg(ProductDTO params);
+	public boolean increaseViewCnt(Long productId);
+	public boolean decreaseStock(Long orderId);
+	public boolean increaseOrderCnt(Long orderId);
+	
 
 }

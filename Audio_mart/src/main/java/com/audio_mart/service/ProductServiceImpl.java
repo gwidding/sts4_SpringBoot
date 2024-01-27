@@ -18,8 +18,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public boolean uploadProduct(ProductDTO params) {
-		boolean	queryResult = productMapper.insertProduct(params);
-		
+		boolean	queryResult = productMapper.insertProduct(params);	
 		return queryResult;
 	}
 	
@@ -65,7 +64,9 @@ public class ProductServiceImpl implements ProductService{
 		return deletionList;
 	}
 
-
-	
-
+	@Override
+	public boolean increaseViewCnt(Long ProductId) {
+		boolean queryResult = productMapper.increaseViewCnt(ProductId);
+		return queryResult;
+	}
 }

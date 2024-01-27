@@ -46,7 +46,7 @@
 		</foreach>
 	</insert>
 	
-	<update id="saveImg" parameterType="ProductDTO">
+	<update id="updateImg" parameterType="ProductDTO">
 		update 
 			product 
 		set 
@@ -113,5 +113,25 @@
 		WHERE delete_yn ='Y'
 		ORDER BY delete_date desc, product_id DESC
 	</select>
+	
+	<update id="increaseViewCnt" parameterType="long">
+		UPDATE product
+		SET view_cnt = view_cnt + 1
+		WHERE product_id = #{productId}
+	</update>
+	
+	<update id="increaseOrderCnt" parameterType="long">
+		UPDATE product p
+		JOIN orderDetail od ON p.product_id = od.product_id
+		SET p.order_cnt = p.order_cnt + od.quantity
+		WHERE od.order_id = #{orderId};
+	</update>
+	
+	<update id="decreaseStock" parameterType="long">
+		UPDATE product p
+		JOIN orderDetail od ON p.product_id = od.product_id
+		SET p.stock = p.stock - od.quantity
+		WHERE od.order_id = #{orderId};
+	</update>
 	
 </mapper>
