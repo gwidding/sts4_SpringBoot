@@ -1,17 +1,14 @@
-use audio_mart;
-
 create table category (
 	cate_id int not null auto_increment primary key
     , cate_name varchar(50) not null
 );
-
 create table product (
 	product_id int not null auto_increment primary key
     , cate_id int not null
-    , pname varchar(50) not null
+    , pname varchar(200) not null
     , pprice int not null
     , stock int not null default 0
-    , description varchar(500) null
+    , description varchar(4000) null
     , order_cnt int not null default 0
     , view_cnt int not null default 0
     , register_date datetime not null default NOW()
@@ -21,8 +18,8 @@ create table product (
     
     ,FOREIGN KEY (cate_id) REFERENCES category(cate_id)
 );
-alter table product add (thumb_img varchar(200) null);
-alter table product add (img_path varchar(200) null);
+alter table product add (thumb_name varchar(200) null);
+alter table product add (thumb_path varchar(200) null);
 
 create table orders (
 	order_id int not null auto_increment primary key
@@ -37,7 +34,6 @@ create table orders (
     
     ,foreign key (member_idx) references member(idx)
 );
-
 create table orderDetail (
 	order_detail_id int not null auto_increment primary key
     , order_id int not null
@@ -47,7 +43,6 @@ create table orderDetail (
     ,FOREIGN KEY (order_id) REFERENCES orders(order_id)
     ,FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
-
 create table product_image (
 	img_id int not null auto_increment primary key
     , product_id int not null
@@ -57,13 +52,6 @@ create table product_image (
     , delete_yn ENUM('Y', 'N') not null default 'N'
     , memo varchar(500) null
 );
-SELECT od.*, o.member_idx, p.pname, o.order_date, od.quantity * p.pprice as pAmountPrice,
-				o.payment_method, o.order_addr, o.order_notes, o.order_status, o.update_date
-FROM orderDetail od
-	JOIN orders o ON od.order_id = o.order_id
-	JOIN product p ON od.product_id = p.product_id
-WHERE o.member_idx = 5;
-
 ALTER TABLE product_image ADD CONSTRAINT `FK_product_TO_product_image_1` 
 	FOREIGN KEY (product_id) REFERENCES product(product_id);
 
@@ -81,36 +69,3 @@ CREATE TABLE cart (
     , foreign key (member_id) references member(idx)
     , foreign key (product_id) references product(product_id)
 );
-desc member;
-select * from orders;
-select * from product_image;
-select * from cart;
-select * from product;
-select * from member;
-select * from orderDetail where member_idx = 2;
-
-SELECT
-	p.*, pi.img_path, pi.img_name, pi.is_rep, pi.delete_yn, pi.memo
-FROM product p
-	LEFT JOIN product_image pi ON p.product_id = pi.product_id
-WHERE
-	p.product_id = 2;
-    
-
-SELECT od.*
-FROM orderDetail od
-JOIN orders o ON od.order_id = o.order_id
-WHERE o.member_idx = 1;
-
-update member set deletion_yn = 'N' where idx = 7;
-                
-select * FROM information_schema.TABLE_CONSTRAINTS
-WHERE TABLE_SCHEMA = 'audio_mart';
-
-alter table product drop column img3;
-ALTER TABLE orders MODIFY COLUMN order_addr varchar(60) not null;
-alter table product Add column update_date datetime null;
-alter table orders rename column order_notes to order_addr;
-desc orders;
-
-select * from product_image;

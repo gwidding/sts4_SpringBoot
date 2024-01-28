@@ -19,6 +19,7 @@ public class ProductDTO {
 	
 	private String thumbName;
 	private String thumbPath;
+	private String cateName;
 	
 	public Long getProductId() {
 		return productId;
@@ -105,12 +106,19 @@ public class ProductDTO {
 	public void setThumbPath(String thumbPath) {
 		this.thumbPath = thumbPath;
 	}
+	public String getCateName() {
+		return cateName;
+	}
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
+	}
 	@Override
 	public String toString() {
 		return "ProductDTO [productId=" + productId + ", cateId=" + cateId + ", pname=" + pname + ", pprice=" + pprice
 				+ ", stock=" + stock + ", description=" + description + ", orderCnt=" + orderCnt + ", viewCnt="
 				+ viewCnt + ", registerDate=" + registerDate + ", deleteYn=" + deleteYn + ", deleteDate=" + deleteDate
-				+ ", updateDate=" + updateDate + ", thumbName=" + thumbName + ", thumbPath=" + thumbPath + "]";
+				+ ", updateDate=" + updateDate + ", thumbName=" + thumbName + ", thumbPath=" + thumbPath + ", cateName="
+				+ cateName + "]";
 	}
 
 }

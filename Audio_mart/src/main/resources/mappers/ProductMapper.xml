@@ -58,14 +58,15 @@
 	
 	<select id="findByProductId" parameterType="long" resultType="ProductDTO">
 		SELECT
-			<include refid="productColumns" />
+			product_id, p.cate_id, pname, pprice, stock, description, order_cnt, view_cnt, register_date
+			, delete_yn, delete_date, update_date, c.cate_name
 		FROM
-			product
+			product p
+		    join category c on p.cate_id = c.cate_id
 		WHERE
 			product_id = #{productId}
 		ORDER BY
-			product_id DESC,
-			register_date DESC
+			product_id DESC, register_date DESC;
 	</select>
 	
 	<update id="updateProduct" parameterType="ProductDTO">

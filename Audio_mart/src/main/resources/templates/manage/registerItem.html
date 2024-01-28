@@ -42,7 +42,7 @@
 					<tr>
 						<td>
 							<label>상품 이름</label>
-							<input type="text" th:field="*{pname}" placeholder="상품 이름" />
+							<input type="text" th:field="*{pname}" placeholder="상품 이름" maxlength="150" />
 						</td>
 					</tr>
 					
@@ -63,7 +63,7 @@
 					<tr>
 						<td>
 							<label>상품 설명</label>
-							<textarea th:field="*{description}" placeholder="상품 설명" />
+							<textarea th:field="*{description}" placeholder="상품 설명" maxlength="3500"/>
 						</td>
 					</tr>
 					
@@ -113,6 +113,11 @@
 		
 		if (confirm(idx + "번 상품을 홈페이지에서 내리겠습니까?")) {
 			var uri = /*[[ @{/admin/itemDelete} ]]*/ null;
+			
+			// CSRF 토큰 가져오기
+            var csrfParameter = /*[[${_csrf.parameterName}]]*/ '_csrf';
+            var csrfToken = /*[[${_csrf.token}]]*/ null;
+            
 			var html = "";
 			html += '<form name="dataForm" action="' + uri + '" method="post">';
 			html += '<input type="hidden" name="productId" value="' + idx + '"/>';
@@ -123,6 +128,8 @@
 					html += '<input type="hidden" name="' + key + '" value="' + value + '" />';
 				}
 			});
+			 // CSRF 토큰 추가 - 보안
+			 html += '<input type="hidden" name="' + csrfParameter + '" value="' + csrfToken + '"/>';
 
 			html += '</form>';
 
