@@ -45,7 +45,8 @@ public class CartServiceImpl implements CartService {
 		
 		int cartCnt = cartMapper.selectCartTotalCnt(memberId);
 		if (cartCnt > 0) {
-			cartList = cartMapper.selectCartList(memberId);			
+			cartList = cartMapper.selectCartList(memberId);
+			System.out.println(cartList);
 		}
 		return cartList;
 	}

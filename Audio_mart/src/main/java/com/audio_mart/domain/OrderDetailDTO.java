@@ -28,6 +28,8 @@ public class OrderDetailDTO {
 	private String orderNotes;
 	private String orderStatus;
 	private LocalDateTime updateDate;
+	private String imgName;
+	private String imgPath;
 	
 
 	public Long getOrderDetailId() {
@@ -109,12 +111,27 @@ public class OrderDetailDTO {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+	public String getImgPath() {
+		return imgPath;
+	}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
 	@Override
 	public String toString() {
 		return "OrderDetailDTO [orderDetailId=" + orderDetailId + ", orderId=" + orderId + ", productId=" + productId
 				+ ", quantity=" + quantity + ", memberId=" + memberId + ", pname=" + pname + ", orderDate=" + orderDate
 				+ ", pAmountPrice=" + pAmountPrice + ", paymentMethod=" + paymentMethod + ", orderAddr=" + orderAddr
-				+ ", orderNotes=" + orderNotes + ", orderStatus=" + orderStatus + ", updateDate=" + updateDate + "]";
-	}	
+				+ ", orderNotes=" + orderNotes + ", orderStatus=" + orderStatus + ", updateDate=" + updateDate
+				+ ", imgName=" + imgName + ", imgPath=" + imgPath + "]";
+	}
+
 	
 }

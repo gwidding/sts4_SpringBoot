@@ -58,7 +58,8 @@
 								<tr class="table_row" th:if="${not #lists.isEmpty(cartList)}" th:each="cart, iterStat : ${cartList}">
 									<td class="column-1">
 										<div class="how-itemcart1">
-											<img th:onclick="deleteCart([[ ${cart.cartId} ]])" src="images/item-cart-01.jpg" alt="IMG">
+											<img th:if="${cart.imgName == null or cart.imgPath == null}" th:onclick="deleteCart([[ ${cart.cartId} ]])" src="images/item-cart-01.jpg" alt="IMG">
+											<img th:unless="${cart.imgName == null or cart.imgPath == null}" th:onclick="deleteCart([[ ${cart.cartId} ]])" th:src="${cart.imgPath + cart.imgName}" alt="IMG">
 										</div>
 									</td>
 									<td class="column-2"><a th:href="@{/product-detail(productId=${cart.productId})}" th:text="${cart.pname}"></a></td>

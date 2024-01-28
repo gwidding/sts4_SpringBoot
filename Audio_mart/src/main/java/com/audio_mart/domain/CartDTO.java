@@ -9,6 +9,8 @@ public class CartDTO {
 	
 	private String pname;
 	private int pprice;
+	private String imgName;
+	private String imgPath;
 	
 	
 	public Long getCartId() {
@@ -49,10 +51,23 @@ public class CartDTO {
 		this.pprice = pprice;
 	}
 	
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+	public String getImgPath() {
+		return imgPath;
+	}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
 	@Override
 	public String toString() {
 		return "CartDTO [cartId=" + cartId + ", memberId=" + memberId + ", productId=" + productId + ", quantity="
-				+ quantity + ", pname=" + pname + ", pprice=" + pprice + "]";
+				+ quantity + ", pname=" + pname + ", pprice=" + pprice + ", imgName=" + imgName + ", imgPath=" + imgPath
+				+ "]";
 	}
 
 }

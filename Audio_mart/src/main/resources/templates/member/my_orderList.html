@@ -58,7 +58,8 @@
 									<td class="column-1" scope="row">
 										<div class="column1-all-box">
 											<a class="how-itemcart1" th:href="@{/product-detail(productId=${row.productId})}">
-												<img src="/images/product-01.jpg" alt="IMG">
+												<img th:if="${row.imgName == null or row.imgPath == null}" src="/images/product-01.jpg" alt="IMG">
+												<img th:unless="${row.imgName == null or row.imgPath == null}" th:src="${'/' + row.imgPath + row.imgName}" class="img-fixed-size" alt="IMG">
 											</a>
 											<div class="column1-box">
 										    	<span class="font-size-up" th:text="${row.pname}"></span>

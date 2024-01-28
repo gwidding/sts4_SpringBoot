@@ -124,26 +124,5 @@ public class CartController extends UiUtils{
     	
     	return showSuccessMessage("주문 완료! ", "/product", true, model);
     }
-    
-//    @PostMapping("/cart/update")
-//    public String updateCart(@RequestParam(value="cart") CartDTO[] cartArray, Model model) {
-//    	List<CartDTO> cartList = Arrays.asList(cartArray);
-//    	if (cartList == null || cartList.isEmpty()) {
-//    		return showMessageWithRedirect("장바구니가 비었습니다.", "/cart", Method.GET, null, model);
-//    	}
-//    	try {
-//    		for (CartDTO cart : cartList) {
-//    			boolean isUpdated = cartService.updateCart(cart);
-//    			if (!isUpdated) {
-//    				System.out.println(cart.getCartId() + "번 장바구니 수정 실패");
-//    			}
-//    		}
-//    	} catch(DataAccessException e) {
-//			System.out.println("데베 문제");
-//		} catch(Exception e) {
-//			System.out.println("시스템 문제");
-//		}
-//    	
-//    	return showMessageWithRedirect("장바구니 수정이 완료되었습니다.", "/cart", Method.GET, null, model);
-//    }
+
 }
