@@ -42,4 +42,5 @@
 ![LOGIN-login_out](https://github.com/gwidding/sts4_SpringBoot/assets/135992700/64b45a4e-2595-43b7-81ac-056330cb32e4)
 
 #### 관리자
-ㅇㅇㅇ
+![ADMIN](https://github.com/gwidding/sts4_SpringBoot/assets/135992700/2961ef53-00d6-4e7b-bf36-c3f3a65cd9d9)
+
