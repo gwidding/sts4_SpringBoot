@@ -69,11 +69,22 @@
    <img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/71a8ac81-5bd0-4d39-a985-7291f556ef6b" alt="HOME" />
   </td>
   
-  <td width="300px">
-<!--    <li>dtdt</li>
-   <li>dtdt</li> -->
+  <td width="400px">
    <img src="https://github.com/gwidding/STM/assets/135992700/d6c61142-578b-4f58-a421-083214cf85fd" alt="HOME" />
   </td>
  </tr>
+
+ <tr>
+ <td>
+  <img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/64b45a4e-2595-43b7-81ac-056330cb32e4"/>
+ </td>
+
+  
+  <td>
+   <img src="https://github.com/gwidding/STM/assets/135992700/4c4776cf-6a24-4920-aa23-97bfd30c3024" />
+  </td>
+ </tr>
+
+ 
 </table>
 
