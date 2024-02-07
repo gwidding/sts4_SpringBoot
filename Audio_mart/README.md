@@ -1,5 +1,7 @@
 # 오디오 스토어 웹 Ring Ding with Spring Boot
 
+### 개발 환경
+
 ## 주요 기능
 회원
 - 고객 : 회원가입, 로그인, 회원정보 수정, 회원 탈퇴
@@ -17,4 +19,11 @@
 ## 화면 흐름도
 ![img](https://github.com/gwidding/sts4_SpringBoot/assets/135992700/446e4eaa-9786-45a4-9b01-2893dca6f88d)
 
-## 화면 별 기능
+## 화면별 기능
+#### 고객
+ㅇㅇㅇㅇㅇㅇㅇ
+ 
+</table>
+
+#### 관리자
+ㅇㅇㅇ
