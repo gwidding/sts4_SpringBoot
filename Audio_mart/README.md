@@ -68,8 +68,7 @@
   <td>
    <img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/71a8ac81-5bd0-4d39-a985-7291f556ef6b" alt="HOME" />
   </td>
-  
-  <td width="400px">
+  <td width="350px">
    <img src="https://github.com/gwidding/STM/assets/135992700/d6c61142-578b-4f58-a421-083214cf85fd" alt="HOME" />
   </td>
  </tr>
@@ -78,11 +77,14 @@
  <td>
   <img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/64b45a4e-2595-43b7-81ac-056330cb32e4"/>
  </td>
-
-  
   <td>
-   <img src="https://github.com/gwidding/STM/assets/135992700/4c4776cf-6a24-4920-aa23-97bfd30c3024" />
+   <img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/2077bba8-a7b3-4451-bca9-342720faa55a" alt="LOGIN-login"/>
   </td>
+ </tr>
+
+ <tr>
+  <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/42ae96d3-dd5c-4c64-a61a-57a30d209106" alt="LOGIN-signUp" /></td>
+  <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/eb5d577c-6fde-4659-81bf-604d70db853d" alt="LOGIN-signup" /></td>
  </tr>
 
  
