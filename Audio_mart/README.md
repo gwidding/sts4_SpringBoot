@@ -16,3 +16,5 @@
 
 ## 화면 흐름도
 ![img](https://github.com/gwidding/sts4_SpringBoot/assets/135992700/446e4eaa-9786-45a4-9b01-2893dca6f88d)
+
+## 화면 별 기능
