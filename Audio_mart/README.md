@@ -17,7 +17,7 @@
 주문
 - 장바구니 전체 주문 (배송지, 배송메시지, 결제방법)
 
-## 화면 흐름도
+### 화면 흐름도
 ![img](https://github.com/gwidding/sts4_SpringBoot/assets/135992700/446e4eaa-9786-45a4-9b01-2893dca6f88d)
 
 ## 화면별 기능
