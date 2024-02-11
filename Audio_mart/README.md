@@ -100,8 +100,8 @@
  <tr>
   <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/2961ef53-00d6-4e7b-bf36-c3f3a65cd9d9" alt="ADMIN"/></td>
   <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/d1bf0afb-11ff-475a-8c2a-8df8d1928279" alt="ADMIN-script"></td>
- </tr>
-
- 
+ </tr> 
 </table>
 
+
+[프로젝트 상세 설명 link](https://silvow94.tistory.com/entry/STS4-Spring-Boot-%EC%98%A4%EB%94%94%EC%98%A4-%EC%8A%A4%ED%86%A0%EC%96%B4-%EC%A0%9C%EC%9E%91)
