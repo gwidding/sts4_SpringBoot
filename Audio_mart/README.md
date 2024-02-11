@@ -1,6 +1,28 @@
 # 오디오 스토어 웹 Ring Ding with Spring Boot
+스프링 부트 이용한 오디오스토어 웹입니다.
 
-### 개발 환경
+## 개발 환경
+<table>
+ <tr>
+  <td>언어</td>
+  <td>Java, Html, JavaScript, CSS</td>
+ </tr>
+
+  <tr>
+   <td>프레임워크</td>
+   <td>Spring Boot, MyBatis, Bootstrap, Thymeleaf</td>
+ </tr>
+
+ <tr>
+  <td>IDE & 빌드 도구</td>
+  <td>STS4, Gradle</td>
+ </tr>
+ 
+ <tr>
+  <td>Database</td>
+  <td>MySql</td>
+ </tr>
+</table>
 
 ## 주요 기능
 회원
