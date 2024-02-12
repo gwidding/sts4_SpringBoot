@@ -52,6 +52,8 @@
 - [@ResponseBody 테스트](https://silvow94.tistory.com/entry/sts4-Spring-Boot-15-REST-API-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0)
 - [댓글 CRUD Test](https://silvow94.tistory.com/entry/sts4-Spring-Boot-16-REST-%EB%B0%A9%EC%8B%9D%EC%9C%BC%EB%A1%9C-%EB%8C%93%EA%B8%80-CRUD)
 - [댓글 CRUD - gson](https://silvow94.tistory.com/entry/sts4-Spring-Boot-17-REST-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EB%8C%93%EA%B8%80-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%9E%91%EC%84%B1-%EC%82%AD%EC%A0%9C)
+- [게시글 조회수](https://silvow94.tistory.com/entry/sts4-Spring-Boot-18-%EA%B2%8C%EC%8B%9C%EA%B8%80-%EC%A1%B0%ED%9A%8C%EC%88%98-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84)
+- [게시글 검색](https://silvow94.tistory.com/entry/Spring-Boot-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5)
 
 ## 화면별 기능
 <table>
