@@ -31,7 +31,7 @@
 - 작성, 조회, 수정, 삭제
 
 댓글
-- 작성, 조회, 수정, 삭제
+- 작성, 조회, 삭제
 
 추가 기능
 - 옵션별 검색, 페이징
@@ -55,58 +55,70 @@
 - [게시글 조회수](https://silvow94.tistory.com/entry/sts4-Spring-Boot-18-%EA%B2%8C%EC%8B%9C%EA%B8%80-%EC%A1%B0%ED%9A%8C%EC%88%98-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84)
 - [게시글 검색](https://silvow94.tistory.com/entry/Spring-Boot-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5)
 
+
 ## 화면별 기능
 <table>
  <tr>
-  <td>
-   이미지 태그
-  </td>
+  <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/35d24a8b-7ee3-4773-a3ad-62df0cf98282"></td>
   <td width="350px">
-    이미지 태그
+   <h3> 게시글 작성하기 </h3>
+    <li>공지글 여부 선택
+    <li>제목, 이름, 내용 작성
+    <li>뒤로가기
   </td>
  </tr>
 
  <tr>
- <td>
-  이미지 태그
- </td>
+  <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/09e070b4-89c9-4bf2-9e49-cadcda95fed3"></td>
   <td>
-   이미지 태그
+    <h3> 게시글 조회하기 </h3>
+    <li> 조회 수 증가
+    <li> 수정하기
+    <li> 삭제하기
+    <li> 뒤로가기
   </td>
  </tr>
 
  <tr>
-  이미지 태그
-   이미지 태그
+  <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/c7106b74-a84a-46c2-8a6f-260b3c096dcd"></td>
+  <td>
+   <h3> 게시글 수정하기 </h3>
+    <li> 저장
+    <li> 뒤로가기
+  </td>
  </tr>
 
  <tr>
- 이미지 태그
-   이미지 태그
+  <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/dd9722c7-6e24-4344-bfc3-fb2710ce30ee"></td>
+  <td>
+    <h3> 댓글 기능 </h3>
+    <li> 댓글 작성하기
+    <li> 댓글 삭제하기
+  </td>
  </tr>
 
  <tr>
- 이미지 태그이미지 태그
+  <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/8bbb5e6f-56f8-4363-b8df-f06049a9c977"></td>
+  <td>
+    <h3> 페이징 기능 </h3>
+    <li> 뒤로가기로 게시판 목록 이동 시 페이지 유지
+    <li> 원하는 페이지로 이동
+  </td>
  </tr>
 
  <tr>
- 이미지 태그이미지 태그
+  <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/e423368b-2fef-4c64-95b2-1a509f0af21a"></td>
+  <td>
+    <h3> 검색 기능 </h3>
+    <li> 유형(전체, 제목, 내용, 작성자)별 검색
+  </td>
  </tr>
 
  <tr>
- 이미지 태그이미지 태그
+  <td><img src="https://github.com/gwidding/sts4_SpringBoot/assets/135992700/404da8c4-8aaa-45a6-b178-b3f3a4deab79"></td>
+  <td>
+   <h3> 검색 결과 </h3>
+  </td>
  </tr>
-
- <tr>
-  이미지 태그이미지 태그
- </tr>
-
- <tr>
-  이미지 태그이미지 태그
- </tr>
-
- <tr>
-  이미지 태그이미지 태그
- </tr> 
 </table>
 
