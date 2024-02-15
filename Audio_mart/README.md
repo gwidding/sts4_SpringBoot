@@ -41,6 +41,9 @@
 주문
 - 장바구니 전체 주문 (배송지, 배송메시지, 결제방법)
 
+## 테이블 구조
+![image](https://github.com/gwidding/sts4_SpringBoot/assets/135992700/1e66600c-2345-486c-9528-81cdc4b2452b)
+
 ## 화면 흐름도
 ![img](https://github.com/gwidding/sts4_SpringBoot/assets/135992700/446e4eaa-9786-45a4-9b01-2893dca6f88d)
 
