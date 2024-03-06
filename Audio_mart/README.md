@@ -1,6 +1,7 @@
 # 오디오 스토어 웹 Ring Ding with Spring Boot
 스프링 부트 이용한 오디오스토어 웹입니다.
 
+[프로젝트 상세 설명 link](https://silvow94.tistory.com/entry/STS4-Spring-Boot-%EC%98%A4%EB%94%94%EC%98%A4-%EC%8A%A4%ED%86%A0%EC%96%B4-%EC%A0%9C%EC%9E%91)
 
 ## 개발 환경
 <table>
@@ -111,4 +112,4 @@
 </table>
 
 
-[프로젝트 상세 설명 link](https://silvow94.tistory.com/entry/STS4-Spring-Boot-%EC%98%A4%EB%94%94%EC%98%A4-%EC%8A%A4%ED%86%A0%EC%96%B4-%EC%A0%9C%EC%9E%91)
+
