@@ -5,3 +5,10 @@ demo/src/main/java/com/example/DemoApplication.java
 demo/src/main/resources/application.properties
 demo/src/main/resources/templates/greeting.html
 demo/src/test/java/com/example/demo/DemoApplicationTests.java
+demo/.gradle/8.5/dependencies-accessors/dependencies-accessors.lock
+demo/.gradle/8.5/dependencies-accessors/gc.properties
+demo/.gradle/8.5/executionHistory/executionHistory.lock
+demo/.gradle/8.5/fileChanges/last-build.bin
+demo/.gradle/8.5/fileHashes/fileHashes.lock
+demo/.gradle/8.5/gc.properties
+demo/.gradle/buildOutputCleanup/buildOutputCleanup.lock
