@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>상품 등록하기</title>
-	<link rel="stylesheet" href="/css/admin-page.css">
+	<link rel="stylesheet" href="../css/admin-page.css">
 	<link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
 </head>
 
@@ -14,7 +14,6 @@
 			<li class="timeline"><a href="/admin/list">회원 목록</a></li>
 			<li class="events"><a href="/admin/registerItem">상품 등록</a></li>
 			<li class="calendar"><a href="/admin/itemList">상품 목록</a></li>
-			<li class="sep settings">Settings</li>
 			<li class="logout"><a href="/home">홈으로 돌아가기</a> </li>
 		</ul>
 	</nav>
@@ -97,14 +96,21 @@
    
    // 상품 등록
 	function registerItem(form) {
+		var isValidImg = form.imgFile.files.length > 0;
+
 		var result = (
 			isValid(form.pname, "상품 이름", null, null)
 			&& isValid(form.pprice, "상품 가격", null, null)
 			&& isValid(form.stock, "상품 재고", null, null)
-			&& isValid(form.description, "상품 소개", null, null)		
+			&& isValid(form.description, "상품 소개", null, null)
 		);
 		
 		if (result == false) {
+			return false;
+		}
+
+		if (!isValidImg) {
+			alert("상품 이미지를 선택해 주세요.");
 			return false;
 		}
 	}
