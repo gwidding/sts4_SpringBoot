@@ -57,7 +57,7 @@
 								<div th:if="${#lists.isEmpty(imgList)}" class="item-slick3" data-thumb="images/product-detail-01.jpg">
 									<div class="wrap-pic-w pos-relative">
 										<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
-							
+
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
 											href="images/product-detail-01.jpg">
 											<i class="fa fa-expand"></i>
@@ -65,10 +65,16 @@
 									</div>
 								</div>
 							
-								<div th:each="imgInfo : ${imgList}" class="item-slick3" th:data-thumb="${imgInfo.imgPath + imgInfo.imgName}">
+								<div th:each="imgInfo : ${imgList}" class="item-slick3" th:data-thumb="${imgInfo.imgPath + imgInfo.imgName}" alt="Thumb">
 									<div class="wrap-pic-w pos-relative">
-										<img th:src="${imgInfo.imgPath + imgInfo.imgName}" alt="IMG-PRODUCT">
-							
+<!--										<img th:src="${imgInfo.imgPath + imgInfo.imgName}" alt="IMG-PRODUCT">-->
+										<div th:if="${not #strings.isEmpty(imgInfo.imgName)}" th:data-thumb="${imgInfo.imgPath + imgInfo.imgName}"></div>
+										<div th:unless="${not #strings.isEmpty(imgInfo.imgName)}" th:data-thumb="${imgInfo.imgPath} + 'product-detail-01.jpg'"></div>
+
+										<img th:if="${not #strings.isEmpty(imgInfo.imgName)}" th:src="${imgInfo.imgPath + imgInfo.imgName}" alt="IMG-PRODUCT">
+										<!-- If imgName is empty, use absolute path -->
+										<img th:unless="${not #strings.isEmpty(imgInfo.imgName)}" src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
 											th:href="${imgInfo.imgPath + imgInfo.imgName}">
 											<i class="fa fa-expand"></i>
@@ -333,7 +339,7 @@
 	    window.onload = function() {
 	        // 추가할 클래스와 대상 요소의 id
 	        var className = 'active-menu';
-	        var targetId = 'li-product'; // 여러분이 원하는 id로 변경하세요.
+	        var targetId = 'li-product';
 	
 	        // 대상 요소 찾기
 	        var targetElement = document.getElementById(targetId);
@@ -437,7 +443,8 @@
 		
 		$('.js-addcart-detail').on('click', function() {
 		    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			var member = /*[[ ${memberInfo} ]]*/ null; 
+			var member = /*[[ ${memberInfo} ]]*/ null;
+			var item = /*[[ ${product} ]]*/ null;
 
 			if (member == null) {
 		        // 사용자가 로그인하지 않은 경우
@@ -455,7 +462,10 @@
 		            }
 		        });
 		    } else {
-				
+				if (!(item.stock > 0)) {
+					swal('SOLD OUT!', '매진된 상품입니다. 입고 후에 구매해 주세요', 'warning');
+					return;
+				}
 			    swal({
 			        title: nameProduct,
 			        text: "장바구니 담기 완료 !",

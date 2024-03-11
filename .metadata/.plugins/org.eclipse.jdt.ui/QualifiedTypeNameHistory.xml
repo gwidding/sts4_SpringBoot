@@ -7,7 +7,6 @@
     <fullyQualifiedTypeName name="javax.sql.DataSource"/>
     <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="com.audio_mart.domain.ProductImgDTO"/>
     <fullyQualifiedTypeName name="java.util.UUID"/>
     <fullyQualifiedTypeName name="java.io.File"/>
@@ -25,4 +24,5 @@
     <fullyQualifiedTypeName name="org.hibernate.validator.constraints.NotBlank"/>
     <fullyQualifiedTypeName name="com.audio_mart.constant.Method"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
 </qualifiedTypeNameHistroy>

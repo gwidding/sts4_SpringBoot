@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService{
 	public boolean removeProduct(Long productId) {
 		boolean queryResult = productMapper.deleteProduct(productId);
 		boolean cartDeleteResult = productMapper.deleteCartForDeletion(productId);
-		return queryResult & cartDeleteResult;
+		return queryResult;
 	}
 
 	@Override

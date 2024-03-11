@@ -123,12 +123,12 @@ public class HomeController extends UiUtils {
             model.addAttribute("memberInfo", memberInfo);
         }
         ProductDTO product = productService.findByProductId(productId);
-        List<ProductImgDTO> imgList = imgService.getImgList(productId);  
+        List<ProductImgDTO> imgList = imgService.getImgList(productId);
         boolean viewCntResult = productService.increaseViewCnt(productId);
         if (!viewCntResult) {
         	System.out.println("조회수 증가 실패");
         }
-        model.addAttribute("product", product);        
+        model.addAttribute("product", product);
         model.addAttribute("imgList", imgList);
         model.addAttribute("newCart", new CartDTO());
         
