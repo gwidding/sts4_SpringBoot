@@ -54,7 +54,7 @@
 
 
 	<select id="selectCartList" parameterType="long" resultType="CartDTO">
-		SELECT c.cart_id, c.member_id, c.product_id, c.quantity, p.pname AS pname, p.pprice AS pprice,
+		SELECT c.cart_id, c.member_id, c.product_id, c.quantity, p.pname AS pname, p.pprice AS pprice, p.stock AS stock,
 				p.thumb_name AS imgName, p.thumb_path AS imgPath
 	    FROM cart c JOIN product p 
 	    			ON c.product_id = p.product_id
