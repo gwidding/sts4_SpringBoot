@@ -11,8 +11,25 @@ public class CartDTO {
 	private int pprice;
 	private String imgName;
 	private String imgPath;
-	
-	
+	private int stock;
+	private int availableStock;
+
+	public int getAvailableStock() {
+		return availableStock;
+	}
+
+	public void setAvailableStock(int availableStock) {
+		this.availableStock = availableStock;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	public Long getCartId() {
 		return cartId;
 	}
@@ -67,7 +84,6 @@ public class CartDTO {
 	public String toString() {
 		return "CartDTO [cartId=" + cartId + ", memberId=" + memberId + ", productId=" + productId + ", quantity="
 				+ quantity + ", pname=" + pname + ", pprice=" + pprice + ", imgName=" + imgName + ", imgPath=" + imgPath
-				+ "]";
+				+ ", stock=" + stock + "]";
 	}
-
 }
