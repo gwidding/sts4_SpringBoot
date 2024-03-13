@@ -51,6 +51,7 @@ public class CartServiceImpl implements CartService {
 		if (cartCnt > 0) {
 			cartList = cartMapper.selectCartList(memberId);
 			for (CartDTO cart : cartList) {
+				// 장바구니 담은 상품 재고 부족 시 삭제
 				ProductDTO product = productService.findByProductId(cart.getProductId());
 				if (product == null && product.getStock() - cart.getQuantity() < 0) {
 					cartMapper.deleteCart(cart.getCartId());
