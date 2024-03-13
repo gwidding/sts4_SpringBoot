@@ -5,10 +5,17 @@ select * from product;
 select * from member;
 select * from orderDetail;
 
+desc product;
+alter table product modify pname varchar(100) not null;
+
 UPDATE product p
 JOIN orderDetail od ON p.product_id = od.product_id
 SET p.order_cnt = p.order_cnt + od.quantity
 WHERE od.order_id = 1;
+
+UPDATE product p
+SET p.stock = 126
+WHERE p.product_id = 45;
 
 SELECT
 	p.*, pi.img_path, pi.img_name, pi.is_rep, pi.delete_yn, pi.memo
